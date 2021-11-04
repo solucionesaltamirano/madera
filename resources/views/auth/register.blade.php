@@ -15,6 +15,16 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="username" value="{{ __('User Name') }} ({{ __('optional') }})" /> 
+                <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"  />
+            </div>
+            
+            <div class="mt-4">
+                <x-jet-label for="phone" value="{{ __('Phone') }} ({{ __('optional') }})" />
+                <x-jet-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone') "  pattern="[0-9]{4}[0-9]{4}"   />
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
