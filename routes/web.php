@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\DeployController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//route for deploy in server test
+Route::any('/deploy/index', [DeployController::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');
