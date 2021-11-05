@@ -1128,5 +1128,18 @@
       return false;
     }
   </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6164048534137747"
+crossorigin="anonymous"></script>
+<!-- Laravel -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-6164048534137747"
+data-ad-slot="4625423606"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </body>
 </html>
