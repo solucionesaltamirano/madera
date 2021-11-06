@@ -26,12 +26,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
 });
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+Route::get('/google-callback', function () {
+    $user = Socialite::driver('google')->user();
 
     // $user->token
 });
