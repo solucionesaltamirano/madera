@@ -60,8 +60,6 @@ Route::get('/login-facebook', function () {
 Route::get('/facebook-callback', function () {
     $user = Socialite::driver('facebook')->user();
 
-    dd($user);
-
     $userExist = User::where('external_id', $user->id)->where('external_auth', 'facebook')->first();
 
     if($userExist){
