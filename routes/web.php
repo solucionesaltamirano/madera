@@ -53,7 +53,7 @@ Route::get('/google-callback', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/login-facebbok', function () {
+Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
