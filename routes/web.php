@@ -19,6 +19,10 @@ use App\Http\Controllers\DeployController;
 //route for deploy in server test
 Route::any('/deploy/index', [DeployController::class, 'index']);
 
+Route::get('/delete-information', function () {
+    return view('delete-information');
+})->name('delete-information');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();
-});
+})->name('login-google');
 
 Route::get('/google-callback', function () {
     $user = Socialite::driver('google')->user();
@@ -51,11 +55,11 @@ Route::get('/google-callback', function () {
     }
 
     return redirect()->route('dashboard');
-});
+})->name('google-callback');
 
 Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
-});
+})->name('login-facebook');
 
 Route::get('/facebook-callback', function () {
     $user = Socialite::driver('facebook')->user();
@@ -76,4 +80,4 @@ Route::get('/facebook-callback', function () {
     }
 
     return redirect()->route('dashboard');
-});
+})->name('facebook-callback');
