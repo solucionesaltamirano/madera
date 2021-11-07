@@ -52,3 +52,28 @@ Route::get('/google-callback', function () {
 
     return redirect()->route('dashboard');
 });
+
+Route::get('/login-facebbok', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/facebook-callback', function () {
+    $user = Socialite::driver('facebook')->user();
+
+    $userExist = User::where('external_id', $user->id)->where('external_auth', 'facebook')->first();
+
+    if($userExist){
+        Auth::login($userExist);
+    }else{
+        $newUser = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'external_avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'facebook',
+        ]);
+        Auth::login($newUser);
+    }
+
+    return redirect()->route('dashboard');
+});
