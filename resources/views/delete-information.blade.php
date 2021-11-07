@@ -6,9 +6,9 @@
             </div>
 
             <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
-                {{-- {!! $policy !!} --}}
+                {{-- {!! $delete !!} --}}
                 
-    <strong>Delete Information</strong> <p>
+            <strong>Delete Information</strong> <p>
                   Soluciones Altamirano built the Inicio app as
                   a Commercial app. This SERVICE is provided by
                   Soluciones Altamirano  and is intended for use as
@@ -105,8 +105,6 @@
                 </p> <p>This policy is effective as of 2021-11-01</p> <p><strong>Contact Us</strong></p> <p>
                   If you have any questions or suggestions about my
                   Privacy Policy, do not hesitate to contact me at solucionesaltamirano@gmail.com.
-                
-      
                 
             </div>
         </div>
