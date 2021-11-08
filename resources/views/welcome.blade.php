@@ -268,9 +268,9 @@
                 </div>
             </div>
             <div class="flex flex-col md:flex-row md:justify-center space-y-2 md:space-y-0 md:space-x-3 text-gray-500 text-xs">
-                <p>Copyright © 2021 Amiso. All rights reserved.</p>
+                {{-- <p>Copyright © 2021 Amiso. All rights reserved.</p>
                 <p>Hand illustration by <a class="text-blue-700 underline" href="https://icons8.com" rel="nofollow" target="_blank">icons8.com</a></p>
-                <p>Photos by <a class="text-blue-700 underline" href="https://pexels.com" rel="nofollow" target="_blank">pexels.com</a></p>
+                <p>Photos by <a class="text-blue-700 underline" href="https://pexels.com" rel="nofollow" target="_blank">pexels.com</a></p> --}}
             </div>
         </footer>
     </main>
