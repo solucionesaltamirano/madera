@@ -15,7 +15,7 @@
     <main class="">
         <header class="container mx-auto mt-6 px-4 flex justify-between items-center"><!-- Start Header -->
             <div class="">
-                <a href="/" class=""><img src="img/logo.svg" alt="Logo" class="h-12 w-auto"></a>
+                <a href="/" class=""><img src="img/logo.svg" alt="Logo" class="h-16 w-auto"></a>
             </div>
             <div class="flex items-center">
                 <div class="hidden md:block space-x-6 font-medium">
@@ -250,7 +250,7 @@
             <hr class="mb-6">
             <div class="flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 mb-6">
                 <div class="flex-1">
-                    <a href="/" class=""><img src="img/logo.svg" alt="Logo" class="h-12 w-auto"></a>
+                    <a href="/" class=""><img src="img/favicon.png" alt="Logo" class="h-12 w-auto"></a>
                 </div>
                 <div class="flex md:justify-center flex-1 space-x-6 font-medium">
                     <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Features</a>
