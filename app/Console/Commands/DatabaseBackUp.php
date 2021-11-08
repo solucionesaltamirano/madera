@@ -47,5 +47,7 @@ class DatabaseBackUp extends Command
         $output  = NULL;
   
         exec($command, $output, $returnVar);
+
+        dump($filename);    
     }
 }
