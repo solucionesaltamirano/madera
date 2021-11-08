@@ -7,8 +7,9 @@
     <link rel="icon" type="image/png" href="img/favicon.png"/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <title>Amiso – Free Landing page for your mobile app</title>
-
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+    <title>Soluciones Altamirano - Startup</title>
+    @include('customs.home-css')
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
@@ -32,7 +33,7 @@
                     <a href="#0" class="">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                          </svg>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -42,8 +43,8 @@
             <div class="grid lg:grid-cols-2 gap-10 items-center">
                 <div class="space-y-8 lg:space-y-12">
                     <div class="space-y-6">
-                        <h1 class="text-4xl sm:text-6xl font-semibold">Landing page for <br>your online service</h1>
-                        <p class="max-w-sm text-xl">Sed ea enim et expedita quo. Sint consequuntur nobis expedita mollitia voluptatem aut est a quia.</p>
+                        <h1 class="text-4xl sm:text-6xl font-semibold">If you can believe it, you can create it!</h1>
+                        <p class="max-w-sm text-xl">Move a lot, learn a lot, have a lot of fun, eat a lot, and rest a lot. !Live life to the max!</p>
                     </div>
                     <div class="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0">
                         <input class="w-full sm:w-72 border-2 sm:border-r-0 py-4 px-6 rounded-lg sm:rounded-none sm:rounded-tl-lg sm:rounded-bl-lg outline-none focus:border-blue-600" type="text" placeholder="Your email address">
