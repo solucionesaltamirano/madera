@@ -40,7 +40,7 @@ class DatabaseBackUp extends Command
     {
         $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
   
-        $command = "mysqldump --login-path=local" . env('DB_DATABASE') . "  | gzip > /app/backup/" . $filename;
+        $command = "mysqldump --login-path=local" . env('DB_DATABASE') . "  | gzip > var/www/startup/app/backup/" . $filename;
   
         $returnVar = NULL;
         $output  = NULL;
