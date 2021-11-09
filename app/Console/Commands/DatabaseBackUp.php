@@ -44,7 +44,7 @@ class DatabaseBackUp extends Command
         $filename =  Carbon::now()->format('Y-m-d') . '_' .config('app.name') . '_'. substr(str_shuffle($permitted_chars), 0, 16).'.sql';
 
         if(config('app.url') != 'https://startup.local'){
-            $path = '/var/www/startup/storage/app/backups/';
+            $path = '/var/www/startup/storage/app/public/backups/';
         }else{
             $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\backups\\";
         }
