@@ -50,9 +50,8 @@ class DatabaseBackUp extends Command
         $returnVar = NULL;
         $output  = NULL;
   
-        exec($command, $output, $returnVar);
-
         dump($file);   
+        exec($command, $output, $returnVar);
 
         $correo = new BackupMail($file);
             Mail::to('info@vostok.com')
