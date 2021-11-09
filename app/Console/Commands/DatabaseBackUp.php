@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Carbon\Carbon;
+use App\Mail\BackupMail;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class DatabaseBackUp extends Command
 {
@@ -42,11 +44,17 @@ class DatabaseBackUp extends Command
   
         $command = "mysqldump --login-path=local" . env('DB_DATABASE') . " > /var/www/startup/storage/app/backup/" . $filename . "\n gzip " . "/var/www/startup/storage/app/backup/" . $filename ;
 
+        $file ="/var/www/startup/storage/app/backup/" . $filename . ".gz";
+
   
         $returnVar = NULL;
         $output  = NULL;
   
         exec($command, $output, $returnVar);
+
+        $correo = new BackupMail ($file);
+            Mail::to('info@vostok.com')
+            ->send($correo);
 
         dump($filename);    
     }
