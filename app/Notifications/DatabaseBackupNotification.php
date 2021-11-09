@@ -43,9 +43,14 @@ class DatabaseBackupNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', asset('storage/backups/' . $this->filename))
-                    ->line('Thank you for using our application!');
+        ->subject('Backup ' . date('d-m-Y'))
+        ->from(config('mail.from.address'), 'Sistema Vostok')
+        ->greeting('Excelente!')
+        ->line('Backup de Base de datos realizada con exito.')
+        ->line('')
+        ->action('Descargar Backup', asset('storage/backups/' . $this->filename))
+        ->line('')
+        ->line('Gracias por usar nuetros servicios!');
     }
 
     /**
