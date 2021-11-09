@@ -44,7 +44,7 @@ class DatabaseBackUp extends Command
   
         $command = "mysqldump --login-path=local" . env('DB_DATABASE') . " > /var/www/startup/storage/app/backup/" . $filename . ".sql" . "\n gzip /var/www/startup/storage/app/backup/" . $filename . ".sql"  ;
 
-        $file = "/var/www/startup/storage/app/backup/" . $filename . ".gz";
+        $file = "/var/www/startup/storage/app/backup/" . $filename . ".sql.gz";
 
         dump($file);   
   
