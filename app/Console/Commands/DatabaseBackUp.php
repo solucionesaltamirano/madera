@@ -42,6 +42,6 @@ class DatabaseBackUp extends Command
      */
     public function handle()
     {
-        exec('curl '. config('app.url').'/email/backup');
+        shell_exec('curl '. config('app.url').'/email/backup');
     }
 }
