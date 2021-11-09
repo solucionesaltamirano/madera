@@ -58,6 +58,7 @@ class DatabaseBackUp extends Command
                 'info@vostok.com.gt',
                 'solucionesaltamirano@gmail.com',
                 'gersonaltamirano@gmail.com',
+                'info@solucionesaltamirano.com',
             ])
             ->send($correo);    
     }
