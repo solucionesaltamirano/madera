@@ -49,6 +49,12 @@ class DatabaseBackUp extends Command
             $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\backups\\";
         }
 
+        $command = "rm -r " . $path . " \n mkdir backups";
+        $returnVar = NULL;
+        $output  = NULL;
+  
+        exec($command, $output, $returnVar);
+
         $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > ". $path . $filename ;
 
         $file = $path . $filename;
