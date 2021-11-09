@@ -13,15 +13,17 @@ class BackupMail extends Mailable
 
     public $subject;
     public $file;
+    public $filename;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($file)
+    public function __construct($file, $filename)
     {
         $this->file = $file;
-        $this->subject = "Backup_" . date('Y-m-d');
+        $this->filename = $filename;
+        $this->subject = $filename;
     }
 
     /**

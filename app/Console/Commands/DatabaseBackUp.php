@@ -42,9 +42,11 @@ class DatabaseBackUp extends Command
     {
         $filename = Carbon::now()->format('Y-m-d') . "_backup_" . config('app.name') ;
   
-        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > /var/www/startup/storage/app/backup/" . $filename . ".sql" . "\n gzip /var/www/startup/storage/app/backup/" . $filename . ".sql"  ;
+        // $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > /var/www/startup/storage/app/backup/" . $filename . ".sql" . "\n gzip /var/www/startup/storage/app/backup/" . $filename . ".sql"  ;
 
-        $file = "/var/www/startup/storage/app/backup/" . $filename . ".sql.gz";
+        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > /var/www/startup/storage/app/backup/" . $filename . ".sql"  ;
+
+        $file = "/var/www/startup/storage/app/backup/" . $filename . ".sql";
 
         dump($file);   
   
@@ -53,7 +55,7 @@ class DatabaseBackUp extends Command
   
         exec($command, $output, $returnVar);
 
-        $correo = new BackupMail($file);
+        $correo = new BackupMail($file, $filename);
             Mail::to([
                 'info@vostok.com.gt',
                 'solucionesaltamirano@gmail.com',
