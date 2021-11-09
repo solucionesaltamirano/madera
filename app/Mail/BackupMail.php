@@ -11,14 +11,16 @@ class BackupMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $file;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($file)
     {
-        //
+        $this->file = $file;
+        $this->subject = "Backup_" . date('Y-m-d');
     }
 
     /**
@@ -26,9 +28,9 @@ class BackupMail extends Mailable
      *
      * @return $this
      */
-    public function build($file)
+    public function build()
     {
         return $this->view('mails.backup')
-        ->attach($file);
+        ->attach($this->file);
     }
 }
