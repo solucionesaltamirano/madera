@@ -44,7 +44,7 @@ class DatabaseBackupNotification extends Notification
     {
         return (new MailMessage)
         ->subject('Backup ' . date('d-m-Y'))
-        ->from(config('mail.from.address'), 'Sistema Vostok')
+        ->from(config('mail.from.address'), config('app.name'))
         ->greeting('Excelente!')
         ->line('Backup de Base de datos realizada con exito.')
         ->line('')
