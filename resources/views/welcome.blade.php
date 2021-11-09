@@ -44,7 +44,7 @@
                 <div class="space-y-8 lg:space-y-12">
                     <div class="space-y-6">
                         <h1 class="text-4xl sm:text-6xl font-semibold">If you can believe it, you can create it!</h1>
-                        <p class="max-w-sm text-xl">Move a lot, learn a lot, have a lot of fun, eat a lot, and rest a lot. !Live life to the max!</p>
+                        <p class="max-w-sm text-xl">Move well, learn well, play well, eat well, and rest well. !Live your lifes merrily to to the fullest!</p>
                     </div>
                     <div class="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0">
                         <input class="w-full sm:w-72 border-2 sm:border-r-0 py-4 px-6 rounded-lg sm:rounded-none sm:rounded-tl-lg sm:rounded-bl-lg outline-none focus:border-blue-600" type="text" placeholder="Your email address">
