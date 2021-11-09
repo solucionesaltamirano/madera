@@ -11,6 +11,7 @@ class BackupMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subject;
     public $file;
     /**
      * Create a new message instance.
