@@ -40,15 +40,18 @@ class DatabaseBackUp extends Command
      */
     public function handle()
     {
-        $filename = Carbon::now()->format('Y-m-d') . "_backup_" . config('app.name') ;
-  
-        // $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > /var/www/startup/storage/app/backup/" . $filename . ".sql" . "\n gzip /var/www/startup/storage/app/backup/" . $filename . ".sql"  ;
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $filename =  Carbon::now()->format('Y-m-d') . '_' .config('app.name') . '_'. substr(str_shuffle($permitted_chars), 0, 16).'.sql';
 
-        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > /var/www/startup/storage/app/backup/" . $filename . ".txt"  ;
+        if(config('app.url') != 'https://vostok.local'){
+            $path = '/var/www/startup/storage/app/backups/';
+        }else{
+            $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\backups\\";
+        }
 
-        $file = "/var/www/startup/storage/app/backup/" . $filename . ".txt";
+        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > ". $path . $filename ;
 
-        dump($file);   
+        $file = $path . $filename;
   
         $returnVar = NULL;
         $output  = NULL;
