@@ -42,10 +42,38 @@ class DatabaseBackUp extends Command
      */
     public function handle()
     {
-        $command = 'curl '. config('app.url').'/email/backup';
 
-        dump($command);
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $filename =  Carbon::now()->format('Y-m-d') . '_' .config('app.name') . '_'. substr(str_shuffle($permitted_chars), 0, 16).'.sql';
 
-        shell_exec($command);
+        if(config('app.url') != 'https://startup.local'){
+            $path = '/var/www/startup/storage/app/public/backups/';
+        }else{
+            $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\backups\\";
+        }
+
+        $command = "rm -r " . $path . " \n mkdir " . $path . " backups";
+        $returnVar = NULL;
+        $output  = NULL;
+  
+        exec($command, $output, $returnVar);
+
+        //for work: in console one time run: mysql_config_editor set --login-path=local --host=localhost --user=[user] --password
+
+        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > ". $path . $filename ;
+
+        $file = $path . $filename;
+  
+        dump($path);
+        dump($file);
+
+        $returnVar = NULL;
+        $output  = NULL;
+  
+        exec($command, $output, $returnVar);
+
+        $command = 'curl '. config('app.url').'/email/backup'. $filename;
+
+        exec($command);
     }
 }

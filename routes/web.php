@@ -21,7 +21,7 @@ use App\Http\Controllers\MailSenderController;
 Route::any('/deploy/index', [DeployController::class, 'index'])->name('deploy');
 
 //route for send email
-Route::any('/email/backup', [MailSenderController::class, 'backup'])->name('email.backup');
+Route::any('/email/backup/{filename}', [MailSenderController::class, 'backup'])->name('email.backup');
 
 Route::get('/delete-information', function () {
     return view('delete-information');
