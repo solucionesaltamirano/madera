@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\DeployController;
+use App\Http\Controllers\MailSenderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,10 @@ use App\Http\Controllers\DeployController;
 |
 */
 //route for deploy in server test
-Route::any('/deploy/index', [DeployController::class, 'index']);
+Route::any('/deploy/index', [DeployController::class, 'index'])->name('deploy');
+
+//route for send email
+Route::any('/email/backup', [MailSenderController::class, 'backup'])->name('email.backup');
 
 Route::get('/delete-information', function () {
     return view('delete-information');
