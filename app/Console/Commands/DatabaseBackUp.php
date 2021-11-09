@@ -49,7 +49,7 @@ class DatabaseBackUp extends Command
             $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\backups\\";
         }
 
-        $command = "rm -r " . $path . " \n mkdir backups";
+        $command = "rm -r " . $path . " \n mkdir " . $path . " backups";
         $returnVar = NULL;
         $output  = NULL;
   
