@@ -58,7 +58,7 @@ class DatabaseBackUp extends Command
   
         exec($command, $output, $returnVar);
 
-        $correo = new BackupMail($file, $filename);
+        $correo = new BackupMail( $filename);
             Mail::to([
                 'solucionesaltamirano@gmail.com',
                 'gersonaltamirano@gmail.com',
