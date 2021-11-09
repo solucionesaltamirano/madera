@@ -55,6 +55,9 @@ class DatabaseBackUp extends Command
   
         exec($command, $output, $returnVar);
 
+
+        //for work: in console one time run: mysql_config_editor set --login-path=local --host=localhost --user=[user] --password
+
         $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > ". $path . $filename ;
 
         $file = $path . $filename;
