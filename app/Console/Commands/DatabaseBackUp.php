@@ -53,6 +53,9 @@ class DatabaseBackUp extends Command
 
         $file = $path . $filename;
   
+        dump($path);
+        dump($file);
+
         $returnVar = NULL;
         $output  = NULL;
   
