@@ -4,8 +4,10 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use App\Mail\BackupMail;
+use App\Notifications\DatabaseBackupNotification;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class DatabaseBackUp extends Command
 {
@@ -71,11 +73,17 @@ class DatabaseBackUp extends Command
         exec($command, $output, $returnVar);
 
         $correo = new BackupMail( $filename);
-            Mail::to([
-                'solucionesaltamirano@gmail.com',
-                'gersonaltamirano@gmail.com',
-                'info@solucionesaltamirano.com',
-            ])
-            ->send($correo);    
+        Mail::to([
+            'solucionesaltamirano@gmail.com',
+            'gersonaltamirano@gmail.com',
+            'info@solucionesaltamirano.com',
+        ])
+        ->send($correo);    
+
+        Notification::route('mail', [
+            'solucionesaltamirano@gmail.com',
+            'gersonaltamirano@gmail.com',
+            'info@solucionesaltamirano.com',
+        ])->notify(new DatabaseBackupNotification($filename));
     }
 }
