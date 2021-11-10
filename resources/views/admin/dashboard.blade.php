@@ -1,3 +1,3 @@
 <x-admin-layout>
-    DASHBOARD    
+    DASHBOARD ADMIN
 </x-admin-layout>
