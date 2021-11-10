@@ -22,6 +22,7 @@
 
 @section('css')
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}"/>
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
