@@ -31,7 +31,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/admin.dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
 
