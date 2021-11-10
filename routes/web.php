@@ -32,8 +32,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('admin.dashboard');
+})->name('admin.dashboard');
 
 
 Route::get('/login-google', function () {
