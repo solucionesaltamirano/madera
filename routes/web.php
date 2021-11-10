@@ -31,9 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+    return view('/');
+});
 
 
 Route::get('/login-google', function () {
@@ -58,7 +58,7 @@ Route::get('/google-callback', function () {
         Auth::login($newUser);
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('/');
 })->name('google-callback');
 
 Route::get('/login-facebook', function () {
@@ -83,5 +83,5 @@ Route::get('/facebook-callback', function () {
         Auth::login($newUser);
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('/');
 })->name('facebook-callback');
