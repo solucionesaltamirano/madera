@@ -33,7 +33,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('admin.dashboard');
-})->name('admin.dashboard');
+})->name('dashboard');
 
 
 Route::get('/login-google', function () {
