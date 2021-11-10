@@ -1,6 +1,6 @@
 <div>
     <div x-data="data={countAlpine : @entangle('count')}">
-        <button type="button"  wire:click='increment' class="btn btn-outline-danger " data-toggle="button" role="button" aria-pressed="true">
+        <button type="button"  wire:click='increment' class="btn btn-outline-danger " data-toggle="button" role="button" >
             AUMENTAR Livewire
         </button>
         <button type="button" class="btn btn-outline-info" @click="countAlpine = countAlpine + 1" >

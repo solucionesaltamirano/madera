@@ -6,7 +6,18 @@
     @endsection
 
     @section('content_header')
-        <h4 class="">{{ $header }}</h4>
+    <div class="row ">
+        <div class="col-sm-4 col-lg-10 ">
+            <h4 class="pt-2 ">
+                {{ $header }}
+            </h4>
+        </div>
+        <div class="col-sm-12 col-lg-2 align-center">
+            <button class="btn btn-outline-primary btn-block">
+                {{ $buttonHeader }}
+            </button>
+        </div>
+    </div>
     @stop
 @else
     @section('title', 'Dashboard')
@@ -17,7 +28,17 @@
 @endif
 
 @section('content')
-    {{ $slot }}
+
+    <div class="card card-primary card-outline min-vh-100">
+        <div class="card-header">
+            <div class="card-title">
+                {{ $cardTitle }}
+            </div>
+        </div>
+        <div class="card-body ">
+            {{ $slot }}
+        </div>
+    </div>
 @stop
 
 @section('css')

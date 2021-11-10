@@ -1,26 +1,25 @@
 <x-admin-layout>
     <x-slot name="header">
-        SLOT HEADER
+        HEADER
     </x-slot>
 
-    <div class="container-fluid">
-        <div class="card card-default color-palette-box">
-            <div class="card-header">
-                <div class="card-title">
-                    <i class="fal fa-browser"></i> 
-                    <span class="">
-                        TITULO
-                    </span>
-                </div>
-            </div>
-            <div class="card-body">
-                Cuerpo
-                @livewire('test')
-            </div>
-            <div class="card-footer">
-                Footer
-            </div>
-        </div>
+    <x-slot name="buttonHeader">
+        <i class="fal fa-plus-circle"></i>
+        Nuevo
+    </x-slot>
+
+    <x-slot name="cardTitle">
+        <i class="fal fa-browser"></i> 
+        <span class="mx-3">
+            TITULO
+        </span>
+    </x-slot>
+
+    <div class="">
+        Cuerpo
+        @livewire('test')
     </div>
+
+    
 
 </x-admin-layout>
