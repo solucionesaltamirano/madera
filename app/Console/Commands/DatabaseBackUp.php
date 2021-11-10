@@ -44,7 +44,7 @@ class DatabaseBackUp extends Command
     {
 
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-        $filename =  Carbon::now()->format('Y-m-d') . '_' .config('app.name') . '_'. substr(str_shuffle($permitted_chars), 0, 16).'.sql';
+        $filename =  config('app.name') . '_'. substr(str_shuffle($permitted_chars), 0, 16). Carbon::now()->format('Ymd') . '.sql';
 
         if(config('app.url') != 'https://startup.local'){
             $path = '/var/www/startup/storage/app/public/backups/';
@@ -72,7 +72,9 @@ class DatabaseBackUp extends Command
   
         exec($command, $output, $returnVar);
 
-        $command = 'curl '. config('app.url').'/email/backup'. $filename;
+        $command = 'curl '. config('app.url').'/email/backup/'. $filename;
+
+        dump($command);
 
         exec($command);
     }
