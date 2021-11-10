@@ -2,7 +2,7 @@
 
 @if (isset($header))
     @section('title')
-        {{ $header }}
+        {{ $header }} | {{ config('app.name') }}
     @endsection
 
     @section('content_header')
@@ -13,7 +13,7 @@
             </h4>
         </div>
         <div class="col-sm-12 col-lg-2 align-center">
-            <button class="btn btn-outline-primary btn-block">
+            <button class="btn btn-outline-primary btn-block" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> 
                 {{ $buttonHeader }}
             </button>
         </div>
@@ -41,6 +41,14 @@
     </div>
 @stop
 
+@section('right-sidebar')
+
+@endsection
+
+@section('footer')
+    Aca va el Footer
+@endsection
+
 @section('css')
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}"/>
@@ -49,7 +57,6 @@
 
 @section('js')
     <script src="//unpkg.com/alpinejs" defer></script>
-    @livewireScripts
 @stop
 
 

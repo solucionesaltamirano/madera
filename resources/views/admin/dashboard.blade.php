@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        HEADER
+        Dashboard
     </x-slot>
 
     <x-slot name="buttonHeader">
