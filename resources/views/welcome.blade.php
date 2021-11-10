@@ -24,10 +24,16 @@
                     <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Prices</a>
                     <a href="#0" class="hover:text-blue-700 transition-colors duration-200">About</a>
                     <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Contacts</a>
-                    <a href="{{ route('register') }}">
-                      <button class="bg-blue-600 hover:bg-blue-700 transition-colors duration-300 py-2.5 px-5 rounded-lg text-white font-semibold">Get Started</button>
-                    </a>
-                    <a href="{{ route('login') }}" class="hover:text-blue-700 transition-colors duration-200">login</a>
+                    @if(!auth()->user())    
+                        <a href="{{ route('register') }}">
+                            <button class="bg-blue-600 hover:bg-blue-700 transition-colors duration-300 py-2.5 px-5 rounded-lg text-white font-semibold">Get Started</button>
+                        </a>
+                        <a href="{{ route('login') }}" class="hover:text-blue-700 transition-colors duration-200">login</a>
+                    @else
+                        <a href="{{ route('admin.dashboard') }}">
+                            <button class="bg-blue-600 hover:bg-blue-700 transition-colors duration-300 py-2.5 px-5 rounded-lg text-white font-semibold">Dashboard</button>
+                        </a>
+                    @endif
                 </div>
                 <div class="md:hidden">
                     <a href="#0" class="">
