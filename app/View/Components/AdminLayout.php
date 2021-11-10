@@ -13,8 +13,6 @@ class AdminLayout extends Component
      */
     public function render()
     {
-        return view('layouts.admin',[
-            $header = 'HEADER DESDE LA CLASE VIEW LAYOUT '
-        ]);
+        return view('layouts.admin',);
     }
 }

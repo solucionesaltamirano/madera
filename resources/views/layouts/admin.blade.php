@@ -1,26 +1,32 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-    @if (isset($header))
+@if (isset($header))
+    @section('title')
         {{ $header }}
-    @endif
-@stop
+    @endsection
+
+    @section('content_header')
+        <h4 class="">{{ $header }}</h4>
+    @stop
+@else
+    @section('title', 'Dashboard')
+
+    @section('content_header')
+        <h1>Dashboard</h1>
+    @stop
+@endif
 
 @section('content')
     {{ $slot }}
 @stop
 
 @section('css')
-    
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/admin_custom.css">
-
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     @livewireScripts
 @stop
 

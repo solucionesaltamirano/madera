@@ -1,8 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        <h4 class="">
-            SLOT HEADER
-        </h3>
+        SLOT HEADER
     </x-slot>
 
     <div class="container-fluid">
