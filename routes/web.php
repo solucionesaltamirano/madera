@@ -58,7 +58,7 @@ Route::get('/google-callback', function () {
         Auth::login($newUser);
     }
 
-    return redirect()->route('/');
+    return redirect()->route('home');
 })->name('google-callback');
 
 Route::get('/login-facebook', function () {
@@ -83,5 +83,5 @@ Route::get('/facebook-callback', function () {
         Auth::login($newUser);
     }
 
-    return redirect()->route('/');
+    return redirect()->route('home');
 })->name('facebook-callback');
