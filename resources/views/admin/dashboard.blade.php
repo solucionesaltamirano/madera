@@ -17,6 +17,7 @@
             </div>
             <div class="card-body">
                 Cuerpo
+                @livewire('test')
             </div>
             <div class="card-footer">
                 Footer
