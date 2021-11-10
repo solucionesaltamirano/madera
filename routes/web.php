@@ -29,11 +29,11 @@ Route::get('/delete-information', function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    return view('/');
-});
+    return view('welcome');
+})->name('welcome');
 
 
 Route::get('/login-google', function () {
