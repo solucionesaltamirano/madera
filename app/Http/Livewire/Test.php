@@ -7,7 +7,7 @@ use Livewire\Component;
 class Test extends Component
 {
 
-    public $count = 0;
+    public $count = 10;
 
     public function increment()
     {

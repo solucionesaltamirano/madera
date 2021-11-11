@@ -19,7 +19,4 @@
         Cuerpo
         @livewire('test')
     </div>
-
-    
-
 </x-admin-layout>
