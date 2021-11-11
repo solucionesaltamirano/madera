@@ -1,6 +1,10 @@
 <x-admin-layout>
     <x-slot name="header">
         Dashboard CAS
+    </x-slot>
+
+    <x-slot name="pageHeader">
+        Dashboard CAS
         <i class="fal fa-tachometer-slow"></i>
     </x-slot>
 

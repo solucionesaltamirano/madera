@@ -13,45 +13,41 @@
         <!-- livewire -->
         @livewireScripts
 
-</head>
+    </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        <!-- Preloader -->
-        @include('admin.preloader')
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            <!-- Preloader -->
+            @include('admin.preloader')
 
-        <!-- Navbar -->
-        @include('admin.navbar')
-        <!-- /.navbar -->
+            <!-- Navbar -->
+            @include('admin.navbar')
+            <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        @include('admin.sidebar')
+            <!-- Main Sidebar Container -->
+            @include('admin.sidebar')
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            @include('admin.page-header')
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                @include('admin.page-header')
 
-            <!-- Main content -->
-            @include('admin.content')
-            <!-- /.content -->
+                <!-- Main content -->
+                @include('admin.content')
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            @include('admin.footer')
+
+            <!-- Control Sidebar -->
+            @include('admin.control-sidebar')
+            <!-- /.control-sidebar -->
         </div>
-        <!-- /.content-wrapper -->
-        @include('admin.footer')
+        <!-- ./wrapper -->
 
-        <!-- Control Sidebar -->
-        @include('admin.control-sidebar')
-        <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-
-    @include('admin.javascritp')
-</body>
+        @include('admin.javascritp')
+    </body>
 
 </html>
-
-
-
-
 
 {{-- @extends('adminlte::page')
 
