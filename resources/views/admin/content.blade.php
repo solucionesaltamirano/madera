@@ -4,10 +4,10 @@
             <div class="card-header">
                 <div class="card-title w-100">
                     <div class="row ">
-                        <div class="col-10 strong pt-1">
+                        <div class="col-6 strong pt-1">
                             {{ $cardTitle }}
                         </div>
-                        <div class="col-2">
+                        <div class="col-6">
                             {{ $cardButton }}
                         </div>
                     </div>
