@@ -36,3 +36,24 @@
 @livewireScripts
 <!-- Alpine js -->
 <script src="//unpkg.com/alpinejs" defer></script>
+{{-- Toast called with Livewire --}}
+<script>
+    Livewire.on('showToast', (title, icon = 'success') => {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: icon,
+            title: title
+        })
+    });
+</script>
