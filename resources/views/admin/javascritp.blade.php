@@ -53,3 +53,4 @@
 </script>
 
 @include('layouts.datatables_js')
+@stack('scripts')
