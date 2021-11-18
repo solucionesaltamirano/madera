@@ -8,7 +8,9 @@
                             {{ $cardTitle }}
                         </div>
                         <div class="col-6">
-                            {{ $cardButton }}
+                            @if(isset($cardButton))
+                                {{ $cardButton }}
+                            @endif
                         </div>
                     </div>
                 </div>
