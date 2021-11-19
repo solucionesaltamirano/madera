@@ -44,6 +44,7 @@ class ExternalAuthDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
+                'responsive' => true,
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
