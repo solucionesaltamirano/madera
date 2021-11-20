@@ -1,5 +1,4 @@
-<section class="content">
-    <div class="container-fluid ">
+    <section class="container-fluid ">
         <div class="card card-primary card-outline min-vh-100">
             <div class="card-header">
                 <div class="card-title w-100">
@@ -15,9 +14,8 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body ">
+            <div class="card-body px-1 px-sm-4">
                 {{ $slot }}
             </div>
         </div>
-    </div><!-- /.container-fluid -->
-</section>
+    </section><!-- /.container-fluid -->

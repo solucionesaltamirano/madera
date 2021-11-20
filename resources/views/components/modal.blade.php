@@ -8,8 +8,8 @@
                         <i class="fal fa-window"></i>
                         <span class="px-2">{{ $title }}</span>
                     </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class=" text-danger">
                             <i class="fal fa-window-close"></i>
                         </span>
                     </button>
