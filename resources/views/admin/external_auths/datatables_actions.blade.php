@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['externalAuths.destroy', $id], 'method' => 'delete']) !!}
+{!! Form::open(['route' => ['externalAuths.destroy', $id], 'method' => 'delete', 'class' => 'deleteConfirm' ]) !!}
     <div class="d-flex justify-content-around">
         {{-- @can('external_auths.show') --}}
             <a href="{{ route('externalAuths.show', $id) }}" class='btn btn-outline-dark btn-sm '>
@@ -14,8 +14,9 @@
             {!! Form::button('<i class="fad fa-trash-alt"></i>', [
                 'type' => 'submit',
                 'class' => 'btn btn-outline-danger btn-sm',
-                'onclick' => "return confirm('Are you sure?')"
             ]) !!}
         {{-- @endcan --}}
     </div>
 {!! Form::close() !!}
+
+@include('partials.confirm-delete')
