@@ -13,7 +13,7 @@
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
             <!-- Preloader -->
-            @include('admin.preloader')
+            {{-- @include('admin.preloader') --}}
 
             <!-- Navbar -->
             @include('admin.navbar')
