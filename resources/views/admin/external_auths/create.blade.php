@@ -10,7 +10,7 @@
 
     <x-slot name="cardTitle">
         <i class="fal fa-layer-plus"></i>
-        <span class="mx-3">
+        <span class="ml-3">
             Insert data for new External Auth
         </span>
     </x-slot>

@@ -3,14 +3,14 @@
             <div class="card-header">
                 <div class="card-title w-100">
                     <div class="row ">
-                        <div class="col-6 strong pt-1">
+                        <div class="col strong pt-1">
                             {{ $cardTitle }}
                         </div>
-                        <div class="col-6">
-                            @if(isset($cardButton))
+                        @if(isset($cardButton))
+                            <div class="col-4">
                                 {{ $cardButton }}
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

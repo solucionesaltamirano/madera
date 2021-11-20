@@ -10,7 +10,7 @@
 
     <x-slot name="cardTitle">
         <i class="fal fa-edit"></i>
-        <span class="mx-3">
+        <span class="ml-3 w-100">
             Change data for Edit External Auth
         </span>
     </x-slot>

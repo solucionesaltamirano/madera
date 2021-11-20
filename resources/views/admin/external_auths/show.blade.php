@@ -10,7 +10,7 @@
 
     <x-slot name="cardTitle">
         <i class="fal fa-eye"></i>
-        <span class="mx-3">
+        <span class="ml-3">
             View details for External Auth
         </span>
     </x-slot>
