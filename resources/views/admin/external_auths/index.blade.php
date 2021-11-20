@@ -4,21 +4,21 @@
     </x-slot>
 
     <x-slot name="pageHeader">
-        User External Auth
-        <i class="fal fa-tachometer-slow"></i>
+            User External Auth
+            <i class="fal fa-handshake"></i>
     </x-slot>
 
     <x-slot name="cardTitle">
-        <i class="fal fa-browser"></i> 
-        <span class="mx-3">
+        <i class="fal fa-table"></i>
+        <span class="mx-2">
             User External Auth
         </span>
     </x-slot>
 
     <x-slot name="cardButton">
-        <a href="{{ route('externalAuths.create') }}" class="btn btn-outline-primary btn-sm float-right">
-            <i class="fal fa-plus-circle"></i>
-            New
+        <a href="{{ route('externalAuths.create') }}" class="btn btn-outline-primary float-right">
+            <span class="mx-2">New</span>
+            <i class="fal fa-layer-plus"></i>
         </a>
     </x-slot>
 

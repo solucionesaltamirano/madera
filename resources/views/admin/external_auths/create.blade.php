@@ -9,9 +9,9 @@
     </x-slot>
 
     <x-slot name="cardTitle">
-        <i class="fal fa-browser"></i> 
+        <i class="fal fa-layer-plus"></i>
         <span class="mx-3">
-            Insert data for new Create External Auth
+            Insert data for new External Auth
         </span>
     </x-slot>
     @include('adminlte-templates::common.errors')
@@ -29,8 +29,14 @@
         </div>
 
         <div class="card-footer">
-            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-            <a href="{{ route('externalAuths.index') }}" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-outline-primary float-right">
+                <span class="px-2">Save</span>
+                <i class="fal fa-save"></i>
+            </button>
+            <a href="{{ route('externalAuths.index') }}" class="btn btn-outline-danger float-right mr-2" >
+                <span class="px-2">Cancel</span>
+                <i class="fal fa-ban"></i>
+            </a>
         </div>
 
         {!! Form::close() !!}

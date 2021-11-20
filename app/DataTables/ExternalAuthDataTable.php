@@ -45,11 +45,20 @@ class ExternalAuthDataTable extends DataTable
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
                 'responsive' => true,
-                'dom'       => 'Bfrtip',
+                'dom'       => '
+                    <"row mb-2"
+                        <"col-sm-12 col-md-6" B>
+                        <"col-sm-12 col-md-6" f>
+                    >
+                    rt
+                    <"row "
+                        <"col-sm-6   pt-2  " l>
+                        <"col-sm-6   text-right" i>
+                        <"col-sm-12  " p>
+                    >',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
