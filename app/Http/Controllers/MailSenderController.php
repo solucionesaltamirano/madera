@@ -10,7 +10,6 @@ class MailSenderController extends Controller
     public function backup($filename){
         
         Notification::route('mail', [
-            'info@vostok.com.gt',
             'info@solucionesaltamirano.com',
             'solucionesaltamirano@gmail.com',
             'gersonaltamirano@gmail.com',

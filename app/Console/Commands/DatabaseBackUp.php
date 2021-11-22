@@ -56,7 +56,7 @@ class DatabaseBackUp extends Command
         $returnVar = NULL;
         $output  = NULL;
   
-        shell_exec($command, $output, $returnVar);
+        exec($command, $output, $returnVar);
 
         //for work: in console one time run: mysql_config_editor set --login-path=local --host=localhost --user=[user] --password
 
@@ -70,12 +70,12 @@ class DatabaseBackUp extends Command
         $returnVar = NULL;
         $output  = NULL;
   
-        shell_exec($command, $output, $returnVar);
+        exec($command, $output, $returnVar);
 
         $command = 'curl '. config('app.url').'/email/backup/'. $filename;
 
         dump($command);
 
-        shell_exec($command);
+        exec($command);
     }
 }
