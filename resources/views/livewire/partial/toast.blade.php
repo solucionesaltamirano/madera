@@ -1,11 +1,11 @@
 <div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        var Toast = Swal.mixin({
+        const Toast = Swal.mixin({
             toast: true,
             position: 'bottom-end',
             showConfirmButton: false,
-            timer: 4000,
+            timer: 3500,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
