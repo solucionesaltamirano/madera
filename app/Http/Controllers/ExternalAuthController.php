@@ -13,14 +13,12 @@ use Response;
 
 class ExternalAuthController extends AppBaseController
 {
-
     public function __construct(){
-        // $this->middleware('can:external_auths.show')->only(['index', 'show']);
-        // $this->middleware('can:external_auths.create')->only(['create', 'store']);
-        // $this->middleware('can:external_auths.edit')->only(['edit', 'update']);
-        // $this->middleware('can:external_auths.destroy')->only('destroy');
+        // $this->middleware('can:externalAuths.show')->only(['index', 'show']);
+        // $this->middleware('can:externalAuths.create')->only(['create', 'store']);
+        // $this->middleware('can:externalAuths.edit')->only(['edit', 'update']);
+        // $this->middleware('can:externalAuths.destroy')->only('destroy');
     }
-
     /**
      * Display a listing of the ExternalAuth.
      *

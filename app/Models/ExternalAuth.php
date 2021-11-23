@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class ExternalAuth
  * @package App\Models
- * @version November 17, 2021, 12:44 pm CST
+ * @version November 23, 2021, 3:36 pm CST
  *
  * @property \App\Models\User $user
  * @property integer $user_id

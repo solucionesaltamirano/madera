@@ -24,7 +24,7 @@
                 <span class="mx-2">Back</span>
                 <i class="fal fa-undo-alt"></i>
             </a>
-            {{-- @can('external_auths.edit')     --}}
+            {{-- @can('externalAuths.edit')     --}}
                 <a href="{{ route('externalAuths.edit', $externalAuth->id) }}" class="btn btn-outline-primary float-right mr-2">
                     <span class="mx-2">Edit</span>
                     <i class="fal fa-edit"></i>
