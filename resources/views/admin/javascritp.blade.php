@@ -52,29 +52,5 @@
     });
 </script>
 
-<script>
-    window.addEventListener('delete', (e) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Livewire.emit('delete-confirm', e.detail.id);
-                // Swal.fire(
-                //     'Deleted!',
-                //     'Your file has been deleted.',
-                //     'success'
-                // )
-                
-            }
-        })
-    })
-</script>
-
 @include('layouts.datatables_js')
 @stack('scripts')

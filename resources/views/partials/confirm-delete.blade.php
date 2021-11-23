@@ -1,6 +1,5 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-
     $('.deleteConfirm').submit(function(e){
         e.preventDefault()
         Swal.fire({
