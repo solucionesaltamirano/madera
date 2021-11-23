@@ -22,7 +22,6 @@ href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
 
-    <!-- livewire -->
-@livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 
 @include('layouts.datatables_css')

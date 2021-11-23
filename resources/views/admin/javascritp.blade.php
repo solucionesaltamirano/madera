@@ -28,8 +28,8 @@
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- Alpine js -->
-<script src="//unpkg.com/alpinejs" defer></script>
+<!-- livewire -->
+@livewireScripts
 {{-- Toast called with Livewire --}}
 <script>
     Livewire.on('showToast', (title, icon = 'success') => {
@@ -50,6 +50,30 @@
             title: title
         })
     });
+</script>
+
+<script>
+    window.addEventListener('delete', (e) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emit('delete-confirm', e.detail.id);
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
+                
+            }
+        })
+    })
 </script>
 
 @include('layouts.datatables_js')
