@@ -66,7 +66,7 @@ class ExternalAuth extends Model
         'external_auth' => 'required|string|max:45',
         'external_id' => 'required|string|max:45',
         'external_email' => 'required|string|max:45',
-        'external_avatar' => 'required|string|max:45',
+        'external_avatar' => 'string|max:45',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
