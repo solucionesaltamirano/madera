@@ -6,3 +6,5 @@ use App\Http\Controllers\Admin\HomeController;
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
 Route::resource('externalAuths', App\Http\Controllers\ExternalAuthController::class);
+
+Route::resource('users', App\Http\Controllers\UserController::class);
