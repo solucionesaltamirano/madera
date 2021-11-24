@@ -59,8 +59,8 @@ Route::get('/google-callback', function () {
             'user_id' => $newUser->id,
             'external_id' => $externalUser->id,
             'external_auth' => 'google',
-            'externa_email' => $externalUser->email,
-            'externa_avatar' => $externalUser->avatar,
+            'external_email' => $externalUser->email,
+            'external_avatar' => $externalUser->avatar,
         ]);
 
         Auth::login($newUser);
