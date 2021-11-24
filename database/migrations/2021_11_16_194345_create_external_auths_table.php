@@ -17,9 +17,9 @@ class CreateExternalAuthsTable extends Migration
             $table->mediumIncrements('id');
             $table->unsignedMediumInteger('user_id')->index('fk_external_auths_users_idx');
             $table->string('external_auth', 45);
-            $table->string('external_id', 45)->unique();
-            $table->string('external_email', 45)->unique();
-            $table->string('external_avatar', 45)->nullable();
+            $table->string('external_id', 100)->unique();
+            $table->string('external_email', 200)->unique();
+            $table->string('external_avatar', 200)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
