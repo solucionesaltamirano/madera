@@ -44,23 +44,29 @@ class DatabaseBackUp extends Command
     {
 
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-        $filename =  config('app.name') . '_'. substr(str_shuffle($permitted_chars), 0, 16). Carbon::now()->format('Ymd') . '.sql';
+        $filename =  strtolower(config('app.name')) . '_'. substr(str_shuffle($permitted_chars), 0, 16). Carbon::now()->format('Ymd') . '.sql';
 
         if(config('app.url') != 'https://startup.local'){
-            $path = '/var/www/startup/storage/app/public/backups/';
+            $path = '/var/www/startup/storage/app/public/';
+            $carpet = 'backups/';
         }else{
-            $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\backups\\";
+            $path = "c:\\laragon\\www\\startup\\storage\\app\\public\\";
+            $carpet = 'backups\\';
         }
 
-        $command = "rm -r " . $path . " \n mkdir " . $path . " backups";
+        $command = "rm -r " . $path . $carpet ;
+        
         $returnVar = NULL;
         $output  = NULL;
   
         exec($command, $output, $returnVar);
+        dump($command);
 
+        mkdir($path . $carpet);
         //for work: in console one time run: mysql_config_editor set --login-path=local --host=localhost --user=[user] --password
 
-        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > ". $path . $filename ;
+        
+        $command = "mysqldump --login-path=local " . config('database.connections.mysql.database') . " > ". $path . $carpet . $filename ;
 
         $file = $path . $filename;
   
