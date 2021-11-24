@@ -18,23 +18,18 @@ class ExternalAuthDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
-       return $dataTable->addColumn('action', function(ExternalAuth $externalAuth){
-
-                 $id = $externalAuth->id;
-
-                 return view('admin.external_auths.datatables_actions',compact('externalAuth','id'))->render();
-             })
-             ->editColumn('id',function (ExternalAuth $externalAuth){
-
-                 return $externalAuth->id;
-
-                 //se debe crear la vista modal_detalles
-                 //return view('external_auths.modal_detalles',compact('externalAuth'))->render();
-
-             })
-             ->rawColumns(['action','id']);
-
+        return $dataTable->addColumn('action', function(ExternalAuth $externalAuth){
+            $id = $externalAuth->id;
+            return view('admin.external_auths.datatables_actions',compact('externalAuth','id'))->render();
+        })
+        ->editColumn('id',function (ExternalAuth $externalAuth){
+            return $externalAuth->id;
+        })
+        ->editColumn('external_avatar',function (ExternalAuth $externalAuth){
+            $img = $externalAuth->external_avatar ? $externalAuth->external_avatar : 'https://ui-avatars.com/api/?name='. $externalAuth->external_name ;
+            return '<div class="d-flex justify-content-center w-100"><img src="'.$img.'" width="40px" height="40px" class="rounded-circle"></div>';
+        })
+        ->rawColumns(['action','id','external_avatar']);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\User;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -17,11 +18,23 @@ class UserDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
-        return $dataTable->addColumn('action', 'admin.users.datatables_actions')
-                    ->editColumn('profile_photo_path', ' <img src="{{ $profile_photo_path }}"> ')
-                    ->rawColumns(['profile_photo_path', 'action']);
-                    ;
+        return $dataTable->addColumn('action', function(User $user){
+            $id = $user->id;
+            return view('admin.users.datatables_actions',compact('user','id'))->render();
+        })
+        ->editColumn('id',function (User $user){
+            return $user->id;
+            //se debe crear la vista modal_detalles
+            //return view('users.modal_detalles',compact('user'))->render();
+        })
+        ->editColumn('profile_photo_path',function (User $user){
+            $img = $user->profile_photo_path ? $user->profile_photo_path : 'https://ui-avatars.com/api/?name='. $user->name ;
+            return 
+                '<div class="d-flex justify-content-center w-100">
+                    <img src="'.$img .'" width="40px" height="40px" class="rounded-circle">
+                </div>';
+        })
+        ->rawColumns(['action','id','profile_photo_path']);
     }
 
     /**
@@ -79,17 +92,11 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
-            'email',
-            'username',
-            'phone',
-            'profile_photo_path',
-            // 'password',
-            // 'two_factor_secret',
-            // 'two_factor_recovery_codes',
-            // 'remember_token',
-            // 'current_team_id',
-            // 'email_verified_at'
+            Column::make('name'),
+            Column::make('email'),
+            Column::make('username'),
+            Column::make('phone'),
+            Column::make('profile_photo_path'),
         ];
     }
 
