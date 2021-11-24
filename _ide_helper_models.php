@@ -48,23 +48,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\User
+ * Class User
  *
- * @property int $id
+ * @package App\Models
+ * @version November 24, 2021, 12:33 pm CST
+ * @property \Illuminate\Database\Eloquent\Collection $externalAuths
  * @property string $name
  * @property string $email
- * @property string|null $username
- * @property string|null $phone
- * @property string|null $profile_photo_path
- * @property string|null $password
- * @property string|null $two_factor_secret
- * @property string|null $two_factor_recovery_codes
- * @property string|null $remember_token
- * @property int|null $current_team_id
- * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $username
+ * @property string $phone
+ * @property string $profile_photo_path
+ * @property string $password
+ * @property string $two_factor_secret
+ * @property string $two_factor_recovery_codes
+ * @property string $remember_token
+ * @property integer $current_team_id
+ * @property string|\Carbon\Carbon $email_verified_at
+ * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read int|null $external_auths_count
  * @property-read string $profile_photo_url
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
@@ -75,6 +79,7 @@ namespace App\Models{
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
@@ -91,6 +96,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
