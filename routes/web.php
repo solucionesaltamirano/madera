@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\DeployController;
 use App\Http\Controllers\MailSenderController;
+use App\Models\ExternalAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,20 +42,27 @@ Route::get('/login-google', function () {
 })->name('login-google');
 
 Route::get('/google-callback', function () {
-    $user = Socialite::driver('google')->user();
+    $externalUser = Socialite::driver('google')->user();
 
-    $userExist = User::where('external_id', $user->id)->where('external_auth', 'google')->first();
-
+    $userExist = ExternalAuth::where('external_id', $externalUser->id)->where('external_auth', 'google')->first();
+    
     if($userExist){
-        Auth::login($userExist);
+        $user = $userExist->user;
+        Auth::login($user);
     }else{
         $newUser = User::create([
-            'name' => $user->name,
-            'email' => $user->email,
-            'external_avatar' => $user->avatar,
-            'external_id' => $user->id,
-            'external_auth' => 'google',
+            'name' => $externalUser->name,
+            'email' => $externalUser->email,
         ]);
+        
+        $newExternalAuth = ExternalAuth::create([
+            'user_id' => $newUser->id,
+            'external_id' => $externalUser->id,
+            'external_auth' => 'google',
+            'externa_email' => $externalUser->email,
+            'externa_avatar' => $externalUser->avatar,
+        ]);
+
         Auth::login($newUser);
     }
 

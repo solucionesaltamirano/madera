@@ -19,7 +19,7 @@ class CreateExternalAuthsTable extends Migration
             $table->string('external_auth', 45);
             $table->string('external_id', 45)->unique();
             $table->string('external_email', 45)->unique();
-            $table->string('external_avatar', 45);
+            $table->string('external_avatar', 45)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
