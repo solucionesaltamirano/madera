@@ -1,4 +1,9 @@
 <div>
+    <div class="py-4">
+        
+        <img src="{{  auth()->user()->profile_photo_path  }}" alt=""><br>
+        {{ auth()->user() }}
+    </div>
     <div x-data="data={countAlpine : @entangle('count')}">
         <button type="button"  wire:click='increment' class="btn btn-outline-danger " data-toggle="button" role="button" >
             AUMENTAR Livewire

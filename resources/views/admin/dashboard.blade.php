@@ -24,7 +24,7 @@
 
     {{-- this is the content of the card --}}
     
-    {{ auth()->user() }}<br><br>
+    
     @livewire('test')
     {{-- this is the content of the card --}}
     
