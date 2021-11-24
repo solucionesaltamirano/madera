@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'gersonaltamirano@gmail.com',
                 'email_verified_at' => NULL,
                 'id' => 2,
-                'name' => 'Gerson Altamirano',
+                'name' => 'Gerson Isaac Altamirano Campos',
                 'password' => '$2y$10$tNByQh2b3tmEbZwi8/8bruev4KZnMvLA9xSpopDBQ5hL3sg6BIxNi',
                 'phone' => '42149372',
                 'profile_photo_path' => NULL,

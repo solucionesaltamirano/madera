@@ -46,7 +46,7 @@ Route::get('/google-callback', function () {
 
     $userExist = ExternalAuth::where('external_id', $externalUser->id)->where('external_auth', 'google')->first();
 
-    dd($externalUser, $userExist);
+    // dd($externalUser, $userExist);
     
     if($userExist){
         $user = $userExist->user;
