@@ -120,7 +120,12 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
+        $user->addMedia($request->media)->toMediaCollection();
+
         $user->fill($request->all());
+        $user->save();
+    
+        $user->profile_photo_path = $user->getMedia()->last()->getUrl();
         $user->save();
 
         Flash::success('User updated successfully.');
@@ -153,5 +158,16 @@ class UserController extends AppBaseController
         Flash::success('User deleted successfully.');
 
         return redirect(route('users.index'));
+    }
+
+    public function saveMedia($id, Request $request){
+        $user = User::find($id);
+        $user
+        ->addMedia($request->media)
+        ->toMediaCollection();
+
+        $user->update([
+            'profile_photo_path' => $user->getMedia()->last()->getUrl()
+        ]);
     }
 }

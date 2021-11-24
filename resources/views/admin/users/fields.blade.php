@@ -24,8 +24,8 @@
 
 <!-- Profile Photo Path Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('profile_photo_path', 'Profile Photo Path:') !!}
-    {!! Form::text('profile_photo_path', null, ['class' => 'form-control','maxlength' => 2048,'maxlength' => 2048]) !!}
+    {!! Form::label('1', 'Profile Photo Path:') !!}
+    {!! Form::text('1', $user->profile_photo_path, ['class' => 'form-control','maxlength' => 2048,'maxlength' => 2048]) !!}
 </div>
 
 <!-- Password Field -->
@@ -34,42 +34,14 @@
     {!! Form::password('password', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
 
-<!-- Two Factor Secret Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('two_factor_secret', 'Two Factor Secret:') !!}
-    {!! Form::textarea('two_factor_secret', null, ['class' => 'form-control']) !!}
-</div>
+<div>
+    {{ $user->getMedia()->last()->getFullUrl() }}
+    @if($user->profile_photo_path)
+        {!! Form::file('media', null, ['class' => 'form-control','maxlength' => 2048,'maxlength' => 2048]) !!}
+        <img src="{{ $user->profile_photo_path }}" alt="{{ $user->name }}" width="200">
+    @else
+        {!! Form::file('media', null, ['class' => 'form-control','maxlength' => 2048,'maxlength' => 2048]) !!}
+        <img src="https://ui-avatars.com/api/?name= {{ $user->name }}" alt="{{ $user->name }}" class="rounded-circle">
+    @endif
 
-<!-- Two Factor Recovery Codes Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('two_factor_recovery_codes', 'Two Factor Recovery Codes:') !!}
-    {!! Form::textarea('two_factor_recovery_codes', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100]) !!}
-</div>
-
-<!-- Current Team Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('current_team_id', 'Current Team Id:') !!}
-    {!! Form::number('current_team_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Email Verified At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    {!! Form::text('email_verified_at', null, ['class' => 'form-control','id'=>'email_verified_at']) !!}
-</div>
-
-@push('page_scripts')
-    <script type="text/javascript">
-        $('#email_verified_at').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
-@endpush

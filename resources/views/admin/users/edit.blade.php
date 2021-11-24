@@ -14,7 +14,7 @@
     </x-slot>
     @include('adminlte-templates::common.errors')
     <div class="card">
-        {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
+        {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch', 'files' => true]) !!}
         <div class="card-body">
             <div class="row">
                 @include('admin.users.fields')
