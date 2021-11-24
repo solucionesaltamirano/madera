@@ -45,6 +45,8 @@ Route::get('/google-callback', function () {
     $externalUser = Socialite::driver('google')->user();
 
     $userExist = ExternalAuth::where('external_id', $externalUser->id)->where('external_auth', 'google')->first();
+
+    dd($userExist);
     
     if($userExist){
         $user = $userExist->user;
