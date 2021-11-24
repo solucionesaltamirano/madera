@@ -23,7 +23,8 @@
     </x-slot>
 
     {{-- this is the content of the card --}}
-    Cuerpo
+    
+    {{ auth()->user() }}<br><br>
     @livewire('test')
     {{-- this is the content of the card --}}
     

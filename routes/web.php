@@ -53,6 +53,7 @@ Route::get('/google-callback', function () {
         $newUser = User::create([
             'name' => $externalUser->name,
             'email' => $externalUser->email,
+            'profile_photo_path' => $externalUser->avatar,
         ]);
         
         $newExternalAuth = ExternalAuth::create([
