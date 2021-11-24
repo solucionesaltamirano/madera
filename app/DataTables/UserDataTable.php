@@ -18,7 +18,10 @@ class UserDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.users.datatables_actions');
+        return $dataTable->addColumn('action', 'admin.users.datatables_actions')
+                    ->editColumn('profile_photo_path', ' <img src="{{ $profile_photo_path }}"> ')
+                    ->rawColumns(['profile_photo_path', 'action']);
+                    ;
     }
 
     /**
@@ -81,12 +84,12 @@ class UserDataTable extends DataTable
             'username',
             'phone',
             'profile_photo_path',
-            'password',
-            'two_factor_secret',
-            'two_factor_recovery_codes',
-            'remember_token',
-            'current_team_id',
-            'email_verified_at'
+            // 'password',
+            // 'two_factor_secret',
+            // 'two_factor_recovery_codes',
+            // 'remember_token',
+            // 'current_team_id',
+            // 'email_verified_at'
         ];
     }
 

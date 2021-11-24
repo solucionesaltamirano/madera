@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class ExternalAuth
  * @package App\Models
- * @version November 23, 2021, 3:36 pm CST
+ * @version November 24, 2021, 2:09 pm CST
  *
  * @property \App\Models\User $user
  * @property integer $user_id
@@ -64,9 +64,9 @@ class ExternalAuth extends Model
     public static $rules = [
         'user_id' => 'required|integer',
         'external_auth' => 'required|string|max:45',
-        'external_id' => 'required|string|max:45',
-        'external_email' => 'required|string|max:45',
-        'external_avatar' => 'string|max:45',
+        'external_id' => 'required|string|max:100',
+        'external_email' => 'required|string|max:200',
+        'external_avatar' => 'nullable|string|max:200',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\ExternalAuth;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -18,7 +19,22 @@ class ExternalAuthDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.external_auths.datatables_actions');
+       return $dataTable->addColumn('action', function(ExternalAuth $externalAuth){
+
+                 $id = $externalAuth->id;
+
+                 return view('admin.external_auths.datatables_actions',compact('externalAuth','id'))->render();
+             })
+             ->editColumn('id',function (ExternalAuth $externalAuth){
+
+                 return $externalAuth->id;
+
+                 //se debe crear la vista modal_detalles
+                 //return view('external_auths.modal_detalles',compact('externalAuth'))->render();
+
+             })
+             ->rawColumns(['action','id']);
+
     }
 
     /**
@@ -76,11 +92,11 @@ class ExternalAuthDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'user_id',
-            'external_auth',
-            'external_id',
-            'external_email',
-            'external_avatar'
+            Column::make('user_id'),
+            Column::make('external_auth'),
+            Column::make('external_id'),
+            Column::make('external_email'),
+            Column::make('external_avatar')
         ];
     }
 

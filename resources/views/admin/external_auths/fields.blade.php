@@ -13,17 +13,17 @@
 <!-- External Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('external_id', 'External Id:') !!}
-    {!! Form::text('external_id', null, ['class' => 'form-control','maxlength' => 45,'maxlength' => 45]) !!}
+    {!! Form::text('external_id', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100]) !!}
 </div>
 
 <!-- External Email Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('external_email', 'External Email:') !!}
-    {!! Form::text('external_email', null, ['class' => 'form-control','maxlength' => 45,'maxlength' => 45]) !!}
+    {!! Form::text('external_email', null, ['class' => 'form-control','maxlength' => 200,'maxlength' => 200]) !!}
 </div>
 
 <!-- External Avatar Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('external_avatar', 'External Avatar:') !!}
-    {!! Form::text('external_avatar', null, ['class' => 'form-control','maxlength' => 45,'maxlength' => 45]) !!}
+    {!! Form::text('external_avatar', null, ['class' => 'form-control','maxlength' => 200,'maxlength' => 200]) !!}
 </div>
