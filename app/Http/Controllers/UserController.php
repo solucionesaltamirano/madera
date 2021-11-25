@@ -120,6 +120,13 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
+        if( is_null($request->password)){
+            $request->offsetSet('password', $user->password);
+        }else{
+            $newPasword = Hash::make($request->get('password'));
+            $request->offsetSet('password', $newPasword)  ;
+        }
+
         $user->addMedia($request->media)->toMediaCollection();
 
         $user->fill($request->all());
@@ -160,14 +167,4 @@ class UserController extends AppBaseController
         return redirect(route('users.index'));
     }
 
-    public function saveMedia($id, Request $request){
-        $user = User::find($id);
-        $user
-        ->addMedia($request->media)
-        ->toMediaCollection();
-
-        $user->update([
-            'profile_photo_path' => $user->getMedia()->last()->getUrl()
-        ]);
-    }
 }
