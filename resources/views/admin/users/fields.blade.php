@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    {{ $user->getMedia()->last()->getFullUrl() }}
+    {{ isset($user->getMedia()->last()->getFullUrl()){$user->getMedia()->last()->getFullUrl()} }}
     @if($user->profile_photo_path)
         {!! Form::file('media', null, ['class' => 'form-control','maxlength' => 2048,'maxlength' => 2048]) !!}
         <img src="{{ $user->profile_photo_path }}" alt="{{ $user->name }}" width="200">
