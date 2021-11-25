@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    @if($user->getMedia() != null)
+    @if(isset($user->getMedia()) )
         {{ $user->getMedia()->last()->getFullUrl() }} 
     @endif
     @if($user->profile_photo_path)
