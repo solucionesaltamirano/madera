@@ -5,10 +5,13 @@ namespace $NAMESPACE_MODEL$;
 use $NAMESPACE_MODEL_EXTEND$ as Model;
 $SOFT_DELETE_IMPORT$
 $HAS_FACTORY_IMPORT$
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 $DOCS$
-class $MODEL_NAME$ extends Model
+class $MODEL_NAME$ extends Model implements HasMedia
 {
+    use InteractsWithMedia;
 $SOFT_DELETE$
 $HAS_FACTORY$
     public $table = '$TABLE_NAME$';
