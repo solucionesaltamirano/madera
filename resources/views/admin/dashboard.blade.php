@@ -1,10 +1,10 @@
 <x-admin-layout>
     <x-slot name="header">
-        Dashboard CAS
+        Dashboard Admin
     </x-slot>
 
     <x-slot name="pageHeader">
-        Dashboard CAS
+        Dashboard Admin
         <i class="fal fa-tachometer-slow"></i>
     </x-slot>
 
@@ -23,8 +23,6 @@
     </x-slot>
 
     {{-- this is the content of the card --}}
-    
-    
     @livewire('test')
     {{-- this is the content of the card --}}
     
