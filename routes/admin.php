@@ -10,3 +10,4 @@ Route::resource('externalAuths', App\Http\Controllers\ExternalAuthController::cl
 Route::resource('users', App\Http\Controllers\UserController::class);
 Route::resource('menus', App\Http\Controllers\MenuController::class);
 Route::resource('items', App\Http\Controllers\ItemController::class);
+Route::resource('chats', App\Http\Controllers\ChatController::class);
