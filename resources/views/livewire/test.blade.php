@@ -46,7 +46,26 @@
             <button type="button" class="btn btn-primary">Save changes</button>
         </x-slot>
     </x-modal>
-
-
+     
+        @foreach ($groups as $group)
+                <div class="card">
+                    <div class="card-title border">GRUPO: {{ $group }}</div>
+                    <div class="card-body">
+                        @foreach ($moduls->where('group', $group) as $modul)
+                            <div class="card">
+                                <div class="card-title border">MODULO: {{ $modul->name }}</div>
+                                <div class="card-body">
+                                    @foreach ($routLists->where('group', $group)->where('modul', $modul->name) as $route)
+                                        <div class="card">
+                                            <div class="card-body">{{ $route->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+        @endforeach
+    
 
 </div>
