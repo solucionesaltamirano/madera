@@ -10,6 +10,7 @@ use App\Models\User;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends AppBaseController
 {
