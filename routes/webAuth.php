@@ -2,5 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 
-//route for deploy in server test
-Route::any('/welcome', [AuthController::class, 'welcome'])->name('welcome');
+// Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', function () {
+//     return view('dashboard');
+// })->name('auth.dashboard');
+
+Route::any('/welcome', [AuthController::class, 'welcome'])->name('auth.welcome');

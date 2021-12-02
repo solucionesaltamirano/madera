@@ -8,34 +8,19 @@ use App\Http\Controllers\DeployController;
 use App\Http\Controllers\MailSenderController;
 use App\Models\ExternalAuth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-//route for deploy in server test
-Route::any('/deploy/index', [DeployController::class, 'index'])->name('deploy');
-
-//route for send email
-Route::any('/email/backup/{filename}', [MailSenderController::class, 'backup'])->name('email.backup');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
 Route::get('/delete-information', function () {
     return view('delete-information');
 })->name('delete-information');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+//route for deploy in server test
+Route::any('/deploy/index', [DeployController::class, 'index'])->name('deploy');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/admin.dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
-
+//route for send email
+Route::any('/email-backup/{filename}', [MailSenderController::class, 'backup'])->name('email-backup');
 
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();
@@ -45,8 +30,6 @@ Route::get('/google-callback', function () {
     $externalUser = Socialite::driver('google')->user();
 
     $userExist = ExternalAuth::where('external_id', $externalUser->id)->where('external_auth', 'google')->first();
-
-    // dd($externalUser, $userExist);
     
     if($userExist){
         $user = $userExist->user;
