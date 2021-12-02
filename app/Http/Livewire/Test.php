@@ -111,6 +111,7 @@ class Test extends Component
             $item->modul = substr($routeName, 0, $posicion);
             $item->name = substr($routeName, $posicion + 1);
             $item->route = substr($routeName, 0, $posicion). '.' . substr($routeName, $posicion + 1);
+            $item->middleware = $routeLists->where('name', $routeName)->first()->middleware;
             $routLists->push($item);
 
         }
