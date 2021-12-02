@@ -58,7 +58,7 @@ class Test extends Component
                         
             $item = new stdClass;
 
-            if((strpos($route->getName(), 'index') + strpos($route->getName(), 'store') + strpos($route->getName(), 'update')) > 0 ){
+            if(( strpos($route->getName(), 'store') + strpos($route->getName(), 'update')) > 0 ){
                 $actions = false;
             }else{
                 $actions = true;
