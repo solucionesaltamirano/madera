@@ -78,7 +78,7 @@ class DatabaseBackUp extends Command
   
         exec($command, $output, $returnVar);
 
-        $command = 'curl '. config('app.url').'/email/backup/'. $filename;
+        $command = 'curl '. config('app.url').'/email-backup/'. $filename;
 
         dump($command);
 
