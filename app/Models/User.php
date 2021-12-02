@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version November 24, 2021, 12:33 pm CST
  *
  * @property \Illuminate\Database\Eloquent\Collection $externalAuths
+ * @property \Illuminate\Database\Eloquent\Collection $chatSends
+ * @property \Illuminate\Database\Eloquent\Collection $chatReceives
  * @property string $name
  * @property string $email
  * @property string $username
@@ -123,6 +125,22 @@ class User extends Authenticatable implements HasMedia
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function chatSends()
+    {
+        return $this->hasMany(\App\Models\Chat::class, 'user_send_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function chatReceives()
+    {
+        return $this->hasMany(\App\Models\Chat::class, 'user_receive_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

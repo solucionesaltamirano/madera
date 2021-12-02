@@ -12,10 +12,45 @@
 
 namespace App\Models{
 /**
+ * Class Chat
+ *
+ * @package App\Models
+ * @version December 2, 2021, 12:51 pm CST
+ * @property \App\Models\User $userSend
+ * @property \App\Models\User $userReceive
+ * @property string $message
+ * @property integer $user_send_id
+ * @property integer $user_receive_id
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @method static \Database\Factories\ChatFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Chat onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereUserReceiveId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereUserSendId($value)
+ * @method static \Illuminate\Database\Query\Builder|Chat withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Chat withoutTrashed()
+ */
+	class Chat extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
  * Class ExternalAuth
  *
  * @package App\Models
- * @version November 23, 2021, 3:36 pm CST
+ * @version November 24, 2021, 2:09 pm CST
  * @property \App\Models\User $user
  * @property integer $user_id
  * @property string $external_auth
@@ -48,11 +83,83 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * Class Item
+ *
+ * @package App\Models
+ * @version December 2, 2021, 1:09 am CST
+ * @property \Illuminate\Database\Eloquent\Collection $menus
+ * @property string $name
+ * @property string $description
+ * @property string $route
+ * @property string $icon
+ * @property integer $item_id
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read int|null $menus_count
+ * @method static \Database\Factories\ItemFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Item newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Item onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Item query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereRoute($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Item withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Item withoutTrashed()
+ */
+	class Item extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * Class Menu
+ *
+ * @package App\Models
+ * @version December 2, 2021, 1:05 am CST
+ * @property \Illuminate\Database\Eloquent\Collection $items
+ * @property string $name
+ * @property bool $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read int|null $items_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @method static \Database\Factories\MenuFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Menu onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Menu withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Menu withoutTrashed()
+ */
+	class Menu extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
  * Class User
  *
  * @package App\Models
  * @version November 24, 2021, 12:33 pm CST
  * @property \Illuminate\Database\Eloquent\Collection $externalAuths
+ * @property \Illuminate\Database\Eloquent\Collection $chatSends
+ * @property \Illuminate\Database\Eloquent\Collection $chatReceives
  * @property string $name
  * @property string $email
  * @property string $username
@@ -68,6 +175,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read int|null $chat_receives_count
+ * @property-read int|null $chat_sends_count
  * @property-read int|null $external_auths_count
  * @property-read string $profile_photo_url
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
