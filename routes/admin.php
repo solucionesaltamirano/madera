@@ -8,3 +8,5 @@ Route::get('/test', [HomeController::class, 'test'])->name('admin.test');
 
 Route::resource('externalAuths', App\Http\Controllers\ExternalAuthController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('menus', App\Http\Controllers\MenuController::class);
+Route::resource('items', App\Http\Controllers\ItemController::class);
