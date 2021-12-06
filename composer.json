@@ -8,7 +8,8 @@
         "php": "^7.3|^8.0",
         "barryvdh/laravel-snappy": "^0.4.8",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "beyondcode/laravel-websockets": "^1.4",
+        "guzzlehttp/guzzle": "^6.3",
         "infyomlabs/adminlte-templates": "^3.0",
         "infyomlabs/laravel-generator": "^3.0",
         "laravel/framework": "^8.65",
@@ -48,7 +49,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi"
