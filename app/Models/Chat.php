@@ -83,4 +83,10 @@ class Chat extends Model implements HasMedia
     {
         return $this->belongsTo(\App\Models\User::class, 'user_receive_id');
     }
+
+    public function lastMessage()
+    {
+        return $this->hasOne(Chat::class, 'user_send_id', 'user_receive_id')
+                ->orWhere('user_send_id', 'user_receive_id');
+    }
 }

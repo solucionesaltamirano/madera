@@ -10,4 +10,9 @@ class AuthController extends Controller
     {
         return view('auth.welcome');
     }
+
+    public function chat()
+    {
+        return view('auth.chat');
+    }
 }

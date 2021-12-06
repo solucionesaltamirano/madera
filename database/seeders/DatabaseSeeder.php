@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call(UsersTableSeeder::class);
+        \App\Models\User::factory(100)->create();
         $this->call(ExternalAuthsTableSeeder::class);
+        \App\Models\Chat::factory(5000)->create();
+
+        
     }
 }

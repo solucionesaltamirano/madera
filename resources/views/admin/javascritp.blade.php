@@ -31,6 +31,7 @@
 <!-- livewire -->
 @livewireScripts
 {{-- Toast called with Livewire --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     Livewire.on('showToast', (title, icon = 'success') => {
         var Toast = Swal.mixin({
