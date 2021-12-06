@@ -7,8 +7,10 @@
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-snappy": "^0.4.8",
+        "beyondcode/laravel-websockets": "^1.12",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/psr7": "^1.5",
         "infyomlabs/adminlte-templates": "^3.0",
         "infyomlabs/laravel-generator": "^3.0",
         "laravel/framework": "^8.65",
