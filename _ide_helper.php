@@ -19560,9 +19560,9 @@
          * @param string|null $fileName
          * @param string $writerType
          * @param array $headers
+         * @return \Symfony\Component\HttpFoundation\BinaryFileResponse 
          * @throws \PhpOffice\PhpSpreadsheet\Exception
          * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
-         * @return \Symfony\Component\HttpFoundation\BinaryFileResponse 
          * @static 
          */ 
         public static function download($export, $fileName, $writerType = null, $headers = [])
@@ -19578,9 +19578,9 @@
          * @param string|null $disk
          * @param string $writerType
          * @param mixed $diskOptions
+         * @return bool 
          * @throws \PhpOffice\PhpSpreadsheet\Exception
          * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
-         * @return bool 
          * @static 
          */ 
         public static function store($export, $filePath, $diskName = null, $writerType = null, $diskOptions = [])
