@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection $externalAuths
  * @property \Illuminate\Database\Eloquent\Collection $chatSends
  * @property \Illuminate\Database\Eloquent\Collection $chatReceives
+ * @property \Illuminate\Database\Eloquent\Collection $myChatRooms
+ * @property \Illuminate\Database\Eloquent\Collection $chatRoomAssigneds
  * @property string $name
  * @property string $email
  * @property string $username
@@ -149,5 +151,21 @@ class User extends Authenticatable implements HasMedia
     public function externalAuths()
     {
         return $this->hasMany(\App\Models\ExternalAuth::class, 'user_id');
+    }
+
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    **/
+    public function myChatRooms()
+    {
+        return $this->hasMany(\App\Models\ChatRoom::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function chatRoomAssigneds()
+    {
+        return $this->belongsToMany(\App\Models\ChatRoom::class, 'chat_rooms_has_users');
     }
 }

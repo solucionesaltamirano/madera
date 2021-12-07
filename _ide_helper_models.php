@@ -200,6 +200,8 @@ namespace App\Models{
  * @property \Illuminate\Database\Eloquent\Collection $externalAuths
  * @property \Illuminate\Database\Eloquent\Collection $chatSends
  * @property \Illuminate\Database\Eloquent\Collection $chatReceives
+ * @property \Illuminate\Database\Eloquent\Collection $myChatRooms
+ * @property \Illuminate\Database\Eloquent\Collection $chatRoomAssigneds
  * @property string $name
  * @property string $email
  * @property string $username
@@ -216,11 +218,13 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read int|null $chat_receives_count
+ * @property-read int|null $chat_room_assigneds_count
  * @property-read int|null $chat_sends_count
  * @property-read int|null $external_auths_count
  * @property-read string $profile_photo_url
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
+ * @property-read int|null $my_chat_rooms_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
