@@ -70,12 +70,11 @@ class ChatLivewire extends Component
 
         if($this->userReceiverSelected){
             $chatSends = $chats->where('user_receive_id', $this->userReceiverSelected->id)->pluck('id')->toArray();
+            $chatReceives = Chat::where('user_send_id', $this->userReceiverSelected->id)->where('user_receive_id', $this->userSender->id)->get()->pluck('id')->toArray();
         }else{
             $chatSends = [];
+            $chatReceives = [];
         }
-
-        
-        $chatReceives = Chat::where('user_send_id', $this->userReceiverSelected->id)->where('user_receive_id', $this->userSender->id)->get()->pluck('id')->toArray();
 
         // dd($chatSends, $chatReceives, $this->userReceiverSelected->id);
 
