@@ -42,56 +42,58 @@
         </div>
         <div class="col-9">
             <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
-                <div class="card-header">
-                    <h3 class="card-title">Direct Chat whit <b>{{ $userReceiverSelected->name }}</b></h3>
-        
-                    {{-- <div class="card-tools">
-                        <span title="3 New Messages" class="badge bg-primary">3</span>
-                        
-                        <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
-                            <i class="fas fa-comments"></i>
-                        </button>
-                        
-                    </div> --}}
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body direct-chat-messages px-4" id="messageBody">
-                    <!-- Conversations are loaded here -->
-                    <div style="height:72vh" class="body-chat" >
-                        <!-- Message. Default to the left -->
-                        @foreach ($chatSelected as $chat)
-                            <div class="direct-chat-msg {{ $userSender->id == $chat->user_send_id ? 'right' : '' }}">
-                                <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-timestamp {{ $userSender->id == $chat->user_send_id ? 'float-left' : 'float-right' }}">{{ $chat->created_at }}</span>
-                                </div>
-                                <!-- /.direct-chat-infos -->
-                                <img class="direct-chat-img" src="{{ $chat->userSend->profile_photo_path ?? $chat->userSend->profile_photo_url  }}" alt="Message User Image">
-                                <!-- /.direct-chat-img -->
-                                <div class="direct-chat-text body-chat2">
-                                    {{ $chat->message }}
-                                </div>
-                                <!-- /.direct-chat-text -->
-                            </div>
-                        @endforeach
-                        <!-- /.direct-chat-msg -->
+                @if($chatSelected != null)
+                    <div class="card-header">
+                        <h3 class="card-title">Direct Chat whit <b>{{ $userReceiverSelected->name }}</b></h3>
+            
+                        {{-- <div class="card-tools">
+                            <span title="3 New Messages" class="badge bg-primary">3</span>
+                            
+                            <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                                <i class="fas fa-comments"></i>
+                            </button>
+                            
+                        </div> --}}
                     </div>
-                    <!--/.direct-chat-messages-->
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer"  x-data="{open: @entangle('sending')}">
-                    {{-- <form action="#" method="post"> --}}
-                        <div class="input-group" >
-                            <input type="text" name="message" placeholder="Type Message ..." class="form-control" wire:model="message" wire:keydown.enter="sendMessage">
-                            <span class="input-group-append" >
-                                <button  class="btn btn-primary" wire:click="sendMessage"   x-on:click="$wire.set('sending', true)">Send</button>
-                            </span>
+                    <!-- /.card-header -->
+                    <div class="card-body direct-chat-messages px-4" id="messageBody">
+                        <!-- Conversations are loaded here -->
+                        <div style="height:72vh" class="body-chat" >
+                            <!-- Message. Default to the left -->
+                            @foreach ($chatSelected as $chat)
+                                <div class="direct-chat-msg {{ $userSender->id == $chat->user_send_id ? 'right' : '' }}">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-timestamp {{ $userSender->id == $chat->user_send_id ? 'float-left' : 'float-right' }}">{{ $chat->created_at }}</span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="{{ $chat->userSend->profile_photo_path ?? $chat->userSend->profile_photo_url  }}" alt="Message User Image">
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text body-chat2">
+                                        {{ $chat->message }}
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                            @endforeach
+                            <!-- /.direct-chat-msg -->
                         </div>
-                        @if ($sending)
-                            <span class="text-gray" ><small>Sending...</small></span>
-                        @endif
-                    {{-- </form> --}}
-                </div>
-                <!-- /.card-footer-->
+                        <!--/.direct-chat-messages-->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer"  x-data="{open: @entangle('sending')}">
+                        {{-- <form action="#" method="post"> --}}
+                            <div class="input-group" >
+                                <input type="text" name="message" placeholder="Type Message ..." class="form-control" wire:model="message" wire:keydown.enter="sendMessage">
+                                <span class="input-group-append" >
+                                    <button  class="btn btn-primary" wire:click="sendMessage"   x-on:click="$wire.set('sending', true)">Send</button>
+                                </span>
+                            </div>
+                            @if ($sending)
+                                <span class="text-gray" ><small>Sending...</small></span>
+                            @endif
+                        {{-- </form> --}}
+                    </div>
+                    <!-- /.card-footer-->
+                @endif
             </div>
         </div>
     </div>
