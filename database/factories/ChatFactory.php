@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Chat;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ChatFactory extends Factory

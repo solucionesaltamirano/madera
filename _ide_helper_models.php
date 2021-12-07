@@ -15,12 +15,14 @@ namespace App\Models{
  * Class Chat
  *
  * @package App\Models
- * @version December 2, 2021, 12:51 pm CST
+ * @version December 7, 2021, 12:26 pm CST
+ * @property \App\Models\ChatRoom $chatRoom
  * @property \App\Models\User $userSend
  * @property \App\Models\User $userReceive
  * @property string $message
  * @property integer $user_send_id
  * @property integer $user_receive_id
+ * @property integer $chat_room_id
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -33,6 +35,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Chat newQuery()
  * @method static \Illuminate\Database\Query\Builder|Chat onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Chat query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereChatRoomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chat whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chat whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chat whereId($value)
@@ -44,6 +47,42 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|Chat withoutTrashed()
  */
 	class Chat extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * Class ChatRoom
+ *
+ * @package App\Models
+ * @version December 7, 2021, 12:23 pm CST
+ * @property \App\Models\User $user
+ * @property \Illuminate\Database\Eloquent\Collection $user1s
+ * @property \Illuminate\Database\Eloquent\Collection $chats
+ * @property string $name
+ * @property integer $user_id
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read int|null $chats_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read int|null $user1s_count
+ * @method static \Database\Factories\ChatRoomFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom newQuery()
+ * @method static \Illuminate\Database\Query\Builder|ChatRoom onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|ChatRoom withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|ChatRoom withoutTrashed()
+ */
+	class ChatRoom extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{

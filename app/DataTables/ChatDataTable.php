@@ -87,7 +87,8 @@ class ChatDataTable extends DataTable
         return [
             Column::make('message'),
             Column::make('user_send_id'),
-            Column::make('user_receive_id')
+            Column::make('user_receive_id'),
+            Column::make('chat_room_id')
         ];
     }
 

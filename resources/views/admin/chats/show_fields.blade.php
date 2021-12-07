@@ -16,3 +16,9 @@
     <p>{{ $chat->user_receive_id }}</p>
 </div>
 
+<!-- Chat Room Id Field -->
+<div class="col-sm-12">
+    {!! Form::label('chat_room_id', 'Chat Room Id:') !!}
+    <p>{{ $chat->chat_room_id }}</p>
+</div>
+

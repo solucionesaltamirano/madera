@@ -11,13 +11,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Class Chat
  * @package App\Models
- * @version December 2, 2021, 12:51 pm CST
+ * @version December 7, 2021, 12:26 pm CST
  *
+ * @property \App\Models\ChatRoom $chatRoom
  * @property \App\Models\User $userSend
  * @property \App\Models\User $userReceive
  * @property string $message
  * @property integer $user_send_id
  * @property integer $user_receive_id
+ * @property integer $chat_room_id
  */
 class Chat extends Model implements HasMedia
 {
@@ -39,7 +41,8 @@ class Chat extends Model implements HasMedia
     public $fillable = [
         'message',
         'user_send_id',
-        'user_receive_id'
+        'user_receive_id',
+        'chat_room_id'
     ];
 
     /**
@@ -51,7 +54,8 @@ class Chat extends Model implements HasMedia
         'id' => 'integer',
         'message' => 'string',
         'user_send_id' => 'integer',
-        'user_receive_id' => 'integer'
+        'user_receive_id' => 'integer',
+        'chat_room_id' => 'integer'
     ];
 
     /**
@@ -60,13 +64,22 @@ class Chat extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-        'message' => 'required|string|max:45',
+        'message' => 'required|string|max:1000',
         'user_send_id' => 'required|integer',
-        'user_receive_id' => 'required|integer',
+        'user_receive_id' => 'nullable|integer',
+        'chat_room_id' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function chatRoom()
+    {
+        return $this->belongsTo(\App\Models\ChatRoom::class, 'chat_room_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -83,7 +96,6 @@ class Chat extends Model implements HasMedia
     {
         return $this->belongsTo(\App\Models\User::class, 'user_receive_id');
     }
-
     public function lastMessage()
     {
         return $this->hasOne(Chat::class, 'user_send_id', 'user_receive_id')
