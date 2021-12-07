@@ -21,12 +21,19 @@ class ChatRoomFactory extends Factory
      */
     public function definition()
     {
+
+        $name = $this->faker->colorName;
+
+        while (ChatRoom::where('name', $name)->exists()) {
+            $name = $this->faker->colorName;
+        }
+
         return [
-            'name' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
-        'user_id' => $this->faker->randomDigitNotNull
+        'name' => $name,
+        'created_at' => today(),
+        'updated_at' => today(),
+        // 'deleted_at' => ,
+        'user_id' => rand(\App\Models\User::min('id'), \App\Models\User::max('id')),
         ];
     }
 }

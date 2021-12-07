@@ -67,7 +67,9 @@ namespace App\Models{
  * @property-read int|null $chats_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
- * @property-read int|null $user1s_count
+ * @property-read \App\Models\User $userOwn
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read int|null $users_count
  * @method static \Database\Factories\ChatRoomFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom newQuery()

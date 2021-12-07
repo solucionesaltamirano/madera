@@ -16,8 +16,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         \App\Models\User::factory(100)->create();
         $this->call(ExternalAuthsTableSeeder::class);
-        \App\Models\Chat::factory(5000)->create();
+        \App\Models\ChatRoom::factory(20)->create();
+        \App\Models\Chat::factory(10000)->create();
 
+        \App\Models\ChatRoom::all()->each(function ($room) {
+            $room->users()->attach(\App\Models\User::all()->random(20));
+        });
         
     }
 }

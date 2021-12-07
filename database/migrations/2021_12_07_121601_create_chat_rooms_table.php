@@ -14,8 +14,8 @@ class CreateChatRoomsTable extends Migration
     public function up()
     {
         Schema::create('chat_rooms', function (Blueprint $table) {
-            $table->unsignedSmallInteger('id')->primary();
-            $table->string('name', 100);
+            $table->unsignedSmallInteger('id')->autoIncrement();
+            $table->string('name', 100)->unique();
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedMediumInteger('user_id')->index('fk_chat_rooms_users1_idx');

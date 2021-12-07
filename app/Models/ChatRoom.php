@@ -68,7 +68,7 @@ class ChatRoom extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function user()
+    public function userOwn()
     {
         return $this->belongsTo(\App\Models\User::class, 'user_id');
     }
@@ -76,7 +76,7 @@ class ChatRoom extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function user1s()
+    public function users()
     {
         return $this->belongsToMany(\App\Models\User::class, 'chat_rooms_has_users');
     }
