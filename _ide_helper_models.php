@@ -220,7 +220,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read int|null $chat_receives_count
- * @property-read int|null $chat_room_assigneds_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ChatRoom[] $chatRooms
+ * @property-read int|null $chat_rooms_count
  * @property-read int|null $chat_sends_count
  * @property-read int|null $external_auths_count
  * @property-read string $profile_photo_url

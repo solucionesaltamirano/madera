@@ -15,4 +15,9 @@ class AuthController extends Controller
     {
         return view('auth.chat');
     }
+
+    public function roomChat()
+    {
+        return view('auth.room-chat');
+    }
 }

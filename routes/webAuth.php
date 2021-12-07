@@ -8,3 +8,4 @@ use App\Http\Controllers\AuthController;
 
 Route::any('/welcome', [AuthController::class, 'welcome'])->name('auth.welcome');
 Route::any('/chat', [AuthController::class, 'chat'])->name('auth.chat');
+Route::any('/room-chat', [AuthController::class, 'roomChat'])->name('auth.room-chat');

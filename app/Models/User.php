@@ -164,7 +164,7 @@ class User extends Authenticatable implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function chatRoomAssigneds()
+    public function chatRooms()
     {
         return $this->belongsToMany(\App\Models\ChatRoom::class, 'chat_rooms_has_users');
     }
