@@ -18,7 +18,9 @@ class ChatLivewire extends Component
     {
         $this->userSender = auth()->user();
 
-        $this->userReceiverSelected = User::find(auth()->user()->chatSends->sortBy('created_at')->last()->user_receive_id);
+        $user = auth()->user()->chatSends->sortBy('created_at')->last() ?? null;
+
+        $this->userReceiverSelected = User::find($user->user_receive_id);
 
         
     }
