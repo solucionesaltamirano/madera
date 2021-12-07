@@ -29,8 +29,6 @@ Route::get('/login-google', function () {
 Route::get('/google-callback', function () {
     $externalUser = Socialite::driver('google')->user();
 
-    dd($externalUser);
-
     $userExist = ExternalAuth::where('external_id', $externalUser->id)->where('external_auth', 'google')->first();
     
     if($userExist){
@@ -41,7 +39,7 @@ Route::get('/google-callback', function () {
             'name' => $externalUser->name,
             'username' => $externalUser->nickname != null ? $externalUser->nickname : $externalUser->user['given_name'] . $externalUser->user['family_name'],
             'email' => $externalUser->email,
-            'profile_photo_path' => $externalUser->avatar,
+            'profile_photo_path' => $externalUser->user['picture'],
         ]);
         
         $newExternalAuth = ExternalAuth::create([
@@ -49,7 +47,7 @@ Route::get('/google-callback', function () {
             'external_id' => $externalUser->id,
             'external_auth' => 'google',
             'external_email' => $externalUser->email,
-            'external_avatar' => $externalUser->avatar,
+            'external_avatar' => $externalUser->user['picture'],
         ]);
 
         Auth::login($newUser);
@@ -63,20 +61,31 @@ Route::get('/login-facebook', function () {
 })->name('login-facebook');
 
 Route::get('/facebook-callback', function () {
-    $user = Socialite::driver('facebook')->user();
+    $externalUser = Socialite::driver('facebook')->user();
 
-    $userExist = User::where('external_id', $user->id)->where('external_auth', 'facebook')->first();
+    dd($externalUser);
+
+    $userExist = ExternalAuth::where('external_id', $externalUser->id)->where('external_auth', 'facebook')->first();
 
     if($userExist){
-        Auth::login($userExist);
+        $user = $userExist->user;
+        Auth::login($user);
     }else{
         $newUser = User::create([
-            'name' => $user->name,
-            'email' => $user->email,
-            'external_avatar' => $user->avatar,
-            'external_id' => $user->id,
-            'external_auth' => 'facebook',
+            'name' => $externalUser->name,
+            'username' => $externalUser->nickname != null ? $externalUser->nickname : $externalUser->user['given_name'] . $externalUser->user['family_name'],
+            'email' => $externalUser->email,
+            'profile_photo_path' => $externalUser->user['picture'],
         ]);
+        
+        $newExternalAuth = ExternalAuth::create([
+            'user_id' => $newUser->id,
+            'external_id' => $externalUser->id,
+            'external_auth' => 'facebook',
+            'external_email' => $externalUser->email,
+            'external_avatar' => $externalUser->user['picture'],
+        ]);
+
         Auth::login($newUser);
     }
 
