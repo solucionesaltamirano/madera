@@ -37,6 +37,7 @@ Route::get('/google-callback', function () {
     }else{
         $newUser = User::create([
             'name' => $externalUser->name,
+            'username' => $externalUser->getNickname,
             'email' => $externalUser->email,
             'profile_photo_path' => $externalUser->avatar,
         ]);
