@@ -61,6 +61,7 @@ class User extends Authenticatable implements HasMedia
         'password',
         'username',
         'phone',
+        'profile_photo_path',
     ];
 
     /**
