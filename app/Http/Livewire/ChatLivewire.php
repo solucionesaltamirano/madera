@@ -9,7 +9,7 @@ use Livewire\Component;
 class ChatLivewire extends Component
 {
     public $userSender;
-    public $userReceiverSelected;
+    public $userReceiverSelected ;
     public $message;
     public $serchUser;
     public $sending;
@@ -17,20 +17,10 @@ class ChatLivewire extends Component
     public function mount()
     {
         $this->userSender = auth()->user();
-
-        $user = auth()->user()->chatSends->sortBy('created_at')->last() ?? null;
-
-        if ($user) {
-            $this->userReceiverSelected = User::find($user->user_receive_id);
-        }
-
-        $this->userReceiverSelected = null;
-        
     }
 
     public function receiverSelected(User $userReceiver)
     {
-        
         $this->userReceiverSelected = $userReceiver;
     }
 
@@ -71,12 +61,13 @@ class ChatLivewire extends Component
         if($this->userReceiverSelected){
             $chatSends = $chats->where('user_receive_id', $this->userReceiverSelected->id)->pluck('id')->toArray();
             $chatReceives = Chat::where('user_send_id', $this->userReceiverSelected->id)->where('user_receive_id', $this->userSender->id)->get()->pluck('id')->toArray();
+            $userReceiverSelectedId = $this->userReceiverSelected->id;
         }else{
             $chatSends = [];
             $chatReceives = [];
+            $userReceiverSelectedId = 0;
         }
 
-        // dd($chatSends, $chatReceives, $this->userReceiverSelected->id);
 
         $chatmerge = array_merge($chatSends, $chatReceives);
 
@@ -85,9 +76,11 @@ class ChatLivewire extends Component
         ->orderBy('created_at', 'asc')
         ->get();
 
+
         return view('livewire.chat-livewire',[
             'userReceivers' => $userReceivers,
             'chatSelected' => $chatSelected,
+            'userReceiverSelectedId' => $userReceiverSelectedId,
         ]);
     }
 }

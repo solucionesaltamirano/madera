@@ -13,25 +13,27 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <ul class="contacts-list">
-                        @foreach ($userReceivers as $userReceiver)
-                        <li class="btn text-left w-100 {{ $userReceiver->id == $userReceiverSelected->id ? 'bg-primary' : '' }} " wire:click.prevent="receiverSelected({{ $userReceiver->id }}) ">
-                            <a href=""   class="">
-                                <div class=""> 
-                                    <img class="contacts-list-img mr-2" src="{{ $userReceiver->profile_photo_path ?? $userReceiver->profile_photo_url  }}" alt="User Avatar">
-                                <!-- /.contacts-list-info -->
-                                    <span class=""> {{ $userReceiver->name }}</span> 
-                                </div>
-                            </a>
-                            {{-- <small class="">
-                                {!! $userReceiver->chatReceives->sortBy('create_at')->where('user_send_id', $userSender->id)->first() ?
-                                    '<i class="fal fa-paper-plane"></i> ' . 
-                                    $userReceiver->chatReceives->sortBy('create_at')->where('user_send_id', $userSender->id)->first()->message : 
-                                    '<i class="fal fa-envelope-open-text"></i> ' . 
-                                    $userReceiver->chatSends->sortBy('create_at')->where('user_send_id', $userSender->id)->first()->message 
-                                 !!}
-                            </small>  --}}
-                        </li>
-                        @endforeach
+                        @if($userReceivers->count() > 0 )
+                            @foreach ($userReceivers as $userReceiver)
+                                <li class="btn text-left w-100 {{ $userReceiver->id == $userReceiverSelectedId ? 'bg-primary' : '' }} " wire:click.prevent="receiverSelected({{ $userReceiver->id }}) ">
+                                    <a href=""   class="">
+                                        <div class=""> 
+                                            <img class="contacts-list-img mr-2" src="{{ $userReceiver->profile_photo_path ?? $userReceiver->profile_photo_url  }}" alt="User Avatar">
+                                        <!-- /.contacts-list-info -->
+                                            <span class=""> {{ $userReceiver->name }}</span> 
+                                        </div>
+                                    </a>
+                                    {{-- <small class="">
+                                        {!! $userReceiver->chatReceives->sortBy('create_at')->where('user_send_id', $userSender->id)->first() ?
+                                            '<i class="fal fa-paper-plane"></i> ' . 
+                                            $userReceiver->chatReceives->sortBy('create_at')->where('user_send_id', $userSender->id)->first()->message : 
+                                            '<i class="fal fa-envelope-open-text"></i> ' . 
+                                            $userReceiver->chatSends->sortBy('create_at')->where('user_send_id', $userSender->id)->first()->message 
+                                        !!}
+                                    </small>  --}}
+                                </li>
+                            @endforeach
+                        @endif
                         <!-- End Contact Item -->
                     </ul>
                 </div>
@@ -42,7 +44,7 @@
         </div>
         <div class="col-9">
             <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
-                @if($chatSelected != null)
+                @if($chatSelected->count() > 0)
                     <div class="card-header">
                         <h3 class="card-title">Direct Chat whit <b>{{ $userReceiverSelected->name }}</b></h3>
             
@@ -93,6 +95,32 @@
                         {{-- </form> --}}
                     </div>
                     <!-- /.card-footer-->
+                @else
+                    <div class="card-header">
+                        <h3 class="card-title">Selecciona un usuario para iniciar una conversación </h3>
+                    </div>
+                    <div class="card-body direct-chat-messages px-4" id="messageBody">
+                        <!-- Conversations are loaded here -->
+                        <div style="height:72vh" class="body-chat" >
+                        </div>
+                    </div>
+                    
+                    @if($userReceiverSelected)
+                        <div class="card-footer"  x-data="{open: @entangle('sending')}">
+                            {{-- <form action="#" method="post"> --}}
+                                <div class="input-group" >
+                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control" wire:model="message" wire:keydown.enter="sendMessage">
+                                    <span class="input-group-append" >
+                                        <button  class="btn btn-primary" wire:click="sendMessage"   x-on:click="$wire.set('sending', true)">Send</button>
+                                    </span>
+                                </div>
+                                @if ($sending)
+                                    <span class="text-gray" ><small>Sending...</small></span>
+                                @endif
+                            {{-- </form> --}}
+                        </div>
+                    @endif
+
                 @endif
             </div>
         </div>
