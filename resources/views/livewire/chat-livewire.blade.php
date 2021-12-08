@@ -97,7 +97,7 @@
                     <!-- /.card-footer-->
                 @else
                     <div class="card-header">
-                        <h3 class="card-title">Selecciona un usuario para iniciar una conversación </h3>
+                        <h3 class="card-title">Select a User for start conversation </h3>
                     </div>
                     <div class="card-body direct-chat-messages px-4" id="messageBody">
                         <!-- Conversations are loaded here -->

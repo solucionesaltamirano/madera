@@ -16,6 +16,6 @@
     {{-- body --}}
     
         @include('flash::message')
-        @livewire('room-chat-livewire')
+        @livewire('chat-room-livewire')
     
 </x-admin-layout>
