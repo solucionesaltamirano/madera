@@ -138,7 +138,6 @@
         </div>
     </div>
 
-
     @push('scripts')
         <script>
             const objDiv = document.getElementById("messageBody");
