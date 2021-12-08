@@ -56,7 +56,6 @@
                 <!-- /.contatcts-list -->
             </div>
             <!-- /.direct-chat-pane -->
-
         </div>
         <div class="col-9">
             <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
