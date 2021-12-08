@@ -55,10 +55,14 @@ class ChatRoomLivewire extends Component
         $this->sending = false;
         $this->emit('reload');
         
-        $rooms = ChatRoom::where('name', 'LIKE', '%'.$this->searchRoom.'%')->get();
+        $rooms = ChatRoom::where('name', 'LIKE', '%'.$this->searchRoom.'%')
+        ->where('private', 0)
+        ->get();
 
         if($this->filterRoom == 1){
-            $rooms = ChatRoom::where('name', 'LIKE', '%'.$this->searchRoom.'%')->get();
+            $rooms = ChatRoom::where('name', 'LIKE', '%'.$this->searchRoom.'%')
+            ->where('private', 0)
+            ->get();
         }
 
         if($this->filterRoom == 2){

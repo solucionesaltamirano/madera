@@ -1,7 +1,33 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name Chat Room:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100]) !!}
+    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 250]) !!}
+</div>
+
+<!-- Description Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('description', 'Description:') !!}
+    {!! Form::text('description', null, ['class' => 'form-control','maxlength' => 250]) !!}
+</div>
+
+<!-- image_path Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('image_path', 'Image url:') !!}
+    {!! Form::text('image_path', null, ['class' => 'form-control','maxlength' => 250]) !!}
+</div>
+
+
+<div class="form-group col-sm-6 ">
+    {!! Form::label('private', 'Private:') !!}
+    <div class="border rounded pt-2 pb-1 px-2">
+        <span class="  px-4">
+            YES {{ Form::radio('private', '1', true) }}
+        </span>
+        <span class=" px-4">
+            NO {{ Form::radio('private', '0', ) }}
+        </span>
+    </div>
+        
 </div>
 
 @if(isset($chatRoom))
@@ -26,10 +52,25 @@
             </div>
         </div>
     </div>
+
+    @php
+        if( old('users') ){
+            
+            $urs = old('users');
+            $users = collect();
+
+            foreach ($urs as $u ) {
+                $item = new stdClass();
+                $item->id =  $u;
+                $users->push($item);
+            }
+        }
+    @endphp
+
     <div class="card-body px-1 px-sm-4">
         @livewire('users.list-select-livewire', [
             'all' => false,
-            'users' => $users,
+            'users' => $users ?? [],
         ])
-    </div>
+    </div>  
 </div>

@@ -61,6 +61,9 @@ namespace App\Models{
  * @property string $name
  * @property integer $user_id
  * @property int $id
+ * @property int $private
+ * @property string|null $description
+ * @property string|null $image_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -77,8 +80,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom query()
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereImagePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom wherePrivate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChatRoom whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|ChatRoom withTrashed()

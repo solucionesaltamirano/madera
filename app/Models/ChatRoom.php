@@ -38,7 +38,10 @@ class ChatRoom extends Model implements HasMedia
 
     public $fillable = [
         'name',
-        'user_id'
+        'user_id',
+        'description',
+        'private',
+        'image_path'
     ];
 
     /**
@@ -49,7 +52,10 @@ class ChatRoom extends Model implements HasMedia
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'user_id' => 'integer'
+        'user_id' => 'integer',
+        'description' => 'string',
+        'private' => 'integer',
+        'image_path' => 'string'
     ];
 
     /**
@@ -62,7 +68,10 @@ class ChatRoom extends Model implements HasMedia
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable',
-        'user_id' => 'required|integer'
+        'user_id' => 'required|integer',
+        'description' => 'nullable|string|max:250',
+        'private' => 'nullable|integer',
+        'image_path' => 'nullable|string|max:250'
     ];
 
     /**

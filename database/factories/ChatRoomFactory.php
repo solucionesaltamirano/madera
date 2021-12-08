@@ -22,14 +22,16 @@ class ChatRoomFactory extends Factory
     public function definition()
     {
 
-        $name = $this->faker->colorName;
+        $name = $this->faker->colorName . '-' . rand(1, 100);
 
         while (ChatRoom::where('name', $name)->exists()) {
-            $name = $this->faker->colorName;
+            $name = $this->faker->colorName . '-' . rand(1, 100);
         }
 
         return [
         'name' => $name,
+        'private' => rand(0, 1),
+        'description' => $this->faker->paragraph,
         'created_at' => today(),
         'updated_at' => today(),
         // 'deleted_at' => ,

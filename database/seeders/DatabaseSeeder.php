@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        \App\Models\User::factory(100)->create();
+        \App\Models\User::factory(50)->create();
         $this->call(ExternalAuthsTableSeeder::class);
-        \App\Models\ChatRoom::factory(20)->create();
+        \App\Models\ChatRoom::factory(30)->create();
         \App\Models\Chat::factory(10000)->create();
 
         \App\Models\ChatRoom::all()->each(function ($room) {
