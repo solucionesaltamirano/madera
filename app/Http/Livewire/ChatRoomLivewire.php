@@ -57,11 +57,19 @@ class ChatRoomLivewire extends Component
         
         $rooms = ChatRoom::where('name', 'LIKE', '%'.$this->searchRoom.'%')
         ->where('private', 0)
+        ->orWhereHas('users', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        })
+        ->orWhere('user_id', $this->userSender->id)
         ->get();
 
         if($this->filterRoom == 1){
             $rooms = ChatRoom::where('name', 'LIKE', '%'.$this->searchRoom.'%')
             ->where('private', 0)
+            ->orWhereHas('users', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->orWhere('user_id', $this->userSender->id)
             ->get();
         }
 
