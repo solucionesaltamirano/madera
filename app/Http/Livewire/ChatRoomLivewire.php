@@ -31,6 +31,14 @@ class ChatRoomLivewire extends Component
         $this->filterRoom = $filter;
     }
 
+    public function attachMe(Chatroom $chatRoom, $user_id){
+        $chatRoom->users()->attach($user_id);
+    }
+
+    public function detachMe(Chatroom $chatRoom, $user_id){
+        $chatRoom->users()->detach($user_id);
+    }
+
     public function sendMessage()
     {
         $this->sending = true;

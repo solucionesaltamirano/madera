@@ -17,17 +17,11 @@ class ListSelectLivewire extends Component
         $this->all = $all;
         $this->usersAssigned = collect();
 
-        if(!$this->all){
-            $users = $users->where('id', '!=', auth()->user()->id);
-        }
-
         foreach($users as $user){
-
             $item = new stdClass();
             $item = ['id' => $user->id];
             $this->usersAssigned->push($item);
         }
-
     }
 
     public function userSelect($id){
@@ -50,8 +44,8 @@ class ListSelectLivewire extends Component
             ->get();
         } else {
             $users = User::where('name', 'LIKE', '%'.$this->search.'%')
-            ->orWhere('id',  $this->search)
             ->where('id', '!=', auth()->id())
+            ->orWhere('id',  $this->search)
             ->get();
         }
 

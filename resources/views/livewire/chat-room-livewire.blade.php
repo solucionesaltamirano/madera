@@ -37,6 +37,7 @@
                                             <span class=""> {{ $room->name }} </span> 
                                             {!! $room->users()->where('id',$userSender->id)->count() > 0 ? '<i class="fal fa-check-circle text-success float-right"></i>' : '' !!} 
                                             {!! $room->user_id == $userSender->id ? '<i class="fal fa-crown text-warning float-right"></i>' : '<small class="text-dark text-truncate">'. $room->userOwn->name .'</small>'!!}
+                                            
                                         </div>
                                     </a>
                                     {{-- <small class="">
@@ -61,7 +62,34 @@
             <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
                 @if($roomSelectedId > 0 )
                     <div class="card-header">
-                        <h3 class="card-title">Chat in room <b>{{ $roomSelected->name }}</b></h3>
+                        <h3 class="card-title">
+                            Chat in room <b>{{ $roomSelected->name }}</b>
+                            <span class="mx-4 border-bottom">
+                                {!! $roomSelected->private == 1 ? '<i class="fal fa-lock-alt text-warning px-1"></i> Access only with invitation' : '<i class="fal fa-lock-open-alt text-success px-1"></i> Free access' !!}
+                            </span>
+                        </h3>
+                        
+                        @if($room->user_id == $userSender->id)
+                            <span class="float-right">
+                                <a href="{{ route('chatRooms.edit', $room->id) }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fal fa-edit"></i>
+                                </a>
+                            </span>
+                        @else
+                            @if($roomSelected->users()->where('id', $userSender->id)->count() > 0  )
+                                <span class="float-right">
+                                    <div class="btn btn-outline-danger btn-sm" wire:click="detachMe({{ $roomSelected }}, {{ $userSender->id }} )">
+                                        <i class="fal fa-sign-out-alt"></i>
+                                    </div>
+                                </span>
+                            @else
+                                <span class="float-right">
+                                    <div class="btn btn-outline-success btn-sm" wire:click="attachMe({{ $roomSelected }}, {{ $userSender->id }} )">
+                                        <i class="fal fa-sign-in-alt"></i>
+                                    </div>
+                                </span>
+                            @endif
+                        @endif
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body direct-chat-messages px-4" id="messageBody">

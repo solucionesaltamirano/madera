@@ -141,7 +141,7 @@ class ChatRoomController extends AppBaseController
 
         Flash::success('Chat Room updated successfully.');
 
-        return redirect(route('chatRooms.index'));
+        return redirect(route('auth.chat-room'));
     }
 
     /**
