@@ -17,7 +17,7 @@ Route::get('/delete-information', function () {
 })->name('delete-information');
 
 //route for deploy in server test
-Route::any('/deploy/index', [DeployController::class, 'index'])->name('deploy');
+Route::any('/deploy', [DeployController::class, 'index'])->name('deploy');
 
 //route for send email
 Route::any('/email-backup/{filename}', [MailSenderController::class, 'backup'])->name('email-backup');
