@@ -15,9 +15,9 @@
                     
                 <div class=" w-100 ml-0 p-2 border-bottom ">
                     <div class="btn-group btn-group-toggle w-100" role="group" aria-label="Rooms">
-                        <button type="button" class="btn btn-secondary" wire:click="filter(1)">All</button>
-                        <button type="button" class="btn btn-secondary" wire:click="filter(2)">Own</button>
-                        <button type="button" class="btn btn-secondary" wire:click="filter(3)">Assigned</button>
+                        <button type="button" class="btn btn-secondary" wire:click="filter(1)">All </button>
+                        <button type="button" class="btn btn-secondary" wire:click="filter(2)">Own <i class="fal fa-crown text-warning "></i></button>
+                        <button type="button" class="btn btn-secondary" wire:click="filter(3)">Allowed <i class="fal fa-check-circle text-success"></i></button>
                     </div>
                     
                 </div>
@@ -26,17 +26,18 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <ul class="contacts-list">
+                    <ul class="contacts-list mx-0 ">
                         @if($rooms->count() > 0 )
                             @foreach ($rooms as $room)
-                                <li class="btn text-left w-100 {{ $room->id == $roomSelectedId ? 'bg-primary' : '' }}
-                                    {{ $room->users()->where('id',$userSender->id)->count() > 0 ? 'border-success' : '' }} {{ $room->user_id == $userSender->id ? 'border-success' : '' }}
+                                <li class="my-1  text-left w-100 {{ $room->id == $roomSelectedId ? 'bg-primary' : '' }}
                                     " wire:click.prevent="room_select({{ $room->id }}) ">
                                     <a href=""   class="">
-                                        <div class=""> 
-                                            <img class="contacts-list-img mr-2" src="https://ui-avatars.com/api/?name={{ urlencode($room->name) }}" alt="User Avatar">
+                                        <div class="align-middle"> 
+                                            <img class="contacts-list-img mr-1" src="https://ui-avatars.com/api/?name={{ urlencode($room->name) }}" alt="User Avatar">
                                         <!-- /.contacts-list-info -->
-                                            <span class=""> {{ $room->name }}</span> 
+                                            <span class=""> {{ $room->name }} </span> 
+                                            {!! $room->users()->where('id',$userSender->id)->count() > 0 ? '<i class="fal fa-check-circle text-success float-right"></i>' : '' !!} 
+                                            {!! $room->user_id == $userSender->id ? '<i class="fal fa-crown text-warning float-right"></i>' : '<small class="text-dark text-truncate">'. $room->userOwn->name .'</small>'!!}
                                         </div>
                                     </a>
                                     {{-- <small class="">
