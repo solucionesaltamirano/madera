@@ -4,7 +4,7 @@
     </x-slot>
     <x-slot name="pageHeader">
         Create Chat Room
-        <i class="fal fa-tachometer-slow"></i>
+        <i class="fal fa-users-class"></i>
     </x-slot>
     <x-slot name="cardTitle">
         <i class="fal fa-layer-plus"></i>

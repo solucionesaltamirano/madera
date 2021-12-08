@@ -9,7 +9,9 @@ use App\Http\Requests\UpdateChatRoomRequest;
 use App\Models\ChatRoom;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
 use Response;
+use stdClass;
 
 class ChatRoomController extends AppBaseController
 {
@@ -37,6 +39,7 @@ class ChatRoomController extends AppBaseController
      */
     public function create()
     {
+
         return view('admin.chat_rooms.create');
     }
 
@@ -51,12 +54,15 @@ class ChatRoomController extends AppBaseController
     {
         $input = $request->all();
 
+
         /** @var ChatRoom $chatRoom */
         $chatRoom = ChatRoom::create($input);
 
+        $chatRoom->users()->sync($request->users);
+
         Flash::success('Chat Room saved successfully.');
 
-        return redirect(route('chatRooms.index'));
+        return redirect(route('auth.chat-room'));
     }
 
     /**
@@ -77,7 +83,9 @@ class ChatRoomController extends AppBaseController
             return redirect(route('chatRooms.index'));
         }
 
-        return view('admin.chat_rooms.show')->with('chatRoom', $chatRoom);
+        return view('admin.chat_rooms.show',[
+            'chatRoom' => $chatRoom,
+        ]);
     }
 
     /**
@@ -92,13 +100,18 @@ class ChatRoomController extends AppBaseController
         /** @var ChatRoom $chatRoom */
         $chatRoom = ChatRoom::find($id);
 
+        $users = $chatRoom->users;
+
         if (empty($chatRoom)) {
             Flash::error('Chat Room not found');
 
             return redirect(route('chatRooms.index'));
         }
 
-        return view('admin.chat_rooms.edit')->with('chatRoom', $chatRoom);
+        return view('admin.chat_rooms.edit',[
+            'chatRoom'=> $chatRoom,
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -114,6 +127,7 @@ class ChatRoomController extends AppBaseController
         /** @var ChatRoom $chatRoom */
         $chatRoom = ChatRoom::find($id);
 
+
         if (empty($chatRoom)) {
             Flash::error('Chat Room not found');
 
@@ -122,6 +136,8 @@ class ChatRoomController extends AppBaseController
 
         $chatRoom->fill($request->all());
         $chatRoom->save();
+
+        $chatRoom->users()->sync($request->users);
 
         Flash::success('Chat Room updated successfully.');
 
