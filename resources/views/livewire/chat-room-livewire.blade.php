@@ -19,7 +19,6 @@
                         <button type="button" class="btn btn-secondary" wire:click="filter(2)">Own <i class="fal fa-crown text-warning "></i></button>
                         <button type="button" class="btn btn-secondary" wire:click="filter(3)">Allowed <i class="fal fa-check-circle text-success"></i></button>
                     </div>
-                    
                 </div>
                 <div class="input-group p-2 border-bottom">
                     <input type="text" name="message" placeholder="Search Room" class="form-control" wire:model="searchRoom" autocomplete="off">
