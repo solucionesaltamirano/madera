@@ -19,7 +19,6 @@ class Test extends Component
 
     public function render()
     {
-
         $publicRoutes = [
             'login',
             'logout',
