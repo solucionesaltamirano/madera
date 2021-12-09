@@ -25,7 +25,7 @@
                 <span class="px-2">Save</span>
                 <i class="fal fa-save"></i>
             </button>
-            <a href="{{ route('chatRooms.index') }}" class="btn btn-outline-danger float-right mr-2" >
+            <a href="{{ route('auth.chat-room') }}" class="btn btn-outline-danger float-right mr-2" >
                 <span class="px-2">Cancel</span>
                 <i class="fal fa-ban"></i>
             </a>

@@ -2,10 +2,10 @@
     <x-slot name="header">
         Chat Room
     </x-slot>
-    <x-slot name="pageHeader">
+    {{-- <x-slot name="pageHeader">
         Chat Room
         <i class="fal fa-users-class"></i>
-    </x-slot>
+    </x-slot> --}}
     <x-slot name="cardTitle">
         <i class="fal fa-users-class"></i>
         <span class="mx-2">
@@ -14,7 +14,7 @@
     </x-slot>
 
     <x-slot name="cardButton">
-        <a href="{{ route('auth.chat') }}" class="btn btn-outline-primary float-right">
+        <a href="{{ route('auth.chat') }}" class="btn btn-sm btn-outline-primary float-right">
             <span class="mx-2">Private Chat</span>
             <i class="fal fa-comments"></i>
         </a>
