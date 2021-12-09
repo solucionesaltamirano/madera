@@ -6,6 +6,10 @@
         $MODEL_NAME_PLURAL_HUMAN$
         <i class="fal fa-handshake"></i>
     </x-slot>
+    {{--<x-slot name="breadcrumbs">
+        $MODEL_NAME_PLURAL_HUMAN$
+        <i class="fal fa-handshake"></i>
+    </x-slot>--}}
     <x-slot name="cardTitle">
         <i class="fal fa-table"></i>
         <span class="mx-2">
@@ -14,7 +18,7 @@
     </x-slot>
     {{-- @can('$MODEL_NAME_PLURAL_CAMEL$.create') --}}
         <x-slot name="cardButton">
-            <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') }}" class="btn btn-outline-primary float-right">
+            <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') }}" class="btn btn-sm btn-outline-primary float-right">
                 <span class="mx-2">New</span>
                 <i class="fal fa-layer-plus"></i>
             </a>
