@@ -1,16 +1,23 @@
 <x-admin-layout>
     <x-slot name="header">
-        Chat
+        Chat Room
     </x-slot>
     <x-slot name="pageHeader">
-        Chat
-        <i class="fal fa-comments"></i>
+        Chat Room
+        <i class="fal fa-users-class"></i>
     </x-slot>
     <x-slot name="cardTitle">
-        <i class="fal fa-comments"></i>
+        <i class="fal fa-users-class"></i>
         <span class="mx-2">
-            Chats
+            Selec a Chat Room
         </span>
+    </x-slot>
+
+    <x-slot name="cardButton">
+        <a href="{{ route('auth.chat') }}" class="btn btn-outline-primary float-right">
+            <span class="mx-2">Private Chat</span>
+            <i class="fal fa-comments"></i>
+        </a>
     </x-slot>
 
     {{-- body --}}

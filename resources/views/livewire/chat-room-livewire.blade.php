@@ -2,8 +2,8 @@
     {{-- @dump( $roomSelected ? $roomSelected->user_id : '')
     @dump($userSender->id)
     @dump($roomSelected->users()->where('user_id', $userSender->id)->count()) --}}
-    <div class="row">
-        <div class="col-3">
+    <div class="row ">
+        <div class="col-sm-3 col-12">
             <!-- Contacts are loaded here -->
             <div style="height:90vh"  class="card card-success card-outline direct-chat direct-chat-success ">
                 <div class="card-header">
@@ -14,10 +14,10 @@
                 </div>
                     
                 <div class=" w-100 ml-0 p-2 border-bottom ">
-                    <div class="btn-group btn-group-toggle w-100" role="group" aria-label="Rooms">
-                        <button type="button" class="btn btn-secondary" wire:click="filter(1)">All </button>
-                        <button type="button" class="btn btn-secondary" wire:click="filter(2)">Own <i class="fal fa-crown text-warning "></i></button>
-                        <button type="button" class="btn btn-secondary" wire:click="filter(3)">Allowed <i class="fal fa-check-circle text-success"></i></button>
+                    <div class="btn-group btn-group-toggle w-100 " role="group" aria-label="Rooms">
+                        <button type="button" class="btn btn-dark" wire:click="filter(1)">All </button>
+                        <button type="button" class="btn btn-dark" wire:click="filter(2)">Own <i class="fal fa-crown text-warning "></i></button>
+                        <button type="button" class="btn btn-dark" wire:click="filter(3)">Allowed <i class="fal fa-check-circle text-success"></i></button>
                     </div>
                 </div>
                 <div class="input-group p-2 border-bottom">
@@ -54,36 +54,38 @@
                         <!-- End Contact Item -->
                     </ul>
                 </div>
-                <!-- /.contatcts-list -->
+                <!-- /.contatcts-list -->   
             </div>
             <!-- /.direct-chat-pane -->
         </div>
-        <div class="col-9">
+        <div class="col-sm-9 col-12">
             <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
                 @if($roomSelectedId > 0 )
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            Chat in room <b>{{ $roomSelected->name }}</b>
-                            <span class="mx-4 border-bottom">
-                                {!! $roomSelected->private == 1 ? '<i class="fal fa-lock-alt text-warning px-1"></i> Access only with invitation' : '<i class="fal fa-lock-open-alt text-success px-1"></i> Free access' !!}
-                            </span>
-                        </h3>
+                    <div class="card-header ">
+                        <div class="card-title  ">
+                            <div class=" ">
+                                <span class="small ">Room <b>{{ $roomSelected->name }}</b></span>
+                                <small class="ml-2 border-bottom  pt-2">
+                                    {!! $roomSelected->private == 1 ? '<i class="fal fa-lock-alt text-warning px-1"></i> Access only with invitation' : '<i class="fal fa-lock-open-alt text-success px-1"></i> Free access' !!}
+                                </small>
+                            </div>
+                        </div>
                         
-                        @if($room->user_id == $userSender->id)
-                            <span class="float-right">
+                        @if($roomSelected->user_id == $userSender->id)
+                            <span class="float-right ">
                                 <a href="{{ route('chatRooms.edit', $room->id) }}" class="btn btn-outline-primary btn-sm">
                                     <i class="fal fa-edit"></i>
                                 </a>
                             </span>
                         @else
                             @if($roomSelected->users()->where('id', $userSender->id)->count() > 0  )
-                                <span class="float-right">
+                                <span class="float-right ">
                                     <div class="btn btn-outline-danger btn-sm" wire:click="detachMe({{ $roomSelected }}, {{ $userSender->id }} )">
                                         <i class="fal fa-sign-out-alt"></i>
                                     </div>
                                 </span>
                             @else
-                                <span class="float-right">
+                                <span class="float-right ">
                                     <div class="btn btn-outline-success btn-sm" wire:click="attachMe({{ $roomSelected }}, {{ $userSender->id }} )">
                                         <i class="fal fa-sign-in-alt"></i>
                                     </div>
