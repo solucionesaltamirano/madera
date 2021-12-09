@@ -11,6 +11,7 @@ class ListSelectLivewire extends Component
     public $all;
     public $usersAssigned;
     public $search;
+    public $allUsers;
 
 
     public function mount($all, $users){
@@ -33,17 +34,29 @@ class ListSelectLivewire extends Component
             $item = $this->usersAssigned->where('id', $id);
             $this->usersAssigned->forget($item->keys()[0]);
         }
+    }
 
+    public function selectAll(){
+        $this->usersAssigned = collect();
+        foreach($this->allUsers as $user){
+            $item = new stdClass();
+            $item = ['id' => $user->id];
+            $this->usersAssigned->push($item);
+        }
+    }
+
+    public function unselectAll(){
+        $this->usersAssigned = collect();
     }
 
     public function render()
     {
         if($this->all) {
-            $users = User::where('name', 'LIKE', '%'.$this->search.'%')
+            $this->allUsers = User::where('name', 'LIKE', '%'.$this->search.'%')
             ->orWhere('id',  $this->search)
             ->get();
         } else {
-            $users = User::where('name', 'LIKE', '%'.$this->search.'%')
+            $this->allUsers = User::where('name', 'LIKE', '%'.$this->search.'%')
             ->where('id', '!=', auth()->id())
             ->orWhere('id',  $this->search)
             ->get();
@@ -52,7 +65,7 @@ class ListSelectLivewire extends Component
         // dd($this->usersAssigned);
 
         return view('livewire.users.list-select-livewire',[
-            'users' => $users,
+            'users' => $this->allUsers,
             'usersAssigned' => $this->usersAssigned
         ]);
     }
