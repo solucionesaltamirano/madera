@@ -49,7 +49,7 @@
                 <!-- /.direct-chat-pane -->
             </div>
         </template>
-        <template x-show="!show"  x-transition>
+        <template x-if="!show"  x-transition>
             <div class="col-12" >
                 <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
                     @if($roomSelectedId > 0 )
@@ -161,16 +161,17 @@
                     @endif
                 </div>
             </div>
+            @if(isset($roomSelected) > 0)
+                @push('scripts')
+                    <script>
+                        const objDiv = document.getElementById("messageBody");
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                        Livewire.on('reload', () => {
+                            objDiv.scrollTop = objDiv.scrollHeight;
+                        });
+                    </script>
+                @endpush
+            @endif
         </template>
     </div>
-
-    @push('scripts')
-        <script>
-            const objDiv = document.getElementById("messageBody");
-            objDiv.scrollTop = objDiv.scrollHeight;
-            Livewire.on('reload', () => {
-                objDiv.scrollTop = objDiv.scrollHeight;
-            });
-        </script>
-    @endpush
 </div>
