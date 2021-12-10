@@ -1,9 +1,6 @@
 <div class="">
-    {{-- @dump( $roomSelected ? $roomSelected->user_id : '')
-    @dump($userSender->id)
-    @dump($roomSelected->users()->where('user_id', $userSender->id)->count()) --}}
-    <div class="row ">
-        <div class="col-sm-3 col-12">
+    <div class="row " x-data="{show : true}">
+        <div class="col-sm-3 col-12" x-show="show" x-transition>
             <!-- Contacts are loaded here -->
             <div style="height:90vh"  class="card card-success card-outline direct-chat direct-chat-success ">
                 <div class="card-header">
@@ -24,12 +21,12 @@
                     <input type="text" name="message" placeholder="Search Room" class="form-control" wire:model="searchRoom" autocomplete="off">
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body" >
                     <ul class="contacts-list mx-0 ">
                         @if($rooms->count() > 0 )
                             @foreach ($rooms as $room)
-                                <li class="my-1  text-left w-100 {{ $room->id == $roomSelectedId ? 'bg-primary' : '' }}
-                                    " wire:click.prevent="room_select({{ $room->id }}) ">
+                                {{-- Mobile --}}
+                                <li class=" my-1 text-left w-100 {{ $room->id == $roomSelectedId ? 'bg-primary' : '' }}" x-on:click.prevent="$wire.room_select({{ $room->id }}), show = !show">
                                     <a href=""   class="">
                                         <div class="align-middle"> 
                                             <img class="contacts-list-img mr-1" src="https://ui-avatars.com/api/?name={{ urlencode($room->name) }}" alt="User Avatar">
@@ -40,14 +37,6 @@
                                             
                                         </div>
                                     </a>
-                                    {{-- <small class="">
-                                        {!! $room->chatReceives->sortBy('create_at')->where('user_send_id', $userSender->id)->first() ?
-                                            '<i class="fal fa-paper-plane"></i> ' . 
-                                            $room->chatReceives->sortBy('create_at')->where('user_send_id', $userSender->id)->first()->message : 
-                                            '<i class="fal fa-envelope-open-text"></i> ' . 
-                                            $room->chatSends->sortBy('create_at')->where('user_send_id', $userSender->id)->first()->message 
-                                        !!}
-                                    </small>  --}}
                                 </li>
                             @endforeach
                         @endif
@@ -58,13 +47,17 @@
             </div>
             <!-- /.direct-chat-pane -->
         </div>
-        <div class="col-sm-9 col-12">
+        
+        <div class="col-12" x-show="!show" >
             <div style="height:90vh"  class="card card-primary card-outline direct-chat direct-chat-primary ">
                 @if($roomSelectedId > 0 )
                     <div class="card-header ">
+                        <div class="float-left  btn btn-sm btn-outline-success mr-2" x-on:click.prevent="show = !show"> 
+                            <i class="fal fa-long-arrow-left"></i>
+                        </div>
                         <div class="card-title  ">
                             <div class=" ">
-                                <span class="small ">Room <b>{{ $roomSelected->name }}</b></span>
+                                <div class="small w-100 ">Room <b>{{ $roomSelected->name }}</b></div>
                                 <small class="ml-2 border-bottom  pt-2">
                                     {!! $roomSelected->private == 1 ? '<i class="fal fa-lock-alt text-warning px-1"></i> Access only with invitation' : '<i class="fal fa-lock-open-alt text-success px-1"></i> Free access' !!}
                                 </small>
