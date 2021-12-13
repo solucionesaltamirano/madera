@@ -2,7 +2,6 @@
     <x-slot name="header">
         Create $MODEL_NAME_HUMAN$
     </x-slot>
-    
     <div class="card card-primary card-outline min-vh-100">
         <div class="card-header">
             <div class="card-title ">
