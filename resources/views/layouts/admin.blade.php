@@ -23,8 +23,8 @@
             @include('admin.sidebar')
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                @include('admin.page-header')
+            <div class="content-wrapper pt-2">
+                {{-- @include('admin.page-header') --}}
 
                 <!-- Main content -->
                 @include('admin.content')

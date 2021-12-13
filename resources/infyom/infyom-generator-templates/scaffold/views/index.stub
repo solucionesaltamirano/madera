@@ -2,32 +2,31 @@
     <x-slot name="header">
         $MODEL_NAME_PLURAL_HUMAN$
     </x-slot>
-    <x-slot name="pageHeader">
-        $MODEL_NAME_PLURAL_HUMAN$
-        <i class="fal fa-handshake"></i>
-    </x-slot>
-    {{--<x-slot name="breadcrumbs">
-        $MODEL_NAME_PLURAL_HUMAN$
-        <i class="fal fa-handshake"></i>
-    </x-slot>--}}
-    <x-slot name="cardTitle">
-        <i class="fal fa-table"></i>
-        <span class="mx-2">
-            $MODEL_NAME_PLURAL_HUMAN$
-        </span>
-    </x-slot>
-    {{-- @can('$MODEL_NAME_PLURAL_CAMEL$.create') --}}
-        <x-slot name="cardButton">
-            <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') }}" class="btn btn-sm btn-outline-primary float-right">
-                <span class="mx-2">New</span>
-                <i class="fal fa-layer-plus"></i>
-            </a>
-        </x-slot>
-    {{-- @endcan --}}
-
-    {{-- body --}}
-    <div class="px-1">
-        @include('flash::message')
-        @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
-    </div>
+    {{-- slot Body--}}
+    <div class="card card-primary card-outline min-vh-100">
+        <div class="card-header">
+            <div class="card-title ">
+                <h4>
+                    <i class="fal fa-table"></i>
+                    <span class="mx-2 ">
+                        $MODEL_NAME_PLURAL_HUMAN$
+                    </span>
+                </h4>
+            </div>
+            {{-- @can('$MODEL_NAME_PLURAL_CAMEL$.create') --}}
+            <div class="float-right">
+                <a href={{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') }}" class="btn btn-sm btn-outline-primary float-right">
+                    <span class="mx-2">New</span>
+                    <i class="fal fa-layer-plus"></i>
+                </a>
+            </div>
+            {{-- @endcan --}}
+        </div>
+        <div class="card-body px-1 px-sm-4">
+            <div class="px-1">
+                @include('flash::message')
+                @include('admin.items.table')
+            </div>
+        </div>
+    </div>    
 </x-admin-layout>
