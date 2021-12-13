@@ -43,7 +43,7 @@ class Menu extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        'id' => 'boolean',
+        'id' => 'integer',
         'name' => 'string'
     ];
 
