@@ -24,8 +24,8 @@
     @endif --}}
 
     @livewire('partial.toast',[
-        'title' => $message['message'],
-        'icon' => $message['level']
+        'title' => $message['message'] ,
+        'icon' => $message['level'] == "danger" ? "error" : $message['level']
     ])
     
 @endforeach
