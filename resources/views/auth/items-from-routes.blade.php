@@ -1,21 +1,15 @@
 <x-admin-layout>
     <x-slot name="header">
-        Order items list
+        Create Items From Routes
     </x-slot>
 
     <div class="card card-primary card-outline ">
         <div class="card-header ">
-            <h3 class="card-title">Order items list</h3>
+            <h3 class="card-title">Create Items From Routes</h3>
         </div>
         <div class="card-body">
             @include('flash::message')
-            @livewire('items.list-select-livewire', [
-                'items' => \App\Models\Item::all(),
-                'all' => true,
-            ])
+            @livewire('items.from-routes-livewire')
         </div>
     </div>
-    
-        
-    
 </x-admin-layout>

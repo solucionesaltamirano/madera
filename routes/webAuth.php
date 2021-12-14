@@ -9,4 +9,7 @@ use App\Http\Controllers\AuthController;
 Route::any('/welcome', [AuthController::class, 'welcome'])->name('auth.welcome');
 Route::any('/chat', [AuthController::class, 'chat'])->name('auth.chat');
 Route::any('/chat-room', [AuthController::class, 'chatRoom'])->name('auth.chat-room');
-Route::any('/items', [AuthController::class, 'items'])->name('auth.items');
+Route::any('/items-from-routes', [AuthController::class, 'itemsFromRoutes'])->name('auth.items-from-routes');
+Route::post('/items-from-routes-save', [AuthController::class, 'itemsFromRoutesSave'])->name('auth.items-from-routes-save');
+Route::any('/menus-has-items', [AuthController::class, 'menusHasItems'])->name('auth.menus-has-items');
+

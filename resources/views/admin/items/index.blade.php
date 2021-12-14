@@ -20,6 +20,12 @@
                     <i class="fal fa-layer-plus"></i>
                 </a>
             </div>
+            <div class="float-right mx-2">
+                <a href="{{ route('auth.items-from-routes') }}" class="btn btn-sm btn-outline-primary float-right">
+                    <span class="mx-2">Create from routes</span>
+                    <i class="fal fa-layer-plus"></i>
+                </a>
+            </div>
             {{-- @endcan --}}
         </div>
         <div class="card-body px-1 px-sm-4">
