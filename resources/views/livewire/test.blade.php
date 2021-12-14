@@ -53,7 +53,8 @@
         @endforeach
     </div>
 
-    @foreach ($groups as $group)
+    <x-laravel-blade-sortable::sortable>
+        @foreach ($groups as $group)
             <div class="card card-primary card-outline">
                 <div class="card-title border">GRUPO: {{ $group != '' ? $group : 'USUARIO FINAL'  }}</div>
                 <div class="card-body">
@@ -90,6 +91,6 @@
                     @endforeach
                 </div>
             </div>
-    @endforeach
-
+        @endforeach
+    </x-laravel-blade-sortable::sortable>
 </div>
