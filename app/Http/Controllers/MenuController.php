@@ -54,6 +54,8 @@ class MenuController extends AppBaseController
         /** @var Menu $menu */
         $menu = Menu::create($input);
 
+        $menu->items()->sync($request->items);
+
         Flash::success('Menu saved successfully.');
 
         return redirect(route('menus.index'));
@@ -92,13 +94,18 @@ class MenuController extends AppBaseController
         /** @var Menu $menu */
         $menu = Menu::find($id);
 
+        $items = $menu->items;
+
         if (empty($menu)) {
             Flash::error('Menu not found');
 
             return redirect(route('menus.index'));
         }
 
-        return view('admin.menus.edit')->with('menu', $menu);
+        return view('admin.menus.edit',[
+            'menu' => $menu,
+            'items' => $items
+        ]);
     }
 
     /**
@@ -122,6 +129,8 @@ class MenuController extends AppBaseController
 
         $menu->fill($request->all());
         $menu->save();
+
+        $menu->items()->sync($request->items);
 
         Flash::success('Menu updated successfully.');
 
