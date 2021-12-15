@@ -3,7 +3,7 @@
     Rutas: {{ $routeLists->count() }}
     Items: {{ $items->count() }}
 
-    <form action="{{ route('auth.items-from-routes-save') }}" method="post">
+    <form action="{{ route('items.from-routes-save') }}" method="post">
         {{ csrf_field() }}
     @foreach ($groups as $group)
         <div class="card card-primary card-outline">

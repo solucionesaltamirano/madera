@@ -21,7 +21,7 @@
                 </a>
             </div>
             <div class="float-right mx-2">
-                <a href="{{ route('auth.items-from-routes') }}" class="btn btn-sm btn-outline-primary float-right">
+                <a href="{{ route('items.from-routes') }}" class="btn btn-sm btn-outline-primary float-right">
                     <span class="mx-2">Create from routes</span>
                     <i class="fal fa-layer-plus"></i>
                 </a>

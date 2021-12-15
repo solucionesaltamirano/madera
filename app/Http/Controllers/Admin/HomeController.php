@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -11,8 +10,5 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
-    public function test()
-    {
-        return view('test');
-    }
+    
 }

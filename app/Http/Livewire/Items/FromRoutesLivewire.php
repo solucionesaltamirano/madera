@@ -12,23 +12,6 @@ use Flash;
 class FromRoutesLivewire extends Component
 {
 
-
-    public function saveItems(){
-        dd($this->items_array);
-
-        foreach($this->items_array as $i){
-            $item = new Item();
-            $item->name = $i['name'];
-            $item->description = $i['description'];
-            $item->route = $i['route'];
-            $item->icon = $i['icon'];
-            $item->save();
-        }
-
-        $this->redirect('auth.items-from-routes');
-        Flash::success('Items saved successfully.');
-    }
-    
     public function render()
     {
         $items = Item::where('route', 'NOT LIKE', '%edit%')->where('route', 'NOT LIKE', '%destroy%')->get();
@@ -61,7 +44,7 @@ class FromRoutesLivewire extends Component
             'login-facebook',
             'facebook-callback',
             'email-backup',
-            'auth.items-from-routes-save',
+            'items.from-routes-save',
         ];
 
         $routes = Route::getRoutes();
@@ -71,7 +54,7 @@ class FromRoutesLivewire extends Component
                         
             $item = new stdClass;
 
-            if(( strpos($route->getName(), 'store') + strpos($route->getName(), 'update') + strpos($route->getName(), 'edit') + strpos($route->getName(), 'destroy')) > 0 ){
+            if(( strpos($route->getName(), 'store') + strpos($route->getName(), 'update') + strpos($route->getName(), 'edit') + strpos($route->getName(), 'destroy') + strpos($route->getName(), 'show')) > 0 ){
                 $actions = false;
             }else{
                 $actions = true;

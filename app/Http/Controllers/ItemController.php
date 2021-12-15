@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
+use App\Models\Item;
+use Illuminate\Http\Request;
 use App\DataTables\ItemDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateItemRequest;
 use App\Http\Requests\UpdateItemRequest;
-use App\Models\Item;
-use Flash;
 use App\Http\Controllers\AppBaseController;
-use Response;
 
 class ItemController extends AppBaseController
 {
@@ -153,6 +153,41 @@ class ItemController extends AppBaseController
         Flash::success('Item deleted successfully.');
 
         return redirect(route('items.index'));
+    }
+
+    /**
+     * Display a listing of the Route will be Items.
+     *
+     * @return Response
+     */
+    public function itemsFromRoutes()
+    {
+        return view('admin.items.from-routes');
+    }
+
+    /**
+     * Store Items in storage.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function itemsFromRoutesSave(Request $request)
+    {
+        dd($request->all()['items_array']);
+        foreach ($request->all()['items_array'] as $value) {
+            if($value['name'] != null and $value['icon'] != null and $value['description'] != null){
+                $item = new Item;
+                $item->name = $value['name'];
+                $item->description = $value['description'];
+                $item->route = $value['route'];
+                $item->icon = $value['icon'];
+                $item->save();
+            } 
+        }
+
+        Flash::success('Items saved successfully.');
+        return redirect()->route('items.from-routes');
     }
 
     

@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
-Route::get('/test', [HomeController::class, 'test'])->name('admin.test');
+Route::any('/items/from-routes', [App\Http\Controllers\ItemController::class, 'itemsFromRoutes'])->name('items.from-routes');
+Route::post('/items/from-routes-save', [App\Http\Controllers\ItemController::class, 'itemsFromRoutesSave'])->name('items.from-routes-save');
+
 
 Route::resource('externalAuths', App\Http\Controllers\ExternalAuthController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
