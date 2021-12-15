@@ -174,7 +174,6 @@ class ItemController extends AppBaseController
      */
     public function itemsFromRoutesSave(Request $request)
     {
-        dd($request->all()['items_array']);
         foreach ($request->all()['items_array'] as $value) {
             if($value['name'] != null and $value['icon'] != null and $value['description'] != null){
                 $item = new Item;
