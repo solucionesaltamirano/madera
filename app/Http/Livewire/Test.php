@@ -16,9 +16,7 @@ class Test extends Component
         $this->count++;
     }
 
-    // this is a test
-    // this is a test
-    // this is a test
+    
 
     public function render()
     {
