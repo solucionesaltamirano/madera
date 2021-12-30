@@ -1,5 +1,5 @@
 <div>
-    <div class="py-4">
+    <div class="py-4 container">
         
         <img src="{{  auth()->user()->profile_photo_path  }}" alt=""><br>
         {{ auth()->user() }}
