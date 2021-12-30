@@ -27,7 +27,9 @@
         @endforeach
     </div>
 
+    
     @foreach ($itemsAssigned as $item)
         <input type="hidden" name="items[]" value="{{ $item['id'] }}">
+        
     @endforeach
 </div>

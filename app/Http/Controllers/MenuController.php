@@ -51,10 +51,25 @@ class MenuController extends AppBaseController
     {
         $input = $request->all();
 
+        $i=0;
+        $items = [];
+        foreach($request->items as $item){
+            $items[] = [
+                intval($item) => [
+                    'order' => intval($i),
+                ]
+            ];
+
+            $i++;
+        }
+
+        dd($items);
+
         /** @var Menu $menu */
         $menu = Menu::create($input);
 
-        $menu->items()->sync($request->items);
+        $menu->items()->detach();
+        $menu->items()->attach($items);
 
         Flash::success('Menu saved successfully.');
 
