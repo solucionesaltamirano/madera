@@ -38,7 +38,7 @@ window.Echo = new Echo({
     wsPort:            6002,
     wssPort:           6002,
     disableStats:      true,
-    encrypted:         false,
+    encrypted:         true,
     enabledTransports: ['ws', 'wss'],
 });
 

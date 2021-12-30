@@ -5390,7 +5390,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wsPort: 6002,
   wssPort: 6002,
   disableStats: true,
-  encrypted: false,
+  encrypted: true,
   enabledTransports: ['ws', 'wss']
 });
 console.log(window.location.hostname);
