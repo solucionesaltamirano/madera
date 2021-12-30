@@ -2,12 +2,26 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\TestEvent;
 use stdClass;
 use Livewire\Component;
 use Illuminate\Support\Facades\Route;
 
 class Test extends Component
 {
+    public $notification = false;
+
+    public function notifyEvent(){
+        event(new TestEvent());
+    }
+
+    // Special Syntax: ['echo:{channel},{event}' => '{method}']
+    protected $listeners = ['echo:channel-test,TestEvent' => 'notify'];
+
+    public function notify()
+    {
+        $this->count++;
+    }
 
     public $count = 10;
 
@@ -15,8 +29,6 @@ class Test extends Component
     {
         $this->count++;
     }
-
-    
 
     public function render()
     {

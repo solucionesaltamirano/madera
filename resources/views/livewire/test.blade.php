@@ -18,6 +18,16 @@
             Alpine: <span x-text="countAlpine"></span>
         </div>
 
+        <div wire:click="notifyEvent" class="btn btn-warning">
+            NOTIFICAR
+        </div>
+
+        @if($notification)
+            <div class="alert alert-success">
+                TRUE
+            </div>
+        @endif
+
         <div class="btn btn-outline-success"x-on:click="$wire.emit('showToast', 'TITLE SUCCESS')">success</div>
         <div class="btn btn-outline-danger" x-on:click="$wire.emit('showToast', 'TITLE ERROR', 'error')">error</div>
         <div class="btn btn-outline-warning" x-on:click="$wire.emit('showToast', 'TITLE WARNING', 'warning')">warning</div>

@@ -1,3 +1,5 @@
+
+
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -31,9 +33,11 @@
 <!-- livewire -->
 @livewireScripts
 
+<script src="{{ asset('js/app.js') }}"></script>
+
 <x-laravel-blade-sortable::scripts/>
 
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+{{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script> --}}
 <script src="{{ asset('plugins/sortablejs/sortable.js') }}"></script>
 
 {{-- Toast called with Livewire --}}
