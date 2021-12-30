@@ -16,6 +16,8 @@ class Test extends Component
         $this->count++;
     }
 
+    // this is a test
+
     public function render()
     {
         return view('livewire.test');
