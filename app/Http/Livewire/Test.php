@@ -18,6 +18,7 @@ class Test extends Component
 
     // this is a test
     // this is a test
+    // this is a test
 
     public function render()
     {
