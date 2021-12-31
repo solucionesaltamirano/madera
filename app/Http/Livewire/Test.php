@@ -20,6 +20,7 @@ class Test extends Component
 
     public function notify()
     {
+        $this->notification = !$this->notification;
         $this->count++;
     }
 
