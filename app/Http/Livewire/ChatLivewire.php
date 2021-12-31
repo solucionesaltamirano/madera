@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Chat;
 use App\Models\User;
 use Livewire\Component;
+use App\Events\ChatEvent;
 
 class ChatLivewire extends Component
 {
@@ -13,11 +14,26 @@ class ChatLivewire extends Component
     public $message;
     public $serchUser;
     public $sending;
+    public $channel;
 
     public function mount()
     {
         $this->userSender = auth()->user();
+        $this->getListeners();
     }
+
+    public function getListeners()
+    {
+        return [
+            "echo:channel-chat.{$this->userSender->id},ChatEvent" => 'render',
+        ];
+    }
+
+    // Special Syntax: ['echo:{channel},{event}' => '{method}']
+    // protected $listeners = [
+    //     $this->channel => 'render',
+    // ];
+
 
     public function receiverSelected(User $userReceiver)
     {
@@ -26,6 +42,7 @@ class ChatLivewire extends Component
 
     public function sendMessage()
     {
+        event(new ChatEvent($this->userReceiverSelected->id));
         $this->sending = true;
         $this->validate([
             'message' => 'required',
