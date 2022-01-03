@@ -25,5 +25,9 @@
     {{-- this is the content of the card --}}
     @livewire('test')
     {{-- this is the content of the card --}}
+
+    <a href="{{ route('items.from-routes') }}" class="btn btn-outline-primary">
+        See routes
+    </a>
     
 </x-admin-layout>
