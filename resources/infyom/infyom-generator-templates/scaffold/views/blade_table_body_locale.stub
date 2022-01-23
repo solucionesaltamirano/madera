@@ -3,7 +3,7 @@
         <thead>
         <tr>
             $FIELD_HEADERS$
-            <th colspan="3">@lang('crud.action')</th>
+            <th>@lang('crud.action')</th>
         </tr>
         </thead>
         <tbody>
@@ -30,3 +30,5 @@
         </tbody>
     </table>
 </div>
+
+

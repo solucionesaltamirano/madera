@@ -3,7 +3,7 @@
         <thead>
         <tr>
             $FIELD_HEADERS$
-            <th colspan="3">Action</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -30,3 +30,17 @@
         </tbody>
     </table>
 </div>
+
+@push('scripts')
+    <script>
+        $('#$MODEL_NAME_PLURAL_CAMEL$-table').DataTable({
+            responsive: true,
+            autoWidth: false,
+            stateSave: true,
+            dom: '<"row mb-2"<"col-sm-12 col-md-6" B><"col-sm-12 col-md-6" f>>rt<"row "<"col-sm-6  pt-1" l><" col-sm-6 pb-2   text-right" i><"col-sm-12  d-flex justify-content-center  " p>>',
+            buttons: [ 
+                'copy', 'excel', 'pdf', 'colvis',
+            ]
+        });
+    </script>
+@endpush
