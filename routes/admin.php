@@ -14,3 +14,4 @@ Route::resource('menus', App\Http\Controllers\MenuController::class);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 Route::resource('chats', App\Http\Controllers\ChatController::class);
 Route::resource('chatRooms', App\Http\Controllers\ChatRoomController::class);
+Route::resource('blogCategories', App\Http\Controllers\BlogCategoryController::class);
