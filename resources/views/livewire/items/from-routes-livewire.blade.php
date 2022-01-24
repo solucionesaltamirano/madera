@@ -17,7 +17,7 @@
                             <div class="card-title border">Module {{ $module->name }}</div>
                             <div class="card-body">
                                 @foreach ($routeLists->where('group', $group)->where('module', $module->name)->where('name', '!=', 'show')->whereNotIn('route', $items->pluck('route')) as $route)
-                                    <div class="w-100 border rounded my-2 row py-2">
+                                    <div class="w-100 border rounded my-2 row py-2 bg-light border-primary">
                                         <div class="col-3">
                                             <b>Name:</b>
                                             <input 
@@ -29,7 +29,7 @@
                                                 {{-- wire:model="items_array.{{$route->id }}.name" --}}
                                             >
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-3 ">
                                             <b>Route:</b>
                                             <input 
                                                 type="text" 
@@ -70,7 +70,7 @@
                     @else
                         <div class="pb-3">
                             @foreach ($routeLists->where('group', $group)->where('module', $module->name)->whereNotIn('route', $items->pluck('route')) as $route)    
-                                <div class="w-100 border rounded my-2 row py-2">
+                                <div class="w-100 border rounded my-2 row py-2  bg-light border-primary">
                                     <div class="col-3">
                                         <b>Name:</b>
                                         <input 
