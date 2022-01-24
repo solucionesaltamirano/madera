@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
         });
 
         \App\Models\BlogCategory::factory(10000)->create();
-        
+
+        for($i = 0; $i < 10000; $i++) {
+            \App\Models\BusinessConfiguration::factory()->create([
+                'key' => 'key_name-'.$i,
+            ]);
+        }
     }
 }
