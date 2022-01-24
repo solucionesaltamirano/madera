@@ -31,7 +31,7 @@ class ChatRoomFactory extends Factory
         return [
         'name' => $name,
         'private' => rand(0, 1),
-        'description' => $this->faker->paragraph,
+        'description' => $this->faker->sentence,
         'created_at' => today(),
         'updated_at' => today(),
         // 'deleted_at' => ,
