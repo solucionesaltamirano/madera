@@ -13,6 +13,8 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Spatie\Permission\Traits\HasRoles;
+
 /**
  * Class User
  * @package App\Models
@@ -44,6 +46,8 @@ class User extends Authenticatable implements HasMedia
     use TwoFactorAuthenticatable;
     use InteractsWithMedia;
     use SoftDeletes;
+    
+    use HasRoles;
 
     public $table = 'users';
     
