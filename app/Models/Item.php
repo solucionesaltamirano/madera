@@ -82,4 +82,20 @@ class Item extends Model implements HasMedia
     {
         return $this->belongsToMany(\App\Models\Menu::class, 'menus_has_items');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function parent()
+    {
+        return $this->belongsTo(\App\Models\Item::class, 'item_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function childs()
+    {
+        return $this->hasMany(\App\Models\Item::class, 'item_id');
+    }
 }
