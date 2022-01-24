@@ -1,10 +1,20 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
-    </a>
+
+    @if ( \App\Models\BusinessConfiguration::where('key', 'logo')->exists() )
+        <a href="/" class="brand-link">
+            <img  height="30" src="{{  asset(\App\Models\BusinessConfiguration::where('key', 'logo')->first()->value) }}" class="brand-image elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        </a>
+    @else
+        <a href="index3.html" class="brand-link">
+            <img  src="{{ asset('/img/favicon.png') }}" alt="{{ config('app.name') }}"
+                class="brand-image elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        </a>
+    @endif
+
+    
 
     <!-- Sidebar -->
     <div class="sidebar">
