@@ -18,3 +18,4 @@ Route::resource('chatRooms', App\Http\Controllers\ChatRoomController::class);
 Route::resource('blogCategories', App\Http\Controllers\BlogCategoryController::class);
 Route::resource('businessConfigurations', App\Http\Controllers\BusinessConfigurationController::class);
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+Route::resource('roles', App\Http\Controllers\RoleController::class);
