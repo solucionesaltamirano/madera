@@ -264,6 +264,41 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * Class Permission
+ *
+ * @package App\Models
+ * @version January 24, 2022, 5:39 pm CST
+ * @property \App\Models\ModelHasPermission $modelHasPermission
+ * @property \Illuminate\Database\Eloquent\Collection $roles
+ * @property string $name
+ * @property string $guard_name
+ * @property string $description
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @method static \Database\Factories\PermissionFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Permission onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereGuardName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Permission withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Permission withoutTrashed()
+ */
+	class Permission extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
  * Class User
  *
  * @package App\Models
