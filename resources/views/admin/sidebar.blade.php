@@ -45,8 +45,8 @@
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+        <nav class="mt-2 pb-4">
+            <ul class="nav nav-pills nav-sidebar flex-column pb-4" data-widget="treeview" role="menu"
                 data-accordion="false">
 
                 @foreach ($items as $item)
