@@ -27,6 +27,9 @@ class ItemDataTable extends DataTable
                  //se debe crear la vista modal_detalles
                  //return view('items.modal_detalles',compact('item'))->render();
         })
+        ->editColumn('parent.name',function (Item $item){
+            return $item->parent->name ?? 'N/A';
+        })
         ->rawColumns(['action','id']);
     }
 
@@ -38,7 +41,7 @@ class ItemDataTable extends DataTable
      */
     public function query(Item $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['parent', 'childs']);
     }
 
     /**
@@ -85,11 +88,12 @@ class ItemDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('id'),
             Column::make('name'),
             Column::make('description'),
             Column::make('route'),
             Column::make('icon'),
-            Column::make('item_id')
+            Column::make('parent')->data('parent.name')->name('parent.name'),
         ];
     }
 
