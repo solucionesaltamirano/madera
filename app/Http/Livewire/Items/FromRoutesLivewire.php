@@ -6,7 +6,6 @@ use App\Models\Item;
 use Livewire\Component;
 use stdClass;
 use Illuminate\Support\Facades\Route;
-use Flash;
 
 
 class FromRoutesLivewire extends Component
@@ -45,6 +44,7 @@ class FromRoutesLivewire extends Component
             'facebook-callback',
             'email-backup',
             'items.from-routes-save',
+            'permissions.from-routes-save',
         ];
 
         $routes = Route::getRoutes();
