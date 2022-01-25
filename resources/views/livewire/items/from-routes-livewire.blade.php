@@ -47,7 +47,7 @@
                                                 type="text" 
                                                 class="form-control" 
                                                 placeholder="Description"
-                                                value="{{ $route->name == 'index' ? 'Show al '. $module->name : '' }}{{ $route->name == 'create' ? 'Create a new '. $module->name : '' }}"
+                                                value="{{ $route->name == 'index' ? 'Show all '. $module->name : '' }}{{ $route->name == 'create' ? 'Create a new '. $module->name : '' }}"
                                                 name="items_array[{{$route->id }}][description]" 
                                                 {{-- wire:model="items_array.{{$route->id }}.description" --}}
                                             >
