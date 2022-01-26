@@ -128,13 +128,14 @@ class UserController extends AppBaseController
             $request->offsetSet('password', $newPasword)  ;
         }
 
-        $user->addMedia($request->media)->toMediaCollection();
+        if($request->media){
+            $user->addMedia($request->media)->toMediaCollection();
+            $user->profile_photo_path = $user->getMedia()->last()->getUrl();
+        }
 
         $user->fill($request->all());
         $user->save();
     
-        $user->profile_photo_path = $user->getMedia()->last()->getUrl();
-        $user->save();
 
         Flash::success('User updated successfully.');
 
