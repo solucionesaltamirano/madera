@@ -14,7 +14,7 @@
     </x-slot>
     @include('adminlte-templates::common.errors')
     <div class="card">
-        {!! Form::open(['route' => 'users.store']) !!}
+        {!! Form::open(['route' => 'users.store', 'files' => true]) !!}
         <div class="card-body">
             <div class="row">
                 @include('admin.users.fields')

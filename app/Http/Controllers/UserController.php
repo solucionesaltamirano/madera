@@ -55,6 +55,15 @@ class UserController extends AppBaseController
         /** @var User $user */
         $user = User::create($input);
 
+        // dd($request->media);
+
+        if($request->media){
+            $user->addMedia($request->media)->toMediaCollection();
+            $user->save();
+            $user->profile_photo_path = $user->getMedia()->last()->getUrl();
+            $user->save();
+        }
+
         Flash::success('User saved successfully.');
 
         return redirect(route('users.index'));
@@ -128,12 +137,12 @@ class UserController extends AppBaseController
             $request->offsetSet('password', $newPasword)  ;
         }
 
+        $user->fill($request->all());
         if($request->media){
             $user->addMedia($request->media)->toMediaCollection();
             $user->profile_photo_path = $user->getMedia()->last()->getUrl();
         }
 
-        $user->fill($request->all());
         $user->save();
     
 
