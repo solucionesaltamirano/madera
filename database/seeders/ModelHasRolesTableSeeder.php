@@ -21,39 +21,57 @@ class ModelHasRolesTableSeeder extends Seeder
         \DB::table('model_has_roles')->insert(array (
             0 => 
             array (
-                'model_id' => 1,
-                'model_type' => 'App\\Models\\User',
                 'role_id' => 1,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 1,
             ),
             1 => 
             array (
-                'model_id' => 1,
-                'model_type' => 'App\\Models\\User',
                 'role_id' => 2,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 1,
             ),
             2 => 
             array (
-                'model_id' => 1,
-                'model_type' => 'App\\Models\\User',
                 'role_id' => 3,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 1,
             ),
             3 => 
             array (
-                'model_id' => 2,
-                'model_type' => 'App\\Models\\User',
                 'role_id' => 1,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 2,
             ),
             4 => 
             array (
-                'model_id' => 2,
-                'model_type' => 'App\\Models\\User',
                 'role_id' => 2,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 2,
             ),
             5 => 
             array (
-                'model_id' => 2,
-                'model_type' => 'App\\Models\\User',
                 'role_id' => 3,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 2,
+            ),
+            6 => 
+            array (
+                'role_id' => 2,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 3,
+            ),
+            7 => 
+            array (
+                'role_id' => 3,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 4,
+            ),
+            8 => 
+            array (
+                'role_id' => 4,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 5,
             ),
         ));
         

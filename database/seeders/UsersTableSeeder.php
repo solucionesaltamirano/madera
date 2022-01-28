@@ -91,6 +91,24 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2021-11-16 20:31:10',
                 'username' => 'admin',
             ),
+            4 => 
+            array (
+                'created_at' => '2021-11-16 20:31:10',
+                'current_team_id' => NULL,
+                'deleted_at' => NULL,
+                'email' => 'info3@srv-sa.com',
+                'email_verified_at' => NULL,
+                'id' => 5,
+                'name' => 'User',
+                'password' => '$2y$10$tNByQh2b3tmEbZwi8/8bruev4KZnMvLA9xSpopDBQ5hL3sg6BIxNi',
+                'phone' => '32112365',
+                'profile_photo_path' => null,
+                'remember_token' => NULL,
+                'two_factor_recovery_codes' => NULL,
+                'two_factor_secret' => NULL,
+                'updated_at' => '2021-11-16 20:31:10',
+                'username' => 'user',
+            ),
         ));
         
         
