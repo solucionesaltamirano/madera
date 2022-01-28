@@ -64,6 +64,9 @@ class UserController extends AppBaseController
             $user->save();
         }
 
+        $user->roles()->sync($request->roles);
+        $user->permissions()->sync($request->permissions);
+
         Flash::success('User saved successfully.');
 
         return redirect(route('users.index'));
@@ -102,13 +105,22 @@ class UserController extends AppBaseController
         /** @var User $user */
         $user = User::find($id);
 
+        $roles = $user->roles;
+        $permissions = $user->permissions;
+
+        // dd($permissions);
+
         if (empty($user)) {
             Flash::error('User not found');
 
             return redirect(route('users.index'));
         }
 
-        return view('admin.users.edit')->with('user', $user);
+        return view('admin.users.edit',[
+            'user' => $user,
+            'roles' => $roles,
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -145,6 +157,8 @@ class UserController extends AppBaseController
 
         $user->save();
     
+        $user->roles()->sync($request->roles);
+        $user->permissions()->sync($request->permissions);
 
         Flash::success('User updated successfully.');
 
@@ -172,6 +186,9 @@ class UserController extends AppBaseController
         }
 
         $user->delete();
+
+        $user->roles()->sync([]);
+        $user->permissions()->sync([]);
 
         Flash::success('User deleted successfully.');
 

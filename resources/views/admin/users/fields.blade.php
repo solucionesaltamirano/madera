@@ -87,3 +87,38 @@
     </div>
 @endif
 
+@php
+    if( old('permissions') ){
+        
+        $permissionsOld = old('permissions');
+        $permissions = collect();
+
+        foreach ($permissionsOld as $p ) {
+            $item = new stdClass();
+            $item =  \App\Models\Permission::find($p);
+            $permissions->push($item);
+        }
+    }
+
+    if( old('roles') ){
+        
+        $rolesOld = old('roles');
+        $roles = collect();
+
+        foreach ($rolesOld as $r ) {
+            $item = new stdClass();
+            $item =  \App\Models\Role::find($r);
+            $roles->push($item);
+        }
+    }
+@endphp
+
+<div class="col-md-12  mt-4 p-2">
+    @livewire('roles.list-select-with-permissions',[
+        'roles' => $roles ?? [],
+        'permissions' => $permissions ?? [],
+    ])
+</div>
+
+
+

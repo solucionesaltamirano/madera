@@ -14,7 +14,7 @@
         @foreach ($permissions as $permission)
             <div class="col-12 col-sm-4 ">
                 <div class="w-100 my-1" wire:click="permissionselect({{ $permission->id }})">
-                    <div class="text-left w-100 btn {{$permissionsAssigned->where('id', $permission->id)->count() <= 0  ? ' btn-outline-secondary': 'btn btn-success' }} ">
+                    <div class="text-left w-100 btn {{$permissionsAssigned->where('id', $permission->id)->count() <= 0  ? ' btn-outline-secondary': 'btn-success' }} ">
                         {{ $permission->description }} - {{ $permission->id }}
                         @if($permissionsAssigned->where('id', $permission->id)->count() > 0)
                             <div class="float-right ">
