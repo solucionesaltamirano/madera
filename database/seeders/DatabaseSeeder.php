@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelHasPermissionsTableSeeder::class);
         $this->call(ModelHasRolesTableSeeder::class);
         $this->call(ExternalAuthsTableSeeder::class);
+        $this->call(RoleHasPermissionsTableSeeder::class);
 
         // \App\Models\User::factory(50)->create();
         // \App\Models\ChatRoom::factory(30)->create();

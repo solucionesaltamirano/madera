@@ -55,6 +55,42 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2021-11-16 20:31:10',
                 'username' => 'gersonac',
             ),
+            2 => 
+            array (
+                'created_at' => '2021-11-16 20:31:10',
+                'current_team_id' => NULL,
+                'deleted_at' => NULL,
+                'email' => 'info@srv-sa.com',
+                'email_verified_at' => NULL,
+                'id' => 3,
+                'name' => 'Super Admin',
+                'password' => '$2y$10$tNByQh2b3tmEbZwi8/8bruev4KZnMvLA9xSpopDBQ5hL3sg6BIxNi',
+                'phone' => '12345678',
+                'profile_photo_path' => null,
+                'remember_token' => NULL,
+                'two_factor_recovery_codes' => NULL,
+                'two_factor_secret' => NULL,
+                'updated_at' => '2021-11-16 20:31:10',
+                'username' => 'superadmin',
+            ),
+            3 => 
+            array (
+                'created_at' => '2021-11-16 20:31:10',
+                'current_team_id' => NULL,
+                'deleted_at' => NULL,
+                'email' => 'info2@srv-sa.com',
+                'email_verified_at' => NULL,
+                'id' => 4,
+                'name' => 'Admin',
+                'password' => '$2y$10$tNByQh2b3tmEbZwi8/8bruev4KZnMvLA9xSpopDBQ5hL3sg6BIxNi',
+                'phone' => '87654321',
+                'profile_photo_path' => null,
+                'remember_token' => NULL,
+                'two_factor_recovery_codes' => NULL,
+                'two_factor_secret' => NULL,
+                'updated_at' => '2021-11-16 20:31:10',
+                'username' => 'admin',
+            ),
         ));
         
         
