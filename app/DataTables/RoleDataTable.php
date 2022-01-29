@@ -38,7 +38,15 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model)
     {
-        return $model->newQuery();
+        $role_id = auth()->user()->roles->min('id') ?? Role::all()->max('id') + 1;
+
+        if($role_id <= 2){
+            $minRole = $role_id;
+        }else{
+            $minRole = $role_id + 1;
+        }
+
+        return $model->newQuery()->where('id','>=',$minRole);
     }
 
     /**

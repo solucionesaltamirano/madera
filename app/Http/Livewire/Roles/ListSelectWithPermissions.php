@@ -127,8 +127,18 @@ class ListSelectWithPermissions extends Component
 
     public function render()
     {
+        $role_id = auth()->user()->roles->min('id') ?? Role::all()->max('id') + 1;
+
+        if($role_id <= 2){
+            $minRole = $role_id;
+        }else{
+            $minRole = $role_id + 1;
+        }
+
         $this->allRoles = Role::where('name', 'LIKE', '%'.$this->searchRole.'%')
+        ->where('id', '>=', $minRole)
         ->get();
+
         $this->allPermissions = Permission::where('name', 'LIKE', '%'.$this->searchPermission.'%')
         ->get();
 
