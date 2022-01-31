@@ -25,6 +25,12 @@
         <div class="card-body px-1 px-sm-4">
             <div class="px-1">
                 @include('flash::message')
+                @push('scripts')
+                    @include('layouts.datatables_js')
+                @endpush
+                @push('styles')
+                    @include('layouts.datatables_css')
+                @endpush
                 @include('admin.menus.table')
             </div>
         </div>

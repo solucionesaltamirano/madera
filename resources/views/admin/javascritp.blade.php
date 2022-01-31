@@ -63,5 +63,5 @@
     });
 </script>
 
-@include('layouts.datatables_js')
+{{-- @include('layouts.datatables_js') --}}
 @stack('scripts')

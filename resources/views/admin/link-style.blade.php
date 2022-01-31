@@ -22,5 +22,6 @@ href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
 
+@stack('styles')
 
-@include('layouts.datatables_css')
+{{-- @include('layouts.datatables_css') --}}

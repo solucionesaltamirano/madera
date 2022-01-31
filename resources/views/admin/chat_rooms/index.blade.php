@@ -24,6 +24,12 @@
     {{-- body --}}
     <div class="px-1">
         @include('flash::message')
+        @push('scripts')
+            @include('layouts.datatables_js')
+        @endpush
+        @push('styles')
+            @include('layouts.datatables_css')
+        @endpush
         @include('admin.chat_rooms.table')
     </div>
 </x-admin-layout>
