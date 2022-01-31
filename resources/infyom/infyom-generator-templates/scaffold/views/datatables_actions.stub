@@ -1,21 +1,21 @@
 {!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$PRIMARY_KEY_NAME$], 'method' => 'delete', 'class' => 'deleteConfirm']) !!}
     <div class="d-flex justify-content-around">
-        {{-- @can('$MODEL_NAME_PLURAL_CAMEL$.show') --}}
+        @can('$MODEL_NAME_PLURAL_CAMEL$.index')
             <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', $$PRIMARY_KEY_NAME$) }}" class='btn btn-outline-dark btn-sm '>
                 <i class="fal fa-eye"></i>
             </a>
-        {{-- @endcan --}}
-        {{-- @can('$MODEL_NAME_PLURAL_CAMEL$.edit') --}}
+        @endcan
+        @can('$MODEL_NAME_PLURAL_CAMEL$.edit')
             <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', $$PRIMARY_KEY_NAME$) }}" class='btn btn-outline-primary btn-sm'>
                 <i class="fal fa-edit"></i>
             </a>
-        {{-- @endcan --}}
-        {{-- @can('$MODEL_NAME_PLURAL_CAMEL$.destroy') --}}
+        @endcan
+        @can('$MODEL_NAME_PLURAL_CAMEL$.destroy')
             {!! Form::button('<i class="fad fa-trash-alt"></i>', [
                 'type' => 'submit',
                 'class' => 'btn btn-outline-danger btn-sm',
             ]) !!}
-        {{-- @endcan --}}
+        @endcan
     </div>
 {!! Form::close() !!}
 
