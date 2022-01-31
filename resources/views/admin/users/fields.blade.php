@@ -76,15 +76,25 @@
     </div>
     
     @if($user->profile_photo_path)
+    <div class="col-md-6">
         <img src="{{ $user->profile_photo_path }}" alt="{{ $user->name }}" width="200">
+    </div>
     @else
+    <div class="col-md-6">
         <img src="https://ui-avatars.com/api/?name= {{ $user->name }}" alt="{{ $user->name }}" class="rounded-circle">
+    </div>
     @endif
 @else
     <div class="col-md-6">
         {!! Form::label('media', 'Image:') !!}<br>
         {!! Form::file('media', null, ['class' => 'form-control border','maxlength' => 2048,'maxlength' => 2048]) !!}
     </div>
+@endif
+
+@if($user->deleted_at != null)
+    @livewire('user.restore',[
+        'user' => $user
+    ])
 @endif
 
 @php
