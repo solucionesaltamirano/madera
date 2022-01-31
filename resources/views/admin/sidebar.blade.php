@@ -50,12 +50,14 @@
                 data-accordion="false">
 
                 @foreach ($items as $item)
-                    <a href="{{ route($item->route) }}" class="nav-link {{ request()->routeIs($item->route) ? 'active' : '' }}">
-                        {!! $item->icon !!}
-                        <p>
-                            {{ $item->name }}
-                        </p>
-                    </a>
+                    @can($item->route)    
+                        <a href="{{ route($item->route) }}" class="nav-link {{ request()->routeIs($item->route) ? 'active' : '' }}">
+                            {!! $item->icon !!}
+                            <p>
+                                {{ $item->name }} - {{ $item->route }}
+                            </p>
+                        </a>
+                    @endcan
                 @endforeach
                 {{-- <li class="nav-item menu-open">
                     <a href="#" class="nav-link active">

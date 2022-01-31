@@ -3,9 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\User;
+use App\Models\Role;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class UserDataTable extends DataTable
 {
@@ -45,7 +46,21 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        $role_id = auth()->user()->roles->min('id') ?? Role::all()->max('id') + 1;
+
+        if($role_id <= 2){
+            $minRole = $role_id;
+        }else{
+            $minRole = $role_id ;
+        }
+
+        $roles = Role::where('id','<=',$minRole)->pluck('name')->toArray(); 
+
+        if($minRole <= 2){
+            return $model->newQuery()->withTrashed();
+        }else{
+            return $model->newQuery();
+        }
     }
 
     /**
@@ -92,6 +107,7 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('id'),
             Column::make('name'),
             Column::make('email'),
             Column::make('username'),

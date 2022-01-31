@@ -14,10 +14,10 @@ use Response;
 class BlogCategoryController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:blogCategories.show')->only(['index', 'show']);
-        // $this->middleware('can:blogCategories.create')->only(['create', 'store']);
-        // $this->middleware('can:blogCategories.edit')->only(['edit', 'update']);
-        // $this->middleware('can:blogCategories.destroy')->only('destroy');
+        $this->middleware('can:blogCategories.index')->only(['index', 'show']);
+        $this->middleware('can:blogCategories.create')->only(['create', 'store']);
+        $this->middleware('can:blogCategories.edit')->only(['edit', 'update']);
+        $this->middleware('can:blogCategories.destroy')->only('destroy');
     }
     /**
      * Display a listing of the BlogCategory.

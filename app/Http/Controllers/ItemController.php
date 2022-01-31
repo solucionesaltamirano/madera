@@ -14,11 +14,11 @@ use App\Http\Controllers\AppBaseController;
 class ItemController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:items.show')->only(['index', 'show']);
-        // $this->middleware('can:items.create')->only(['create', 'store']);
-        // $this->middleware('can:items.edit')->only(['edit', 'update']);
-        // $this->middleware('can:items.destroy')->only('destroy');
-        // $this->middleware('can:items.from-routes')->only(['itemsFrom-routes', 'itemsFromRoutesSave']);
+        $this->middleware('can:items.index')->only(['index', 'show']);
+        $this->middleware('can:items.create')->only(['create', 'store']);
+        $this->middleware('can:items.edit')->only(['edit', 'update']);
+        $this->middleware('can:items.destroy')->only('destroy');
+        $this->middleware('can:items.from-routes')->only(['itemsFrom-routes', 'itemsFromRoutesSave']);
     }
     /**
      * Display a listing of the Item.

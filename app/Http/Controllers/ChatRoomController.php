@@ -16,10 +16,10 @@ use stdClass;
 class ChatRoomController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:chatRooms.show')->only(['index', 'show']);
-        // $this->middleware('can:chatRooms.create')->only(['create', 'store']);
-        // $this->middleware('can:chatRooms.edit')->only(['edit', 'update']);
-        // $this->middleware('can:chatRooms.destroy')->only('destroy');
+        $this->middleware('can:chatRooms.index')->only(['index', 'show']);
+        $this->middleware('can:chatRooms.create')->only(['create', 'store']);
+        $this->middleware('can:chatRooms.edit')->only(['edit', 'update']);
+        $this->middleware('can:chatRooms.destroy')->only('destroy');
     }
     /**
      * Display a listing of the ChatRoom.

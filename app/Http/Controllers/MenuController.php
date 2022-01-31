@@ -14,10 +14,10 @@ use Response;
 class MenuController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:menus.show')->only(['index', 'show']);
-        // $this->middleware('can:menus.create')->only(['create', 'store']);
-        // $this->middleware('can:menus.edit')->only(['edit', 'update']);
-        // $this->middleware('can:menus.destroy')->only('destroy');
+        $this->middleware('can:menus.index')->only(['index', 'show']);
+        $this->middleware('can:menus.create')->only(['create', 'store']);
+        $this->middleware('can:menus.edit')->only(['edit', 'update']);
+        $this->middleware('can:menus.destroy')->only('destroy');
     }
     /**
      * Display a listing of the Menu.

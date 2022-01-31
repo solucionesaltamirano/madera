@@ -14,10 +14,10 @@ use Response;
 class ChatController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:chats.show')->only(['index', 'show']);
-        // $this->middleware('can:chats.create')->only(['create', 'store']);
-        // $this->middleware('can:chats.edit')->only(['edit', 'update']);
-        // $this->middleware('can:chats.destroy')->only('destroy');
+        $this->middleware('can:chats.index')->only(['index', 'show']);
+        $this->middleware('can:chats.create')->only(['create', 'store']);
+        $this->middleware('can:chats.edit')->only(['edit', 'update']);
+        $this->middleware('can:chats.destroy')->only('destroy');
     }
     /**
      * Display a listing of the Chat.

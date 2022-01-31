@@ -16,7 +16,7 @@
                         <div class="card card-success card-outline">
                             <div class="card-title border">Module {{ $module->name }}</div>
                             <div class="card-body">
-                                @foreach ($routeLists->where('group', $group)->where('module', $module->name)->where('name', '!=', 'index')->whereNotIn('route', $permissions->pluck('name')->toArray()) as $route)
+                                @foreach ($routeLists->where('group', $group)->where('module', $module->name)->where('name', '!=', 'show')->whereNotIn('route', $permissions->pluck('name')->toArray()) as $route)
                                     <div class="w-100 border rounded my-2 row py-2 bg-light border-primary">
                                         <div class="col-3">
                                             <b>Name:</b>
@@ -48,7 +48,7 @@
                                                 type="text" 
                                                 class="form-control" 
                                                 placeholder="Description"
-                                                value="{{ $route->name == 'show' ? 'Show all '. $module->name : '' }}{{ $route->name == 'create' ? 'Create a '. $module->name : '' }}{{ $route->name == 'edit' ? 'Edit a '. $module->name : '' }}{{ $route->name == 'destroy' ? 'Erase a '. $module->name : '' }}"
+                                                value="{{ $route->name == 'index' ? 'Show all '. $module->name : '' }}{{ $route->name == 'create' ? 'Create a '. $module->name : '' }}{{ $route->name == 'edit' ? 'Edit a '. $module->name : '' }}{{ $route->name == 'destroy' ? 'Erase a '. $module->name : '' }}"
                                                 name="items_array[{{$route->id }}][description]" 
                                                 {{-- wire:model="items_array.{{$route->id }}.description" --}}
                                             >

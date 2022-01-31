@@ -14,10 +14,10 @@ use Response;
 class BusinessConfigurationController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:businessConfigurations.show')->only(['index', 'show']);
-        // $this->middleware('can:businessConfigurations.create')->only(['create', 'store']);
-        // $this->middleware('can:businessConfigurations.edit')->only(['edit', 'update']);
-        // $this->middleware('can:businessConfigurations.destroy')->only('destroy');
+        $this->middleware('can:businessConfigurations.index')->only(['index', 'show']);
+        $this->middleware('can:businessConfigurations.create')->only(['create', 'store']);
+        $this->middleware('can:businessConfigurations.edit')->only(['edit', 'update']);
+        $this->middleware('can:businessConfigurations.destroy')->only('destroy');
     }
     /**
      * Display a listing of the BusinessConfiguration.

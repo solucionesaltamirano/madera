@@ -9,16 +9,17 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Role;
 use Response;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends AppBaseController
 {
     public function __construct(){
-        // $this->middleware('can:users.show')->only(['index', 'show']);
-        // $this->middleware('can:users.create')->only(['create', 'store']);
-        // $this->middleware('can:users.edit')->only(['edit', 'update']);
-        // $this->middleware('can:users.destroy')->only('destroy');
+        $this->middleware('can:users.index')->only(['index', 'show']);
+        $this->middleware('can:users.create')->only(['create', 'store']);
+        $this->middleware('can:users.edit')->only(['edit', 'update']);
+        $this->middleware('can:users.destroy')->only('destroy');
     }
     /**
      * Display a listing of the User.
@@ -82,7 +83,7 @@ class UserController extends AppBaseController
     public function show($id)
     {
         /** @var User $user */
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -103,7 +104,7 @@ class UserController extends AppBaseController
     public function edit($id)
     {
         /** @var User $user */
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
         $roles = $user->roles;
         $permissions = $user->permissions;
@@ -179,20 +180,29 @@ class UserController extends AppBaseController
         /** @var User $user */
         $user = User::find($id);
 
+        $current_user_roll = auth()->user()->roles->min('id');
+        $user_roll = $user->roles->min('id') ?? Role::all()->max('id') + 1;
+
+        // dd($current_user_roll, $user_roll);
+
         if (empty($user)) {
             Flash::error('User not found');
 
             return redirect(route('users.index'));
         }
 
-        $user->delete();
+        if( $current_user_roll >= $user_roll ){
+            Flash::error('You can not delete this user');
+            return redirect(route('users.index'));
+        }else{
 
-        $user->roles()->sync([]);
-        $user->permissions()->sync([]);
+            $user->delete();
 
-        Flash::success('User deleted successfully.');
+            Flash::success('User deleted successfully.');
 
-        return redirect(route('users.index'));
+            return redirect(route('users.index'));
+
+        }
     }
 
 }
