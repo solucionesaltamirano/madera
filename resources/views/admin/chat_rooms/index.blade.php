@@ -12,14 +12,14 @@
             Chat Rooms
         </span>
     </x-slot>
-    {{-- @can('chatRooms.create') --}}
+    @can('chatRooms.create')
         <x-slot name="cardButton">
             <a href="{{ route('chatRooms.create') }}" class="btn btn-outline-primary float-right">
                 <span class="mx-2">New</span>
                 <i class="fal fa-layer-plus"></i>
             </a>
         </x-slot>
-    {{-- @endcan --}}
+    @endcan
 
     {{-- body --}}
     <div class="px-1">

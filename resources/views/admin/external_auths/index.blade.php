@@ -12,14 +12,14 @@
             External Auths
         </span>
     </x-slot>
-    {{-- @can('externalAuths.create') --}}
+    @can('externalAuths.create')
         <x-slot name="cardButton">
             <a href="{{ route('externalAuths.create') }}" class="btn btn-outline-primary float-right">
                 <span class="mx-2">New</span>
                 <i class="fal fa-layer-plus"></i>
             </a>
         </x-slot>
-    {{-- @endcan --}}
+    @endcan
 
     {{-- body --}}
     <div class="px-1">

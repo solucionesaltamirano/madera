@@ -49,7 +49,7 @@ class ListSelect extends Component
     public function render()
     {
         
-        $this->allPermissions = Permission::where('name', 'LIKE', '%'.$this->search.'%')
+        $this->allPermissions = Permission::where('description', 'LIKE', '%'.$this->search.'%')
         ->orWhere('id',  $this->search)
         ->get();
 

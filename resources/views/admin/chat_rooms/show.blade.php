@@ -24,12 +24,12 @@
                 <span class="mx-2">Back</span>
                 <i class="fal fa-undo-alt"></i>
             </a>
-            {{-- @can('chatRooms.edit')     --}}
+            @can('chatRooms.edit')    
                 <a href="{{ route('chatRooms.edit', $chatRoom->id) }}" class="btn btn-outline-primary float-right mr-2">
                     <span class="mx-2">Edit</span>
                     <i class="fal fa-edit"></i>
                 </a>
-            {{-- @endcan --}}
+            @endcan
         </div>
     </div>
 </x-admin-layout>

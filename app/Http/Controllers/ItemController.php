@@ -18,7 +18,7 @@ class ItemController extends AppBaseController
         $this->middleware('can:items.create')->only(['create', 'store']);
         $this->middleware('can:items.edit')->only(['edit', 'update']);
         $this->middleware('can:items.destroy')->only('destroy');
-        $this->middleware('can:items.from-routes')->only(['itemsFrom-routes', 'itemsFromRoutesSave']);
+        $this->middleware('can:items.from-routes')->only(['itemsFromRoutes', 'itemsFromRoutesSave']);
     }
     /**
      * Display a listing of the Item.

@@ -1,16 +1,16 @@
 {!! Form::open(['route' => ['users.destroy', $id], 'method' => 'delete', 'class' => 'deleteConfirm']) !!}
     <div class="d-flex justify-content-around">
-        {{-- @can('users.show') --}}
+        @can('users.index')
             <a href="{{ route('users.show', $id) }}" class='btn btn-outline-dark btn-sm '>
                 <i class="fal fa-eye"></i>
             </a>
-        {{-- @endcan --}}
-        {{-- @can('users.edit') --}}
+        @endcan
+        @can('users.edit')
             <a href="{{ route('users.edit', $id) }}" class='btn btn-outline-primary btn-sm'>
                 <i class="fal fa-edit"></i>
             </a>
-        {{-- @endcan --}}
-        {{-- @can('users.destroy') --}}
+        @endcan
+        @can('users.destroy')
             @if(\App\Models\User::find($id) )
                 {!! Form::button('<i class="fad fa-trash-alt"></i>', [
                     'type' => 'submit',
@@ -21,7 +21,7 @@
                     <i class="fad fa-trash-alt"></i>
                 </a>
             @endif
-        {{-- @endcan --}}
+        @endcan
 
     </div>
 {!! Form::close() !!}

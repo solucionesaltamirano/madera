@@ -26,12 +26,12 @@
                         <span class="mx-2">Back</span>
                         <i class="fal fa-undo-alt"></i>
                     </a>
-                    {{-- @can('items.edit')     --}}
+                    @can('items.edit')
                         <a href="{{ route('items.edit', $item->id) }}" class="btn btn-outline-primary float-right mr-2">
                             <span class="mx-2">Edit</span>
                             <i class="fal fa-edit"></i>
                         </a>
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
             </div>
         </div>

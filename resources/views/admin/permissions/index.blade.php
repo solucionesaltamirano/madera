@@ -13,20 +13,22 @@
                     </span>
                 </h4>
             </div>
-            {{-- @can('permissions.create') --}}
+            @can('permissions.create')
             <div class="float-right">
                 <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-outline-primary float-right">
                     <span class="mx-2">New</span>
                     <i class="fal fa-layer-plus"></i>
                 </a>
             </div>
+            @endcan
+            @can('permissions.from-routes')
             <div class="float-right mx-2">
                 <a href="{{ route('permissions.from-routes') }}" class="btn btn-sm btn-outline-primary float-right">
                     <span class="mx-2">Create from routes</span>
                     <i class="fal fa-layer-plus"></i>
                 </a>
             </div>
-            {{-- @endcan --}}
+            @endcan
         </div>
         <div class="card-body px-1 px-sm-4">
             <div class="px-1">

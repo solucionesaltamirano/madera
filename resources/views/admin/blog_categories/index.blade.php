@@ -13,14 +13,14 @@
                     </span>
                 </h4>
             </div>
-            {{-- @can('blogCategories.create') --}}
+            @can('blogCategories.create')
             <div class="float-right">
                 <a href="{{ route('blogCategories.create') }}" class="btn btn-sm btn-outline-primary float-right">
                     <span class="mx-2">New</span>
                     <i class="fal fa-layer-plus"></i>
                 </a>
             </div>
-            {{-- @endcan --}}
+            @endcan
         </div>
         <div class="card-body px-1 px-sm-4">
             <div class="px-1">
