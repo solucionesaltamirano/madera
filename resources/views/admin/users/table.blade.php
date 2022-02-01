@@ -33,10 +33,8 @@
                             class='btn btn-outline-primary btn-sm'>
                                 <i class="far fa-edit"></i>
                             </a>
-                            <button type="submit" class="btn btn-outline-danger btn-sm" x-on:click="$wire.emit('delete', {{ $user->id }})" ><i class='far fa-trash-alt'></i></button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm"><i class='far fa-trash-alt'></i></button>
                         </div>
-
-                        
                     {!! Form::close() !!}
                 </td>
             </tr>
@@ -74,7 +72,7 @@
                 }
             })
         })
-        
+
         $('#users-table').DataTable({
             responsive: true,
             autoWidth: false,

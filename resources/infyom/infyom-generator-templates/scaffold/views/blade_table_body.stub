@@ -26,7 +26,7 @@
                                     </a>
                                 @endcan
                                 @can('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm" x-on:click="$wire.emit('delete', {{ $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$ }})" ><i class='far fa-trash-alt'></i></button>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class='far fa-trash-alt'></i></button>
                                 @endcan
                             </div>
                         {!! Form::close() !!}
