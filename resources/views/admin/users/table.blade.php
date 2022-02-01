@@ -23,7 +23,7 @@
                     </div>
                 </td>
                 <td width="120" x-data="" >
-                    {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete', 'class' => 'deleteConfirm']) !!}
                         <div class='d-flex justify-content-around'>
                             <a href="{{ route('users.show', [$user->id]) }}"
                             class='btn btn-outline-dark btn-sm'>
@@ -35,6 +35,8 @@
                             </a>
                             <button type="submit" class="btn btn-outline-danger btn-sm" x-on:click="$wire.emit('delete', {{ $user->id }})" ><i class='far fa-trash-alt'></i></button>
                         </div>
+
+                        
                     {!! Form::close() !!}
                 </td>
             </tr>
@@ -43,11 +45,36 @@
     </table>
 </div>
 
+<script>
+    
+</script>
 
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        $('.deleteConfirm').submit(function(e){
+            e.preventDefault()
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire(
+                    //     'Deleted!',
+                    //     'Your file has been deleted.',
+                    //     'success'
+                    // )
+                    this.submit();
+                }
+            })
+        })
+        
         $('#users-table').DataTable({
             responsive: true,
             autoWidth: false,
@@ -107,27 +134,6 @@
         });
 
     </script>
-    <script>
-        Livewire.on('delete', id => {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Swal.fire(
-                    //     'Deleted!',
-                    //     'Your file has been deleted.',
-                    //     'success'
-                    // )
-                    this.submit();
-                }
-            })
 
-        })
-    </script>
+    
 @endpush

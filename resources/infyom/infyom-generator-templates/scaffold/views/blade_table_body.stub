@@ -11,7 +11,7 @@
                 <tr>
                     $FIELD_BODY$
                     <td width="120">
-                        {!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'delete']) !!}
+                        {!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'delete', 'class' => 'deleteConfirm']) !!}
                             <div class='d-flex justify-content-around'>
                                 @can('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index')
                                     <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) }}"
@@ -38,7 +38,31 @@
 </div>
 
 @push('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
+        $('.deleteConfirm').submit(function(e){
+            e.preventDefault()
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire(
+                    //     'Deleted!',
+                    //     'Your file has been deleted.',
+                    //     'success'
+                    // )
+                    this.submit();
+                }
+            })
+        })
+    
         $('#$MODEL_NAME_PLURAL_CAMEL$-table').DataTable({
             responsive: true,
             autoWidth: false,
