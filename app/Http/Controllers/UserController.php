@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UserDataTable;
-use App\Http\Requests;
+use Flash;
+use Response;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\User;
-use Flash;
 use App\Http\Controllers\AppBaseController;
-use App\Models\Role;
-use Response;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends AppBaseController
 {
@@ -21,15 +19,22 @@ class UserController extends AppBaseController
         $this->middleware('can:users.edit')->only(['edit', 'update']);
         $this->middleware('can:users.destroy')->only('destroy');
     }
+
+    //model_controller
     /**
      * Display a listing of the User.
      *
-     * @param UserDataTable $userDataTable
+     * @param Request $request
+     *
      * @return Response
      */
-    public function index(UserDataTable $userDataTable)
+    public function index(Request $request)
     {
-        return $userDataTable->render('admin.users.index');
+        /** @var User $users */
+        $users = User::all();
+
+        return view('admin.users.index')
+            ->with('users', $users);
     }
 
     /**
@@ -56,8 +61,6 @@ class UserController extends AppBaseController
         /** @var User $user */
         $user = User::create($input);
 
-        // dd($request->media);
-
         if($request->media){
             $user->addMedia($request->media)->toMediaCollection();
             $user->save();
@@ -76,7 +79,7 @@ class UserController extends AppBaseController
     /**
      * Display the specified User.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -97,7 +100,7 @@ class UserController extends AppBaseController
     /**
      * Show the form for editing the specified User.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -105,11 +108,8 @@ class UserController extends AppBaseController
     {
         /** @var User $user */
         $user = User::withTrashed()->find($id);
-
         $roles = $user->roles;
         $permissions = $user->permissions;
-
-        // dd($permissions);
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -127,7 +127,7 @@ class UserController extends AppBaseController
     /**
      * Update the specified User in storage.
      *
-     * @param  int              $id
+     * @param int $id
      * @param UpdateUserRequest $request
      *
      * @return Response
@@ -169,7 +169,7 @@ class UserController extends AppBaseController
     /**
      * Remove the specified User from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @throws \Exception
      *
@@ -182,8 +182,6 @@ class UserController extends AppBaseController
 
         $current_user_roll = auth()->user()->roles->min('id');
         $user_roll = $user->roles->min('id') ?? Role::all()->max('id') + 1;
-
-        // dd($current_user_roll, $user_roll);
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -204,5 +202,4 @@ class UserController extends AppBaseController
 
         }
     }
-
 }

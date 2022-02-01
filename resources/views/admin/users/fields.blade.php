@@ -1,4 +1,4 @@
-{{ $user->min_role }}
+{{-- {{ $user->min_role }} --}}
 
 <!-- Name Field -->
 <div class="form-group col-sm-6">
@@ -93,7 +93,7 @@
     </div>
 @endif
 
-@if($user->deleted_at != null)
+@if(isset($user->deleted_at) )
     @livewire('user.restore',[
         'user' => $user
     ])
