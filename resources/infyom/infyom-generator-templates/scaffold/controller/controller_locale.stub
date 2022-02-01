@@ -12,6 +12,15 @@ use Response;
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
+    public function __construct(){
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.index')->only(['index', 'show']);
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.create')->only(['create', 'store']);
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.edit')->only(['edit', 'update']);
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.destroy')->only('destroy');
+    }
+
+    //controller_locale
+
     /** @var  $MODEL_NAME$Repository */
     private $$MODEL_NAME_CAMEL$Repository;
 

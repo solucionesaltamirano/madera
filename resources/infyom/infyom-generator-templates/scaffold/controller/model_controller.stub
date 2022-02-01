@@ -12,6 +12,13 @@ use Response;
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
+    public function __construct(){
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.index')->only(['index', 'show']);
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.create')->only(['create', 'store']);
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.edit')->only(['edit', 'update']);
+        $this->middleware('can:$MODEL_NAME_PLURAL_CAMEL$.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the $MODEL_NAME$.
      *

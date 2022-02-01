@@ -1,29 +1,39 @@
-@extends('layouts.app')
-
-@section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>@lang('models/$MODEL_NAME_PLURAL_CAMEL$.singular')</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}">
-                         @lang('crud.back')
-                    </a>
-                </div>
+<x-admin-layout>
+    <x-slot name="header">
+        $MODEL_NAME_HUMAN$ Details
+    </x-slot>
+    <div class="card card-primary card-outline min-vh-100">
+        <div class="card-header">
+            <div class="card-title ">
+                <h4>
+                    <i class="fal fa-eye"></i>
+                    <span class="ml-3">
+                        View details for $MODEL_NAME_HUMAN$
+                    </span>
+                </h4>
             </div>
         </div>
-    </section>
-
-    <div class="content px-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
+        <div class="card-body">
+            @include('adminlte-templates::common.errors')
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-info float-right" href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}">
+                        <span class="mx-2">Back</span>
+                        <i class="fal fa-undo-alt"></i>
+                    </a>
+                    @can('$MODEL_NAME_PLURAL_CAMEL$.edit')
+                        <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', $$MODEL_NAME_CAMEL$->id) }}" class="btn btn-outline-primary float-right mr-2">
+                            <span class="mx-2">Edit</span>
+                            <i class="fal fa-edit"></i>
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

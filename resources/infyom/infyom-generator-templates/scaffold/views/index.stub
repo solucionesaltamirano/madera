@@ -26,10 +26,10 @@
             <div class="px-1">
                 @include('flash::message')
                 @push('scripts')
-                    @include('layouts.datatables_js')
+                    @include('layouts.datatables_html_js')
                 @endpush
                 @push('styles')
-                    @include('layouts.datatables_css')
+                    @include('layouts.datatables_html_css')
                 @endpush
                 @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
             </div>
