@@ -12,6 +12,13 @@
                     </span>
                 </h4>
             </div>
+            @if(isset($user->deleted_at) )
+                    <div class="float-right">
+                        @livewire('user.restore',[
+                            'user' => $user
+                        ])
+                    </div>
+                @endif
         </div>
         <div class="card-body">
             @include('adminlte-templates::common.errors')

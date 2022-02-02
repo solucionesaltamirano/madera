@@ -93,11 +93,6 @@
     </div>
 @endif
 
-@if(isset($user->deleted_at) )
-    @livewire('user.restore',[
-        'user' => $user
-    ])
-@endif
 
 @php
     if( old('permissions') ){
