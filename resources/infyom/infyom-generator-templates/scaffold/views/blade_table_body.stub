@@ -41,6 +41,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        var user = '{{ auth()->user()->name }}'
+        var today = '{{ now()->format("d/m/Y H:i") }}'
         $('.deleteConfirm').submit(function(e){
             e.preventDefault()
             Swal.fire({
@@ -86,8 +88,8 @@
                             },
                             orientation: 'landscape',
                             pageSize: 'LETTER',
-                            messageTop: 'other text',
-                            messageBottom: 'footer info',
+                            messageTop: 'Generate by ' + this.user + ' on ' + this.today,
+                            messageBottom: '',
                             footer: true
                         },
                     ]
@@ -101,7 +103,7 @@
                     },
                     orientation: 'landscape',
                     pageSize: 'LETTER',
-                    messageTop: 'This print was produced using the Print button for DataTables'
+                    messageTop: 'Generate by ' + this.user + ' on ' + this.today,
                 },
                 {
                     text:'<i class="fal fa-undo"></i> Reset',

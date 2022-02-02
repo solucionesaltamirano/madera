@@ -6,7 +6,9 @@
             <th>Email</th>
             <th>Username</th>
             <th>Phone</th>
-            <th>Profile Photo Path</th>
+            <th>Roles</th>
+            <th>Created At</th>
+            <th class="not-export-col">Profile Photo Path</th>
             <th class="not-export-col">Action</th>
         </tr>
         </thead>
@@ -17,6 +19,14 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->phone }}</td>
+                <td >
+
+                    @foreach ($user->roles()->pluck('name') as $role)
+                        <span class="badge badge-info">{{ $role }}</span>
+                    @endforeach
+                    
+                </td>
+                <td>{{ $user->created_at }}</td>
                 <td>
                     <div class="d-flex justify-content-center w-100" >
                         <img width="40px" height="40px" class="rounded-circle" src="{{ $user->profile_photo_path ? $user->profile_photo_path : 'https://ui-avatars.com/api/?name='. $user->name }}" alt="{{ $user->name }}">
@@ -51,6 +61,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        var user = '{{ auth()->user()->name }}'
+        var today = '{{ now()->format("d/m/Y H:i") }}'
         $('.deleteConfirm').submit(function(e){
             e.preventDefault()
             Swal.fire({
@@ -63,11 +75,6 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Swal.fire(
-                    //     'Deleted!',
-                    //     'Your file has been deleted.',
-                    //     'success'
-                    // )
                     this.submit();
                 }
             })
@@ -85,7 +92,7 @@
                     text: '<i class="fal fa-download"></i> Export',
                     buttons: [
                         { 
-                            extend: 'excel', 
+                            extend: 'excelHtml5', 
                             text:'<span class="btn btn-outline-success btn-block btn-sm">Excel <i class="fad fa-file-csv"></i></span>',
                             exportOptions: {
                                 columns: ":visible:not(.not-export-col)",
@@ -94,13 +101,16 @@
                             pageSize: 'LETTER',
                         },
                         {
-                            extend: 'pdf',
+                            extend: 'pdfHtml5',
                             text:'<span class="btn btn-outline-danger btn-block btn-sm ">PDF <i class="fad fa-file-csv"></i></span>',
                             exportOptions: {
                                 columns: ":visible:not(.not-export-col)",
                             },
                             orientation: 'landscape',
                             pageSize: 'LETTER',
+                            messageTop: 'Generate by ' + this.user + ' on ' + this.today,
+                            messageBottom: '',
+                            footer: true
                         },
                     ]
                 },
@@ -113,6 +123,7 @@
                     },
                     orientation: 'landscape',
                     pageSize: 'LETTER',
+                    messageTop: 'Generate by ' + this.user + ' on ' + this.today,
                 },
                 {
                     text:'<i class="fal fa-undo"></i> Reset',
@@ -130,8 +141,5 @@
                 },
             ],
         });
-
     </script>
-
-    
 @endpush
