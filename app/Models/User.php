@@ -175,7 +175,7 @@ class User extends Authenticatable implements HasMedia
     }
 
     public function getMinRoleAttribute(){
-        $minRole = $this->roles->min('id');
+        $minRole = $this->roles->min('id') ?? \App\Models\Role::max('id') + 1;
         return $minRole;
     }
 }
