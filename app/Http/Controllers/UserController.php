@@ -42,7 +42,7 @@ class UserController extends AppBaseController
         // dd(User::get()->toArray());
 
         /** @var User $users */
-        $users = User::where('id', '!=', auth()->user()->id)
+        $users = User::withTrashed()->where('id', '!=', auth()->user()->id)
         ->get()
         ->where('minRole', '>=', $minRole)
         ;
