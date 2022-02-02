@@ -35,15 +35,27 @@
                 <td width="120" x-data="" >
                     {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete', 'class' => 'deleteConfirm']) !!}
                         <div class='d-flex justify-content-around'>
-                            <a href="{{ route('users.show', [$user->id]) }}"
-                            class='btn btn-outline-dark btn-sm'>
-                                <i class="far fa-eye"></i>
-                            </a>
-                            <a href="{{ route('users.edit', [$user->id]) }}"
-                            class='btn btn-outline-primary btn-sm'>
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <button type="submit" class="btn btn-outline-danger btn-sm"><i class='far fa-trash-alt'></i></button>
+                            @can('users.index')
+                                <a href="{{ route('users.show', [$user->id]) }}"
+                                class='btn btn-outline-dark btn-sm'>
+                                    <i class="far fa-eye"></i>
+                                </a>
+                            @endcan
+                            @can('users.edit')    
+                                <a href="{{ route('users.edit', [$user->id]) }}"
+                                class='btn btn-outline-primary btn-sm'>
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            @endcan
+                            @can('users.destroy')
+                                @if(\App\Models\User::find($user->id))
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class='far fa-trash-alt'></i></button>
+                                @else
+                                    <a href="{{ route('users.edit', $user->id) }}" class='btn btn-outline-secondary btn-sm disabled'>
+                                        <i class="fad fa-trash-alt"></i>
+                                    </a>
+                                @endif
+                            @endcan
                         </div>
                     {!! Form::close() !!}
                 </td>
