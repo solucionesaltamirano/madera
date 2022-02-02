@@ -21,39 +21,39 @@ class RolesTableSeeder extends Seeder
         \DB::table('roles')->insert(array (
             0 => 
             array (
+                'created_at' => '2022-01-31 09:48:56',
+                'deleted_at' => NULL,
+                'guard_name' => 'web',
                 'id' => 1,
                 'name' => 'DEV',
-                'guard_name' => 'web',
-                'created_at' => '2022-01-27 18:25:40',
-                'updated_at' => '2022-01-27 18:25:40',
-                'deleted_at' => NULL,
+                'updated_at' => '2022-01-31 09:48:56',
             ),
             1 => 
             array (
+                'created_at' => '2022-01-31 09:49:17',
+                'deleted_at' => NULL,
+                'guard_name' => 'web',
                 'id' => 2,
                 'name' => 'SUPERADMIN',
-                'guard_name' => 'web',
-                'created_at' => '2022-01-27 18:25:52',
-                'updated_at' => '2022-01-27 18:25:52',
-                'deleted_at' => NULL,
+                'updated_at' => '2022-01-31 09:49:17',
             ),
             2 => 
             array (
+                'created_at' => '2022-01-31 09:49:33',
+                'deleted_at' => NULL,
+                'guard_name' => 'web',
                 'id' => 3,
                 'name' => 'ADMIN',
-                'guard_name' => 'web',
-                'created_at' => '2022-01-27 18:26:33',
-                'updated_at' => '2022-01-27 18:26:33',
-                'deleted_at' => NULL,
+                'updated_at' => '2022-01-31 09:49:33',
             ),
             3 => 
             array (
+                'created_at' => '2022-01-31 09:54:25',
+                'deleted_at' => NULL,
+                'guard_name' => 'web',
                 'id' => 4,
                 'name' => 'USER',
-                'guard_name' => 'web',
-                'created_at' => '2022-01-27 18:26:33',
-                'updated_at' => '2022-01-27 18:26:33',
-                'deleted_at' => NULL,
+                'updated_at' => '2022-01-31 09:54:25',
             ),
         ));
         

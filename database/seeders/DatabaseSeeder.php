@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
+        $this->call(ExternalAuthsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(ModelHasPermissionsTableSeeder::class);
         $this->call(ModelHasRolesTableSeeder::class);
-        $this->call(ExternalAuthsTableSeeder::class);
         $this->call(RoleHasPermissionsTableSeeder::class);
 
-        // \App\Models\User::factory(50)->create();
+        // \App\Models\User::factory(100)->create();
         // \App\Models\ChatRoom::factory(30)->create();
         // \App\Models\Chat::factory(1000)->create();
 
