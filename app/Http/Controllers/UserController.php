@@ -30,11 +30,27 @@ class UserController extends AppBaseController
      */
     public function index(Request $request)
     {
-        /** @var User $users */
-        $users = User::all();
 
-        return view('admin.users.index')
-            ->with('users', $users);
+        $role_id = auth()->user()->roles->min('id') ?? Role::all()->max('id') + 1;
+
+        if($role_id <= 2){
+            $minRole = $role_id;
+        }else{
+            $minRole = $role_id + 1;
+        }
+
+        // dd(User::get()->toArray());
+
+        /** @var User $users */
+        $users = User::where('id', '!=', auth()->user()->id)
+        ->get()
+        ->where('minRole', '>=', $minRole)
+        ;
+
+        return view('admin.users.index',[
+            'users' => $users,
+        ]);
+            
     }
 
     /**

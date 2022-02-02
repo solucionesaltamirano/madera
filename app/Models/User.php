@@ -131,6 +131,7 @@ class User extends Authenticatable implements HasMedia
      */
     protected $appends = [
         'profile_photo_url',
+        'minRole'
     ];
 
     /**
@@ -171,5 +172,10 @@ class User extends Authenticatable implements HasMedia
     public function chatRooms()
     {
         return $this->belongsToMany(\App\Models\ChatRoom::class, 'chat_rooms_has_users');
+    }
+
+    public function getMinRoleAttribute(){
+        $minRole = $this->roles->min('id');
+        return $minRole;
     }
 }
