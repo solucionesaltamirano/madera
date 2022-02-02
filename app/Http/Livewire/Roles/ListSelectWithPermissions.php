@@ -17,11 +17,13 @@ class ListSelectWithPermissions extends Component
     public $allPermissions;
     public $permissionsAssigned;
     public $searchPermission;
+    public $userSelected;
 
-    public function mount($roles, $permissions){
+    public function mount($roles, $permissions, $user){
         $this->rolesAssigned = collect();
         $this->permissionsFromUser = collect();
         $this->permissionsFromRoles = collect();
+        $this->userSelected = $user;
 
         foreach($permissions as $permission){
             $i = new stdClass();
