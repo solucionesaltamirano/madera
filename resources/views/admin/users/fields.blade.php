@@ -129,6 +129,7 @@
     @livewire('roles.list-select-with-permissions',[
         'roles' => $roles ?? [],
         'permissions' => $permissions ?? [],
+        'user' => $user ?? null
     ])
 </div>
 

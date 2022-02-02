@@ -37,14 +37,14 @@
     <div class="border border-primary rounded p-4 mt-2 bg-light">
         <h3>Permissions</h3>
         <div class="row pb-2">
-            <div class="col-12 col-sm-8 mb-2">
+            <div class="col-12 col-sm-6 mb-2">
                 <input class="form-control border-primary" type="text" wire:model="searchPermission" placeholder="Search Permission">
             </div>
-            <div class=" col-12 col-sm-2 mb-2">
+            <div class=" col-12 col-sm-3 mb-2">
                 <div class="form-control btn btn-outline-primary text-sm" wire:click="selectAllPermissions">Select all Permissions</div>
             </div>
-            <div class="col-12 col-sm-2 ">
-                <div class="form-control btn btn-outline-danger text-sm" wire:click="unselectAllPermissions">Unselect all Permiss.</div>
+            <div class="col-12 col-sm-3 ">
+                <div class="form-control btn btn-outline-danger text-sm" wire:click="unselectAllPermissions">Unselect all Permissions</div>
             </div>
         </div>
         <span>Permissions Selected</span>
