@@ -53,11 +53,6 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Swal.fire(
-                    //     'Deleted!',
-                    //     'Your file has been deleted.',
-                    //     'success'
-                    // )
                     this.submit();
                 }
             })
@@ -75,7 +70,7 @@
                     text: '<i class="fal fa-download"></i> Export',
                     buttons: [
                         { 
-                            extend: 'excel', 
+                            extend: 'excelHtml5', 
                             text:'<span class="btn btn-outline-success btn-block btn-sm">Excel <i class="fad fa-file-csv"></i></span>',
                             exportOptions: {
                                 columns: ":visible:not(.not-export-col)",
@@ -84,13 +79,16 @@
                             pageSize: 'LETTER',
                         },
                         {
-                            extend: 'pdf',
+                            extend: 'pdfHtml5',
                             text:'<span class="btn btn-outline-danger btn-block btn-sm ">PDF <i class="fad fa-file-csv"></i></span>',
                             exportOptions: {
                                 columns: ":visible:not(.not-export-col)",
                             },
                             orientation: 'landscape',
                             pageSize: 'LETTER',
+                            messageTop: 'other text',
+                            messageBottom: 'footer info',
+                            footer: true
                         },
                     ]
                 },
@@ -103,6 +101,7 @@
                     },
                     orientation: 'landscape',
                     pageSize: 'LETTER',
+                    messageTop: 'This print was produced using the Print button for DataTables'
                 },
                 {
                     text:'<i class="fal fa-undo"></i> Reset',
