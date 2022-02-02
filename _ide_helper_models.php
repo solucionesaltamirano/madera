@@ -363,6 +363,7 @@ namespace App\Models{
  * @property-read int|null $chat_rooms_count
  * @property-read int|null $chat_sends_count
  * @property-read int|null $external_auths_count
+ * @property-read mixed $min_role
  * @property-read string $profile_photo_url
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
