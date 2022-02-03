@@ -84,7 +84,7 @@
                     <div class="card-footer"  x-data="{open: @entangle('sending')}">
                         {{-- <form action="#" method="post"> --}}
                             <div class="input-group" >
-                                <input type="text" name="message" placeholder="Type Message ..." class="form-control" wire:model="message" wire:keydown.enter="sendMessage">
+                                <input type="text" name="message" placeholder="Type Message ..." class="form-control" wire:model.defer="message" wire:keydown.enter="sendMessage">
                                 <span class="input-group-append" >
                                     <button  class="btn btn-primary" wire:click="sendMessage"   x-on:click="$wire.set('sending', true)">Send</button>
                                 </span>
