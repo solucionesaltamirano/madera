@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        $MODEL_NAME_HUMAN$ Details
+        {{ __('$MODEL_NAME_HUMAN$ Details') }}
     </x-slot>
     <div class="card card-primary card-outline min-vh-100">
         <div class="card-header">
@@ -8,7 +8,7 @@
                 <h4>
                     <i class="fal fa-eye"></i>
                     <span class="ml-3">
-                        View details for $MODEL_NAME_HUMAN$
+                        {{ __('View details for $MODEL_NAME_HUMAN$') }}
                     </span>
                 </h4>
             </div>
@@ -23,12 +23,12 @@
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-info float-right" href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}">
-                        <span class="mx-2">Back</span>
+                        <span class="mx-2">{{ __('Back') }}</span>
                         <i class="fal fa-undo-alt"></i>
                     </a>
                     @can('$MODEL_NAME_PLURAL_CAMEL$.edit')
                         <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', $$MODEL_NAME_CAMEL$->id) }}" class="btn btn-outline-primary float-right mr-2">
-                            <span class="mx-2">Edit</span>
+                            <span class="mx-2">{{ __('Edit') }}</span>
                             <i class="fal fa-edit"></i>
                         </a>
                     @endcan
