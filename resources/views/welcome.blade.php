@@ -7,7 +7,8 @@
     <link rel="icon" type="image/png" href="img/favicon.png"/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+    {{-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet"> --}}
+    <link href="https://kit-pro.fontawesome.com/releases/v6.1.1/css/pro.min.css" rel="stylesheet">
     <title>Soluciones Altamirano - Startup</title>
     @include('customs.home-css')
     @livewireStyles
