@@ -7,6 +7,7 @@ use Response;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
@@ -76,6 +77,8 @@ class UserController extends AppBaseController
 
         /** @var User $user */
         $user = User::create($input);
+
+        $input['password'] = Hash::make($input['password']);
 
         if($request->media){
             $user->addMedia($request->media)->toMediaCollection();
