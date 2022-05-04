@@ -19,3 +19,7 @@ Route::resource('blogCategories', App\Http\Controllers\BlogCategoryController::c
 Route::resource('businessConfigurations', App\Http\Controllers\BusinessConfigurationController::class);
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 Route::resource('roles', App\Http\Controllers\RoleController::class);
+Route::resource('clientes', App\Http\Controllers\ClienteController::class);
+Route::resource('clienteTelefonos', App\Http\Controllers\ClienteTelefonoController::class);
+Route::resource('clienteEmpresas', App\Http\Controllers\ClienteEmpresaController::class);
+Route::resource('certificados', App\Http\Controllers\CertificadoController::class);
