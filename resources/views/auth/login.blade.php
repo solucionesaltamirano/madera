@@ -47,9 +47,9 @@
                 </x-jet-button>
             </div>
         </form>
-        <div class="flex justify-between items-center mt-3">
-        <hr class="w-full"> <span class="p-2 text-gray-400 mb-1">OR</span>
-                <hr class="w-full">
+        {{-- <div class="flex justify-between items-center mt-3">
+            <hr class="w-full"> <span class="p-2 text-gray-400 mb-1">OR</span>
+            <hr class="w-full">
         </div>
         <div>
             <a href="{{ route('login-facebook') }}" class="block w-full bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded">
@@ -61,7 +61,7 @@
                 Google
             </a>
             
-        </div>
+        </div> --}}
     </x-jet-authentication-card>
 </x-guest-layout>
 
