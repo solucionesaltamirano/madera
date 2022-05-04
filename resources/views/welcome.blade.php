@@ -21,15 +21,15 @@
             </div>
             <div class="flex items-center">
                 <div class="hidden md:block space-x-6 font-medium">
-                    <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Features</a>
+                    {{-- <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Features</a>
                     <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Prices</a>
                     <a href="#0" class="hover:text-blue-700 transition-colors duration-200">About</a>
-                    <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Contacts</a>
+                    <a href="#0" class="hover:text-blue-700 transition-colors duration-200">Contacts</a> --}}
                     @if(!auth()->user())    
-                        <a href="{{ route('register') }}">
+                        {{-- <a href="{{ route('register') }}">
                             <button class="bg-blue-600 hover:bg-blue-700 transition-colors duration-300 py-2.5 px-5 rounded-lg text-white font-semibold">Get Started</button>
-                        </a>
-                        <a href="{{ route('login') }}" class="hover:text-blue-700 transition-colors duration-200">login</a>
+                        </a> --}}
+                        <a href="{{ route('login') }}" class="hover:text-blue-700 transition-colors  border  duration-200 rounded px-4 py-3 border-blue-800">login</a>
                     @else
                         <a href="{{ route('admin.dashboard') }}">
                             <button class="bg-blue-600 hover:bg-blue-700 transition-colors duration-300 py-2.5 px-5 rounded-lg text-white font-semibold">Dashboard</button>
@@ -50,7 +50,7 @@
             <div class="grid lg:grid-cols-2 gap-10 items-center">
                 <div class="space-y-8 lg:space-y-12">
                     <div class="space-y-6">
-                        <h1 class="text-4xl sm:text-6xl font-semibold">Maderas de Guatemala</h1>
+                        <h1 class="text-4xl sm:text-6xl font-semibold">{{ config('app.name') }}</h1>
                         <p class="max-w-sm text-xl">Gestion y asesoria en tratamiento termico a maderas para exportación y local</p>
                     </div>
                     <div class="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0">
