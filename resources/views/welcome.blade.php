@@ -50,8 +50,8 @@
             <div class="grid lg:grid-cols-2 gap-10 items-center">
                 <div class="space-y-8 lg:space-y-12">
                     <div class="space-y-6">
-                        <h1 class="text-4xl sm:text-6xl font-semibold">If you can believe it, you can create it!</h1>
-                        <p class="max-w-sm text-xl">Move well, learn well, play well, eat well, and rest well. !Live your lifes merrily to to the fullest!</p>
+                        <h1 class="text-4xl sm:text-6xl font-semibold">Maderas de Guatemala</h1>
+                        <p class="max-w-sm text-xl">Gestion y asesoria en tratamiento termico a maderas para exportación y local</p>
                     </div>
                     <div class="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0">
                         <input class="w-full sm:w-72 border-2 sm:border-r-0 py-4 px-6 rounded-lg sm:rounded-none sm:rounded-tl-lg sm:rounded-bl-lg outline-none focus:border-blue-600" type="text" placeholder="Your email address">
@@ -59,12 +59,12 @@
                     </div>
                 </div>
                 <div class="">
-                    <img src="img/operating_system.svg" alt="Illustration">
+                    <img src="https://aserraderotaguanes.com/img/galerias/cbb_IMG_9714.jpg" alt="Illustration">
                 </div>
             </div>
         </section><!-- End Hero -->
         
-        <section class="container mx-auto px-4"><!-- Start Brands -->
+        {{-- <section class="container mx-auto px-4"><!-- Start Brands -->
             <div class="grid grid-cols-3 gap-8 lg:grid-cols-6">
                 <div class="flex justify-center"><img src="img/brands/varta.svg" alt="varta"></div>
                 <div class="flex justify-center"><img src="img/brands/lenovo.svg" alt="lenovo"></div>
@@ -274,11 +274,9 @@
                         <i class='text-2xl transition duration-500 ease-in-out transform hover:scale-125 bx bxl-twitter' ></i>
                     </a>
                 </div>
-            </div>
+            </div> --}}
             <div class="flex flex-col md:flex-row md:justify-center space-y-2 md:space-y-0 md:space-x-3 text-gray-500 text-xs">
-                {{-- <p>Copyright © 2021 Amiso. All rights reserved.</p>
-                <p>Hand illustration by <a class="text-blue-700 underline" href="https://icons8.com" rel="nofollow" target="_blank">icons8.com</a></p>
-                <p>Photos by <a class="text-blue-700 underline" href="https://pexels.com" rel="nofollow" target="_blank">pexels.com</a></p> --}}
+                
             </div>
         </footer>
     </main>
