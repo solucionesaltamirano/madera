@@ -109,6 +109,24 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2022-01-31 23:54:10',
                 'username' => 'user',
             ),
+            5 => 
+            array (
+                'created_at' => '2022-05-04 15:01:24',
+                'current_team_id' => NULL,
+                'deleted_at' => NULL,
+                'email' => 'edu78do@gmail.com',
+                'email_verified_at' => NULL,
+                'id' => 6,
+                'name' => 'Eduardo Santamaria',
+                'password' => '$2y$10$Z9R1s71xVcJ0yk43vFTOaeUXNvXrbqESx8kDsblovndMCh5rur0Jy',
+                'phone' => NULL,
+                'profile_photo_path' => NULL,
+                'remember_token' => NULL,
+                'two_factor_recovery_codes' => NULL,
+                'two_factor_secret' => NULL,
+                'updated_at' => '2022-05-04 15:01:24',
+                'username' => 'EduSanta',
+            ),
         ));
         
         
