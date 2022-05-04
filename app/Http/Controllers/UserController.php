@@ -74,11 +74,12 @@ class UserController extends AppBaseController
     public function store(CreateUserRequest $request)
     {
         $input = $request->all();
-
+        
+        $input['password'] = Hash::make($input['password']);
+        
         /** @var User $user */
         $user = User::create($input);
 
-        $input['password'] = Hash::make($input['password']);
 
         if($request->media){
             $user->addMedia($request->media)->toMediaCollection();
