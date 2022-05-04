@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     {{-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet"> --}}
     <link href="https://kit-pro.fontawesome.com/releases/v6.1.1/css/pro.min.css" rel="stylesheet">
-    <title>Soluciones Altamirano - Startup</title>
+    <title>{{ config('app.name') }}</title>
     @include('customs.home-css')
     @livewireStyles
 </head>
