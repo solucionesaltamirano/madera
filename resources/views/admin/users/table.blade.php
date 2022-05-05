@@ -2,31 +2,28 @@
     <table class="table table-striped table-bordered dataTable no-footer table-sm table-hover" id="users-table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Empresa</th>
+            <th>Contacto Pricipal</th>
+            <th>Contactos</th>
             <th>Email</th>
             <th>Username</th>
-            <th>Phone</th>
-            <th>Roles</th>
-            <th>Created At</th>
-            <th class="not-export-col">Profile Photo Path</th>
+            <th class="not-export-col">Logo</th>
             <th class="not-export-col">Action</th>
         </tr>
         </thead>
         <tbody>
         @foreach($users as $user)
             <tr>
+                <td><a target="blank_" href="{{ route('clientes.edit', $user->empresa->first()->id) }}" > {{ $user->empresa->first()->nombre_empresa }} </a></td>
                 <td>{{ $user->name }}</td>
+                <td>@foreach ($user->empresa->first()->telefonos()->get() as $telefono)
+                    <a href="tel:{{ $telefono->telefno }}" class="btn btn-success">{{ $telefono->telefono }}</a>
+                    <p class="">{{ $telefono->nombre }}</p>
+                    <p class="border-bottom">{{ $telefono->puesto ?? '' }}</p>
+                @endforeach</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->username }}</td>
-                <td>{{ $user->phone }}</td>
-                <td >
-
-                    @foreach ($user->roles()->pluck('name') as $role)
-                        <span class="badge badge-info">{{ $role }}</span>
-                    @endforeach
-                    
-                </td>
-                <td>{{ $user->created_at }}</td>
+                
                 <td>
                     <div class="d-flex justify-content-center w-100" >
                         <img width="40px" height="40px" class="rounded-circle" src="{{ $user->profile_photo_path ? $user->profile_photo_path : 'https://ui-avatars.com/api/?name='. $user->name }}" alt="{{ $user->name }}">
