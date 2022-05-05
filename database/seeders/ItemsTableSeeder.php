@@ -355,6 +355,54 @@ class ItemsTableSeeder extends Seeder
                 'route' => 'auth.welcome',
                 'updated_at' => '2022-01-27 18:23:39',
             ),
+            28 => 
+            array (
+                'created_at' => '2022-05-05 16:01:40',
+                'deleted_at' => NULL,
+                'description' => 'Ver todos los clientes',
+                'icon' => '<i class="fal fa-table"></i>',
+                'id' => 29,
+                'item_id' => NULL,
+                'name' => 'clientes',
+                'route' => 'clientes.index',
+                'updated_at' => '2022-05-05 16:01:40',
+            ),
+            29 => 
+            array (
+                'created_at' => '2022-05-05 16:01:40',
+                'deleted_at' => NULL,
+                'description' => 'Crear un nuevo cliente',
+                'icon' => '<i class="fal fa-layer-plus"></i>',
+                'id' => 30,
+                'item_id' => NULL,
+                'name' => 'clientes create',
+                'route' => 'clientes.create',
+                'updated_at' => '2022-05-05 16:01:40',
+            ),
+            30 => 
+            array (
+                'created_at' => '2022-05-05 16:01:40',
+                'deleted_at' => NULL,
+                'description' => 'Ver todos los certificados',
+                'icon' => '<i class="fal fa-table"></i>',
+                'id' => 31,
+                'item_id' => NULL,
+                'name' => 'certificados',
+                'route' => 'certificados.index',
+                'updated_at' => '2022-05-05 16:01:40',
+            ),
+            31 => 
+            array (
+                'created_at' => '2022-05-05 16:01:40',
+                'deleted_at' => NULL,
+                'description' => 'Crear un certificado',
+                'icon' => '<i class="fal fa-layer-plus"></i>',
+                'id' => 32,
+                'item_id' => NULL,
+                'name' => 'certificados create',
+                'route' => 'certificados.create',
+                'updated_at' => '2022-05-05 16:01:40',
+            ),
         ));
         
         
