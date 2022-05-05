@@ -403,6 +403,54 @@ class ItemsTableSeeder extends Seeder
                 'route' => 'certificados.create',
                 'updated_at' => '2022-05-05 16:01:40',
             ),
+            32 => 
+            array (
+                'created_at' => '2022-05-05 16:30:56',
+                'deleted_at' => NULL,
+                'description' => 'Ver las empresas',
+                'icon' => '<i class="fal fa-table"></i>',
+                'id' => 33,
+                'item_id' => NULL,
+                'name' => 'clienteEmpresas',
+                'route' => 'clienteEmpresas.index',
+                'updated_at' => '2022-05-05 16:30:56',
+            ),
+            33 => 
+            array (
+                'created_at' => '2022-05-05 16:30:56',
+                'deleted_at' => NULL,
+                'description' => 'Crear una empresa',
+                'icon' => '<i class="fal fa-layer-plus"></i>',
+                'id' => 34,
+                'item_id' => NULL,
+                'name' => 'clienteEmpresas create',
+                'route' => 'clienteEmpresas.create',
+                'updated_at' => '2022-05-05 16:30:56',
+            ),
+            34 => 
+            array (
+                'created_at' => '2022-05-05 16:30:56',
+                'deleted_at' => NULL,
+                'description' => 'Show all logErrores',
+                'icon' => '<i class="fal fa-table"></i>',
+                'id' => 35,
+                'item_id' => NULL,
+                'name' => 'logErrores',
+                'route' => 'logErrores.index',
+                'updated_at' => '2022-05-05 16:30:56',
+            ),
+            35 => 
+            array (
+                'created_at' => '2022-05-05 16:30:56',
+                'deleted_at' => NULL,
+                'description' => 'Create a new logErrores',
+                'icon' => '<i class="fal fa-layer-plus"></i>',
+                'id' => 36,
+                'item_id' => NULL,
+                'name' => 'logErrores create',
+                'route' => 'logErrores.create',
+                'updated_at' => '2022-05-05 16:30:56',
+            ),
         ));
         
         
