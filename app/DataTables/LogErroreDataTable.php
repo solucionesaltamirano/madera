@@ -133,7 +133,8 @@ class LogErroreDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('descripcion'),
+            Column::make('user_id'),
+            Column::make('description'),
             Column::make('modelo'),
             Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
         ];

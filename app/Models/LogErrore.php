@@ -11,9 +11,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Class LogErrore
  * @package App\Models
- * @version May 5, 2022, 10:46 am CST
+ * @version May 5, 2022, 1:40 pm CST
  *
- * @property string $descripcion
+ * @property \App\Models\User $user
+ * @property integer $user_id
+ * @property string $description
  * @property string $modelo
  */
 class LogErrore extends Model implements HasMedia
@@ -34,7 +36,8 @@ class LogErrore extends Model implements HasMedia
 
 
     public $fillable = [
-        'descripcion',
+        'user_id',
+        'description',
         'modelo'
     ];
 
@@ -45,7 +48,8 @@ class LogErrore extends Model implements HasMedia
      */
     protected $casts = [
         'id' => 'integer',
-        'descripcion' => 'string',
+        'user_id' => 'integer',
+        'description' => 'string',
         'modelo' => 'string'
     ];
 
@@ -55,12 +59,19 @@ class LogErrore extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-        'descripcion' => 'required|string|max:500',
+        'user_id' => 'required|integer',
+        'description' => 'required|string|max:500',
         'modelo' => 'required|string|max:200',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
 }

@@ -66,8 +66,6 @@ class LogErroreController extends AppBaseController
                 'description' => $exception->getMessage(),
                 'modelo' => LogErrore::class,
                 'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }
@@ -151,8 +149,6 @@ class LogErroreController extends AppBaseController
                 'description' => $exception->getMessage(),
                 'modelo' => LogErrore::class,
                 'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }
@@ -192,8 +188,6 @@ class LogErroreController extends AppBaseController
                 'description' => $exception->getMessage(),
                 'modelo' => LogErrore::class,
                 'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }

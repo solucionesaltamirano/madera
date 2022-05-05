@@ -22,7 +22,8 @@ class LogErroreFactory extends Factory
     public function definition()
     {
         return [
-            'descripcion' => $this->faker->word,
+            'user_id' => $this->faker->randomDigitNotNull,
+        'description' => $this->faker->word,
         'modelo' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s'),

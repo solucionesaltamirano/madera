@@ -1,7 +1,13 @@
-<!-- Descripcion Field -->
+<!-- User Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('descripcion', 'Descripcion:') !!}
-    <p>{{ $logErrore->descripcion }}</p>
+    {!! Form::label('user_id', 'User Id:') !!}
+    <p>{{ $logErrore->user_id }}</p>
+</div>
+
+<!-- Description Field -->
+<div class="col-sm-12">
+    {!! Form::label('description', 'Description:') !!}
+    <p>{{ $logErrore->description }}</p>
 </div>
 
 <!-- Modelo Field -->
