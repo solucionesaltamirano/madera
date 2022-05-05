@@ -7,6 +7,7 @@ use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
 use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -65,9 +66,23 @@ class $MODEL_NAME$Controller extends AppBaseController
     {
         $input = $request->all();
 
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
+        try {
+            DB::beginTransaction();
+            $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => $this->$MODEL_NAME_CAMEL$Repository->class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
-        Flash::success('$MODEL_NAME_HUMAN$ saved successfully.');
+        Flash::success('Nuevo registro creado correctamente.');
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }
@@ -84,7 +99,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ Registro no econtrado.');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
@@ -104,7 +119,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ Registro no econtrado.');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
@@ -125,14 +140,30 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ Registro no econtrado.');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
 
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->update($request->all(), $id);
+        try {
+            DB::beginTransaction();
 
-        Flash::success('$MODEL_NAME_HUMAN$ updated successfully.');
+            $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->update($request->all(), $id);
+            Flash::success('Registro actualizado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => $this->$MODEL_NAME_CAMEL$Repository->class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
+
+        
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }
@@ -151,14 +182,28 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ Registro no econtrado.');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
 
-        $this->$MODEL_NAME_CAMEL$Repository->delete($id);
+        try {
+            DB::beginTransaction();
+            $this->$MODEL_NAME_CAMEL$Repository->delete($id);
 
-        Flash::success('$MODEL_NAME_HUMAN$ deleted successfully.');
+            Flash::success('Registro borrado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => $this->$MODEL_NAME_CAMEL$Repository->class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }
