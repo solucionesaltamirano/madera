@@ -23,7 +23,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex" data-toggle="tooltip" data-placement="top" title="Ver Dashboard" >
                 @php
-                    $img = auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'https://ui-avatars.com/api/?name='. str_replace(' ', '-', auth()->user()->name)
+                    $img = auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'https://ui-avatars.com/api/?name='. str_replace(' ', '-', auth()->user()->empresa()->first()->nombre_empresa ?? auth()->user()->name )
                 @endphp
             <div class="info">
                 <a href="{{ route('admin.dashboard') }}" class="d-block">
@@ -31,7 +31,7 @@
                         <img src="{{ $img }}" class="img-circle elevation-2"
                             alt="User Image">
                     </div>
-                    {{ auth()->user()->name }}
+                    {{ auth()->user()->empresa()->first()->nombre_empresa ?? auth()->user()->name }}
                 </a>
             </div>
         </div>

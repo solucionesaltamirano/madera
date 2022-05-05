@@ -9,7 +9,7 @@
                 <h4>
                     <i class="fal fa-table"></i>
                     <span class="mx-2 ">
-                        Bienvenido {{ auth()->user()->name }}
+                        Bienvenido {{ auth()->user()->empresa()->first()->nombre_empresa ?? auth()->user()->name }}
                     </span>
                 </h4>
             </div>
