@@ -178,4 +178,20 @@ class User extends Authenticatable implements HasMedia
         $minRole = $this->roles->min('id') ?? \App\Models\Role::max('id') + 1;
         return $minRole;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function empresa()
+    {
+        return $this->hasMany(\App\Models\Cliente::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function logErrores()
+    {
+        return $this->hasMany(\App\Models\LogErrore::class, 'user_id');
+    }
 }

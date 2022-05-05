@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\User;
-use App\Models\Role;
 use Yajra\DataTables\Html\Column;
+use App\Models\Role;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -19,14 +19,14 @@ class UserDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-        return $dataTable->addColumn('action', function(User $user){
+        return $dataTable->addColumn('Opciones', function(User $user){
             $id = $user->id;
             return view('admin.users.datatables_actions',compact('user','id'))->render();
         })
         ->editColumn('id',function (User $user){
             return $user->id;
-            //se debe crear la vista modal_detalles
-            //return view('users.modal_detalles',compact('user'))->render();
+                 //se debe crear la vista modal_detalles
+                 //return view('users.modal_detalles',compact('user'))->render();
         })
         ->editColumn('profile_photo_path',function (User $user){
             $img = $user->profile_photo_path ? $user->profile_photo_path : 'https://ui-avatars.com/api/?name='. $user->name ;
@@ -35,7 +35,15 @@ class UserDataTable extends DataTable
                     <img src="'.$img .'" width="40px" height="40px" class="rounded-circle">
                 </div>';
         })
-        ->rawColumns(['action','id','profile_photo_path']);
+        ->editColumn('empresa',function (User $user){
+            return $user->empresa->first() ? 
+                '<a target="_blank" class="" href="'
+                .route('clientes.edit', $user->empresa->first()->id)
+                .'">'
+                .$user->empresa->first()->nombre_empresa
+                .' </a>' : '';
+        })
+        ->rawColumns(['Opciones','id','profile_photo_path', 'empresa']);
     }
 
     /**
@@ -51,16 +59,13 @@ class UserDataTable extends DataTable
         if($role_id <= 2){
             $minRole = $role_id;
         }else{
-            $minRole = $role_id ;
+            $minRole = $role_id + 1;
         }
 
-        $roles = Role::where('id','<=',$minRole)->pluck('name')->toArray(); 
+        $roles = Role::where('id','>=',$minRole)->pluck('name')->toArray(); 
 
-        if($minRole <= 2){
-            return $model->newQuery()->withTrashed();
-        }else{
-            return $model->newQuery();
-        }
+        return $model->with('empresa')->role($roles)->newQuery()->withTrashed();
+        
     }
 
     /**
@@ -73,7 +78,7 @@ class UserDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            // ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
                 'responsive' => true,
                 'dom'       => '
@@ -89,12 +94,60 @@ class UserDataTable extends DataTable
                     >',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'buttons'   => [
-                    //['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                'buttons' => [
+                    [
+                        'extend' => 'collection',
+                        'className' => 'btn btn-default btn-sm',
+                        'text' => '<i class="fal fa-download"></i> Exportar',
+                        'buttons' => [
+                            [ 
+                                'extend' => 'excel', 
+                                'text' =>'<span class="btn btn-outline-success btn-block btn-sm">Excel <i class="fad fa-file-csv"></i></span>',
+                                'exportOptions' => [
+                                    'columns'=> ":visible:not(.not-export-col)",
+                                ],
+                                'orientation' => 'landscape',
+                                'pageSize' => 'LETTER',
+                            ],
+                            [
+                                'extend' => 'pdf',
+                                'text' =>'<span class="btn btn-outline-danger btn-block btn-sm ">PDF <i class="fad fa-file-csv"></i></span>',
+                                'exportOptions' => [
+                                    'columns' => ":visible:not(.not-export-col)",
+                                ],
+                                'orientation' => 'landscape',
+                                'pageSize' => 'LETTER',
+                                'messageTop' => 'Generado por ' . auth()->user()->name . ' el ' . today()->format('d/m/Y'),
+                                'messageBottom' => '',
+                                'footer' => true
+                            ],
+                        ]
+                    ],
+                    [
+                        'extend' => 'print', 
+                        'className' => 'btn btn-default btn-sm no-corner', 
+                        'text' => '<i class="fal fa-print"></i> Imprimir',
+
+                        'exportOptions' => [
+                            'columns' => ':visible:not(.not-export-col)',
+                        ],
+                        'orientation' => 'landscape',
+                        'pageSize' => 'LETTER',
+                        'messageTop' => 'Creado por ' . auth()->user()->name . ' el ' . today()->format('d/M/Y H:i:s'),
+                    ],
+                    [
+                        'extend' => 'reset', 
+                        'className' => 'btn btn-default btn-sm no-corner', 
+                        'text' => '<i class="fal fa-undo"></i> Reiniciar'
+                    ],
+                    [
+                        'extend' => 'colvis', 
+                        'className' => 'btn btn-default btn-sm no-corner', 
+                        'text' => '<i class="fal fa-sync"></i> Columnas'
+                    ],
+                ],
+                'language' => [
+                    "url" => "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
                 ],
             ]);
     }
@@ -113,6 +166,8 @@ class UserDataTable extends DataTable
             Column::make('username'),
             Column::make('phone'),
             Column::make('profile_photo_path'),
+            Column::make('empresa'),
+            Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
         ];
     }
 
