@@ -105,7 +105,7 @@ class Cliente extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function clienteEmpresas()
+    public function empresas()
     {
         return $this->hasMany(\App\Models\ClienteEmpresa::class, 'cliente_id');
     }
@@ -113,7 +113,7 @@ class Cliente extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function clienteTelefonos()
+    public function telefonos()
     {
         return $this->hasMany(\App\Models\ClienteTelefono::class, 'cliente_id');
     }

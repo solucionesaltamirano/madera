@@ -24,7 +24,7 @@
 <!-- Fecha Registro Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('fecha_registro', 'Fecha Registro:') !!}
-    {!! Form::date('fecha_registro', null, ['class' => 'form-control','id'=>'fecha_registro']) !!}
+    {!! Form::date('fecha_registro', $cliente->fecha_registro ?? null, ['class' => 'form-control','id'=>'fecha_registro']) !!}
 </div>
 
 
@@ -32,7 +32,7 @@
 <!-- Fecha Vencimiento Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
-    {!! Form::date('fecha_vencimiento', null, ['class' => 'form-control','id'=>'fecha_vencimiento']) !!}
+    {!! Form::date('fecha_vencimiento', $cliente->fecha_vencimiento ?? null, ['class' => 'form-control','id'=>'fecha_vencimiento']) !!}
 </div>
 
 
