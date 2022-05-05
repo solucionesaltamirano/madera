@@ -14,13 +14,20 @@
         <tbody>
         @foreach($users as $user)
             <tr>
-                <td><a target="blank_" href="{{ route('clientes.edit', $user->empresa->first()->id) }}" > {{ $user->empresa->first()->nombre_empresa }} </a></td>
+                <td>
+                    @if($user->empresa->first())
+                        <a target="blank_" href="{{ route('clientes.edit', $user->empresa->first()->id) }}" > {{ $user->empresa->first()->nombre_empresa }} </a>
+                    @endif
+                </td>
                 <td>{{ $user->name }}</td>
-                <td>@foreach ($user->empresa->first()->telefonos()->get() as $telefono)
-                    <a href="tel:{{ $telefono->telefno }}" class="btn btn-success">{{ $telefono->telefono }}</a>
-                    <p class="">{{ $telefono->nombre }}</p>
-                    <p class="border-bottom">{{ $telefono->puesto ?? '' }}</p>
-                @endforeach</td>
+                <td>
+                    @if($user->empresa->first())
+                        @foreach ($user->empresa->first()->telefonos()->get() as $telefono)
+                            <a href="tel:{{ $telefono->telefno }}" class="btn btn-success">{{ $telefono->telefono }}</a>
+                            <p class="">{{ $telefono->nombre }}</p>
+                            <p class="border-bottom">{{ $telefono->puesto ?? '' }}</p>
+                        @endforeach</td>
+                    @endif
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->username }}</td>
                 
