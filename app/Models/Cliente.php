@@ -74,7 +74,7 @@ class Cliente extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required|integer',
+        // 'user_id' => 'nullabe|integer',
         'codigo' => 'required|string|max:8',
         'nombre_empresa' => 'required|string|max:200',
         'direccion' => 'required|string|max:45',

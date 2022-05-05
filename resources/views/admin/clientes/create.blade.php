@@ -15,22 +15,18 @@
         </div>
         <div class="">
             @include('adminlte-templates::common.errors')
-            {!! Form::open(['route' => 'clientes.store']) !!}
-            <div class="card-body">
-                <div class="row">
-                    @include('admin.clientes.fields')
+            {!! Form::open(['route' => 'clientes.store','class' => 'wait-on-submit', 'autocomplete' => 'off', 'files' => true  ]) !!}
+                @livewire('clientes.create')
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary float-right">
+                        <span class="px-2">Guardar</span>
+                        <i class="fal fa-save"></i>
+                    </button>
+                    <a href="{{ route('clientes.index') }}" class="btn btn-outline-danger float-right mr-2" >
+                        <span class="px-2">Cancelar</span>
+                        <i class="fal fa-ban"></i>
+                    </a>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-outline-primary float-right">
-                    <span class="px-2">Guardar</span>
-                    <i class="fal fa-save"></i>
-                </button>
-                <a href="{{ route('clientes.index') }}" class="btn btn-outline-danger float-right mr-2" >
-                    <span class="px-2">Cancelar</span>
-                    <i class="fal fa-ban"></i>
-                </a>
-            </div>
             {!! Form::close() !!}
         </div>
     </div>

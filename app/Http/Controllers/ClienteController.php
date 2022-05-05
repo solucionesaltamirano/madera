@@ -9,9 +9,11 @@ use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\ClienteTelefono;
 use Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\LogErrore;
+use App\Models\User;
 
 class ClienteController extends AppBaseController
 {
@@ -53,21 +55,47 @@ class ClienteController extends AppBaseController
     {
         $input = $request->all();
 
+        // dd($input);
+
         try {
             DB::beginTransaction();
 
-            /** @var Cliente $cliente */
-            $cliente = Cliente::create($input);
+            /** @var User $user */
+            $user = User::create([
+                'name' => $input['nombre_representante_legal'],
+                'username' => $input['username'],
+                'email' => $input['email'],
+                'password' => bcrypt($input['password']),
+            ]);
 
-            Flash::success('Nuevo registro creado correctamente.');
+
+            /** @var Cliente $cliente */
+            $cliente = Cliente::create([
+                'user_id' => $user->id,
+                'codigo' => $input['codigo'],
+                'nombre_empresa' => $input['nombre_empresa'],
+                'direccion' => $input['direccion'],
+                'fecha_registro' => $input['fecha_registro'],
+                'fecha_vencimiento' => $input['fecha_vencimiento'],
+                'nombre_representante_legal' => $input['nombre_representante_legal'],
+            ]);
+
+            foreach($input['item'] as $telefono){
+                ClienteTelefono::create([
+                    'cliente_id' => $cliente->id,
+                    'telefono' => $telefono['numero'],
+                    'nombre' => $telefono['nombre'],
+                    'puesto' => $telefono['puesto'] ?? null,
+                ]);
+            }
+
+            Flash::success('Nuevo Cliente creado correctamente.');
         } catch (\Exception $exception) {
             DB::rollBack();
             LogErrore::create([
                 'description' => $exception->getMessage(),
                 'modelo' => Cliente::class,
-                'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
+                'user_id' => auth()->user()->id
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }
