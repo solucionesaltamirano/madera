@@ -27,6 +27,9 @@ class ClienteEmpresaDataTable extends DataTable
                  //se debe crear la vista modal_detalles
                  //return view('cliente_empresas.modal_detalles',compact('clienteEmpresa'))->render();
         })
+        ->editColumn('empresa', function (ClienteEmpresa $clienteEmpresa){
+            return $clienteEmpresa->cliente->nombre_empresa;
+        })
         ->rawColumns(['Opciones','id']);
     }
 
@@ -38,7 +41,11 @@ class ClienteEmpresaDataTable extends DataTable
      */
     public function query(ClienteEmpresa $model)
     {
-        return $model->newQuery();
+        if(auth()->user()->hasRole('admin')){
+            return $model->newQuery();
+        }else{
+            return $model->newQuery()->where('cliente_id',auth()->user()->empresa()->first()->id);
+        }
     }
 
     /**
@@ -133,7 +140,9 @@ class ClienteEmpresaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('cliente_id'),
+            Column::make('id'),
+            auth()->user()->hasRole('admin') 
+                ?? Column::make('empresa'),
             Column::make('nombre'),
             Column::make('direccion'),
             Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),

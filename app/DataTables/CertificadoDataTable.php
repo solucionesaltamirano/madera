@@ -38,7 +38,11 @@ class CertificadoDataTable extends DataTable
      */
     public function query(Certificado $model)
     {
-        return $model->newQuery();
+        if(auth()->user()->hasRole('admin')){
+            return $model->newQuery();
+        }else{
+            return $model->newQuery()->where('cliente_id',auth()->user()->empresa()->first()->id);
+        }
     }
 
     /**

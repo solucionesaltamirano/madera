@@ -68,6 +68,14 @@ class ClienteController extends AppBaseController
                 'password' => bcrypt($input['password']),
             ]);
 
+            if($request->media){
+                $user->addMedia($request->media)->toMediaCollection();
+                $user->save();
+                $user->profile_photo_path = $user->getMedia()->last()->getUrl();
+                $user->save();
+            }
+
+            $user->roles()->sync([5]);
 
             /** @var Cliente $cliente */
             $cliente = Cliente::create([

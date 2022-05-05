@@ -22,6 +22,9 @@ class ClienteTelefonoDataTable extends DataTable
             $id = $clienteTelefono->id;
             return view('admin.cliente_telefonos.datatables_actions',compact('clienteTelefono','id'))->render();
         })
+        ->editColumn('empresa', function (ClienteTelefono $clienteTelefono){
+            return $clienteTelefono->empresa->nombre;
+        })
         ->editColumn('id',function (ClienteTelefono $clienteTelefono){
             return $clienteTelefono->id;
                  //se debe crear la vista modal_detalles
@@ -38,7 +41,11 @@ class ClienteTelefonoDataTable extends DataTable
      */
     public function query(ClienteTelefono $model)
     {
-        return $model->newQuery();
+        if(auth()->user()->hasRole('admin')){
+            return $model->newQuery()->with('cliente');
+        }else{
+            return $model->newQuery()->with('cliente')->where('cliente_id',auth()->user()->empresa()->first()->id);
+        }
     }
 
     /**
@@ -133,7 +140,7 @@ class ClienteTelefonoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('cliente_id'),
+            Column::make('empresa'),
             Column::make('telefono'),
             Column::make('nombre'),
             Column::make('puesto'),
