@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Class Certificado
  * @package App\Models
- * @version May 5, 2022, 8:39 am CST
+ * @version May 5, 2022, 10:42 am CST
  *
  * @property \App\Models\Cliente $cliente
  * @property \App\Models\ClienteEmpresa $empresa

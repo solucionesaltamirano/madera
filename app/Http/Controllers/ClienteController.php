@@ -10,6 +10,8 @@ use App\Models\Cliente;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Illuminate\Support\Facades\DB;
+use App\Models\LogErrore;
 
 class ClienteController extends AppBaseController
 {
@@ -51,10 +53,25 @@ class ClienteController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var Cliente $cliente */
-        $cliente = Cliente::create($input);
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Cliente saved successfully.');
+            /** @var Cliente $cliente */
+            $cliente = Cliente::create($input);
+
+            Flash::success('Nuevo registro creado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => Cliente::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clientes.index'));
     }
@@ -72,7 +89,7 @@ class ClienteController extends AppBaseController
         $cliente = Cliente::find($id);
 
         if (empty($cliente)) {
-            Flash::error('Cliente not found');
+            Flash::error('Cliente Registro no econtrado.');
 
             return redirect(route('clientes.index'));
         }
@@ -93,7 +110,7 @@ class ClienteController extends AppBaseController
         $cliente = Cliente::find($id);
 
         if (empty($cliente)) {
-            Flash::error('Cliente not found');
+            Flash::error('Cliente Registro no econtrado.');
 
             return redirect(route('clientes.index'));
         }
@@ -115,15 +132,31 @@ class ClienteController extends AppBaseController
         $cliente = Cliente::find($id);
 
         if (empty($cliente)) {
-            Flash::error('Cliente not found');
+            Flash::error('Cliente Registro no econtrado.');
 
             return redirect(route('clientes.index'));
         }
 
-        $cliente->fill($request->all());
-        $cliente->save();
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Cliente updated successfully.');
+            $cliente->fill($request->all());
+            $cliente->save();
+
+            Flash::success('Registro actualizado correctamente.');
+            
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => Cliente::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clientes.index'));
     }
@@ -143,14 +176,28 @@ class ClienteController extends AppBaseController
         $cliente = Cliente::find($id);
 
         if (empty($cliente)) {
-            Flash::error('Cliente not found');
+            Flash::error('Cliente Registro no econtrado.');
 
             return redirect(route('clientes.index'));
         }
 
-        $cliente->delete();
-
-        Flash::success('Cliente deleted successfully.');
+        try {
+            DB::beginTransaction();
+            
+            $cliente->delete();
+            Flash::success('Registro borrado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => Cliente::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clientes.index'));
     }

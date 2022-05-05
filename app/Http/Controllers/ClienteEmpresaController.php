@@ -10,6 +10,8 @@ use App\Models\ClienteEmpresa;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Illuminate\Support\Facades\DB;
+use App\Models\LogErrore;
 
 class ClienteEmpresaController extends AppBaseController
 {
@@ -51,10 +53,25 @@ class ClienteEmpresaController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var ClienteEmpresa $clienteEmpresa */
-        $clienteEmpresa = ClienteEmpresa::create($input);
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Cliente Empresa saved successfully.');
+            /** @var ClienteEmpresa $clienteEmpresa */
+            $clienteEmpresa = ClienteEmpresa::create($input);
+
+            Flash::success('Nuevo registro creado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => ClienteEmpresa::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clienteEmpresas.index'));
     }
@@ -72,7 +89,7 @@ class ClienteEmpresaController extends AppBaseController
         $clienteEmpresa = ClienteEmpresa::find($id);
 
         if (empty($clienteEmpresa)) {
-            Flash::error('Cliente Empresa not found');
+            Flash::error('Cliente Empresa Registro no econtrado.');
 
             return redirect(route('clienteEmpresas.index'));
         }
@@ -93,7 +110,7 @@ class ClienteEmpresaController extends AppBaseController
         $clienteEmpresa = ClienteEmpresa::find($id);
 
         if (empty($clienteEmpresa)) {
-            Flash::error('Cliente Empresa not found');
+            Flash::error('Cliente Empresa Registro no econtrado.');
 
             return redirect(route('clienteEmpresas.index'));
         }
@@ -115,15 +132,31 @@ class ClienteEmpresaController extends AppBaseController
         $clienteEmpresa = ClienteEmpresa::find($id);
 
         if (empty($clienteEmpresa)) {
-            Flash::error('Cliente Empresa not found');
+            Flash::error('Cliente Empresa Registro no econtrado.');
 
             return redirect(route('clienteEmpresas.index'));
         }
 
-        $clienteEmpresa->fill($request->all());
-        $clienteEmpresa->save();
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Cliente Empresa updated successfully.');
+            $clienteEmpresa->fill($request->all());
+            $clienteEmpresa->save();
+
+            Flash::success('Registro actualizado correctamente.');
+            
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => ClienteEmpresa::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clienteEmpresas.index'));
     }
@@ -143,14 +176,28 @@ class ClienteEmpresaController extends AppBaseController
         $clienteEmpresa = ClienteEmpresa::find($id);
 
         if (empty($clienteEmpresa)) {
-            Flash::error('Cliente Empresa not found');
+            Flash::error('Cliente Empresa Registro no econtrado.');
 
             return redirect(route('clienteEmpresas.index'));
         }
 
-        $clienteEmpresa->delete();
-
-        Flash::success('Cliente Empresa deleted successfully.');
+        try {
+            DB::beginTransaction();
+            
+            $clienteEmpresa->delete();
+            Flash::success('Registro borrado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => ClienteEmpresa::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clienteEmpresas.index'));
     }

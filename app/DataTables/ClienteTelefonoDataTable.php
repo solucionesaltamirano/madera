@@ -18,7 +18,7 @@ class ClienteTelefonoDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-        return $dataTable->addColumn('action', function(ClienteTelefono $clienteTelefono){
+        return $dataTable->addColumn('Opciones', function(ClienteTelefono $clienteTelefono){
             $id = $clienteTelefono->id;
             return view('admin.cliente_telefonos.datatables_actions',compact('clienteTelefono','id'))->render();
         })
@@ -27,7 +27,7 @@ class ClienteTelefonoDataTable extends DataTable
                  //se debe crear la vista modal_detalles
                  //return view('cliente_telefonos.modal_detalles',compact('clienteTelefono'))->render();
         })
-        ->rawColumns(['action','id']);
+        ->rawColumns(['Opciones','id']);
     }
 
     /**
@@ -51,7 +51,7 @@ class ClienteTelefonoDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            // ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
                 'responsive' => true,
                 'dom'       => '
@@ -67,12 +67,60 @@ class ClienteTelefonoDataTable extends DataTable
                     >',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'buttons'   => [
-                    //['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                'buttons' => [
+                    [
+                        'extend' => 'collection',
+                        'className' => 'btn btn-default btn-sm',
+                        'text' => '<i class="fal fa-download"></i> Exportar',
+                        'buttons' => [
+                            [ 
+                                'extend' => 'excel', 
+                                'text' =>'<span class="btn btn-outline-success btn-block btn-sm">Excel <i class="fad fa-file-csv"></i></span>',
+                                'exportOptions' => [
+                                    'columns'=> ":visible:not(.not-export-col)",
+                                ],
+                                'orientation' => 'landscape',
+                                'pageSize' => 'LETTER',
+                            ],
+                            [
+                                'extend' => 'pdf',
+                                'text' =>'<span class="btn btn-outline-danger btn-block btn-sm ">PDF <i class="fad fa-file-csv"></i></span>',
+                                'exportOptions' => [
+                                    'columns' => ":visible:not(.not-export-col)",
+                                ],
+                                'orientation' => 'landscape',
+                                'pageSize' => 'LETTER',
+                                'messageTop' => 'Generado por ' . auth()->user()->name . ' el ' . today()->format('d/m/Y'),
+                                'messageBottom' => '',
+                                'footer' => true
+                            ],
+                        ]
+                    ],
+                    [
+                        'extend' => 'print', 
+                        'className' => 'btn btn-default btn-sm no-corner', 
+                        'text' => '<i class="fal fa-print"></i> Imprimir',
+
+                        'exportOptions' => [
+                            'columns' => ':visible:not(.not-export-col)',
+                        ],
+                        'orientation' => 'landscape',
+                        'pageSize' => 'LETTER',
+                        'messageTop' => 'Creado por ' . auth()->user()->name . ' el ' . today()->format('d/M/Y H:i:s'),
+                    ],
+                    [
+                        'extend' => 'reset', 
+                        'className' => 'btn btn-default btn-sm no-corner', 
+                        'text' => '<i class="fal fa-undo"></i> Reiniciar'
+                    ],
+                    [
+                        'extend' => 'colvis', 
+                        'className' => 'btn btn-default btn-sm no-corner', 
+                        'text' => '<i class="fal fa-sync"></i> Columnas'
+                    ],
+                ],
+                'language' => [
+                    "url" => "//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json"
                 ],
             ]);
     }
@@ -88,7 +136,8 @@ class ClienteTelefonoDataTable extends DataTable
             Column::make('cliente_id'),
             Column::make('telefono'),
             Column::make('nombre'),
-            Column::make('puesto')
+            Column::make('puesto'),
+            Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
         ];
     }
 

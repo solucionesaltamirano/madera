@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        {{ __('Cliente Details') }}
+        Cliente Details
     </x-slot>
     <div class="card card-primary card-outline min-vh-100">
         <div class="card-header">
@@ -8,7 +8,7 @@
                 <h4>
                     <i class="fal fa-eye"></i>
                     <span class="ml-3">
-                        {{ __('View details for Cliente') }}
+                        Detalle de Cliente
                     </span>
                 </h4>
             </div>
@@ -23,12 +23,12 @@
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-info float-right" href="{{ route('clientes.index') }}">
-                        <span class="mx-2">{{ __('Back') }}</span>
+                        <span class="mx-2">Regresar</span>
                         <i class="fal fa-undo-alt"></i>
                     </a>
                     @can('clientes.edit')
                         <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-outline-primary float-right mr-2">
-                            <span class="mx-2">{{ __('Edit') }}</span>
+                            <span class="mx-2">Edit</span>
                             <i class="fal fa-edit"></i>
                         </a>
                     @endcan

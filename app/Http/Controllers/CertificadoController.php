@@ -10,6 +10,8 @@ use App\Models\Certificado;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Illuminate\Support\Facades\DB;
+use App\Models\LogErrore;
 
 class CertificadoController extends AppBaseController
 {
@@ -51,10 +53,25 @@ class CertificadoController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var Certificado $certificado */
-        $certificado = Certificado::create($input);
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Certificado saved successfully.');
+            /** @var Certificado $certificado */
+            $certificado = Certificado::create($input);
+
+            Flash::success('Nuevo registro creado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => Certificado::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('certificados.index'));
     }
@@ -72,7 +89,7 @@ class CertificadoController extends AppBaseController
         $certificado = Certificado::find($id);
 
         if (empty($certificado)) {
-            Flash::error('Certificado not found');
+            Flash::error('Certificado Registro no econtrado.');
 
             return redirect(route('certificados.index'));
         }
@@ -93,7 +110,7 @@ class CertificadoController extends AppBaseController
         $certificado = Certificado::find($id);
 
         if (empty($certificado)) {
-            Flash::error('Certificado not found');
+            Flash::error('Certificado Registro no econtrado.');
 
             return redirect(route('certificados.index'));
         }
@@ -115,15 +132,31 @@ class CertificadoController extends AppBaseController
         $certificado = Certificado::find($id);
 
         if (empty($certificado)) {
-            Flash::error('Certificado not found');
+            Flash::error('Certificado Registro no econtrado.');
 
             return redirect(route('certificados.index'));
         }
 
-        $certificado->fill($request->all());
-        $certificado->save();
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Certificado updated successfully.');
+            $certificado->fill($request->all());
+            $certificado->save();
+
+            Flash::success('Registro actualizado correctamente.');
+            
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => Certificado::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('certificados.index'));
     }
@@ -143,14 +176,28 @@ class CertificadoController extends AppBaseController
         $certificado = Certificado::find($id);
 
         if (empty($certificado)) {
-            Flash::error('Certificado not found');
+            Flash::error('Certificado Registro no econtrado.');
 
             return redirect(route('certificados.index'));
         }
 
-        $certificado->delete();
-
-        Flash::success('Certificado deleted successfully.');
+        try {
+            DB::beginTransaction();
+            
+            $certificado->delete();
+            Flash::success('Registro borrado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => Certificado::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('certificados.index'));
     }

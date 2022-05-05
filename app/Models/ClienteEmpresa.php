@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Class ClienteEmpresa
  * @package App\Models
- * @version May 4, 2022, 4:02 pm CST
+ * @version May 5, 2022, 10:41 am CST
  *
  * @property \App\Models\Cliente $cliente
  * @property \Illuminate\Database\Eloquent\Collection $certificados

@@ -23,3 +23,9 @@ Route::resource('clientes', App\Http\Controllers\ClienteController::class);
 Route::resource('clienteTelefonos', App\Http\Controllers\ClienteTelefonoController::class);
 Route::resource('clienteEmpresas', App\Http\Controllers\ClienteEmpresaController::class);
 Route::resource('certificados', App\Http\Controllers\CertificadoController::class);
+
+
+Route::resource('clienteEmpresas', App\Http\Controllers\ClienteEmpresaController::class);
+
+
+Route::resource('clienteTelefonos', App\Http\Controllers\ClienteTelefonoController::class);

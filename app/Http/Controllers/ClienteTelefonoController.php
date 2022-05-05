@@ -10,6 +10,8 @@ use App\Models\ClienteTelefono;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Illuminate\Support\Facades\DB;
+use App\Models\LogErrore;
 
 class ClienteTelefonoController extends AppBaseController
 {
@@ -51,10 +53,25 @@ class ClienteTelefonoController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var ClienteTelefono $clienteTelefono */
-        $clienteTelefono = ClienteTelefono::create($input);
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Cliente Telefono saved successfully.');
+            /** @var ClienteTelefono $clienteTelefono */
+            $clienteTelefono = ClienteTelefono::create($input);
+
+            Flash::success('Nuevo registro creado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => ClienteTelefono::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clienteTelefonos.index'));
     }
@@ -72,7 +89,7 @@ class ClienteTelefonoController extends AppBaseController
         $clienteTelefono = ClienteTelefono::find($id);
 
         if (empty($clienteTelefono)) {
-            Flash::error('Cliente Telefono not found');
+            Flash::error('Cliente Telefono Registro no econtrado.');
 
             return redirect(route('clienteTelefonos.index'));
         }
@@ -93,7 +110,7 @@ class ClienteTelefonoController extends AppBaseController
         $clienteTelefono = ClienteTelefono::find($id);
 
         if (empty($clienteTelefono)) {
-            Flash::error('Cliente Telefono not found');
+            Flash::error('Cliente Telefono Registro no econtrado.');
 
             return redirect(route('clienteTelefonos.index'));
         }
@@ -115,15 +132,31 @@ class ClienteTelefonoController extends AppBaseController
         $clienteTelefono = ClienteTelefono::find($id);
 
         if (empty($clienteTelefono)) {
-            Flash::error('Cliente Telefono not found');
+            Flash::error('Cliente Telefono Registro no econtrado.');
 
             return redirect(route('clienteTelefonos.index'));
         }
 
-        $clienteTelefono->fill($request->all());
-        $clienteTelefono->save();
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Cliente Telefono updated successfully.');
+            $clienteTelefono->fill($request->all());
+            $clienteTelefono->save();
+
+            Flash::success('Registro actualizado correctamente.');
+            
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => ClienteTelefono::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clienteTelefonos.index'));
     }
@@ -143,14 +176,28 @@ class ClienteTelefonoController extends AppBaseController
         $clienteTelefono = ClienteTelefono::find($id);
 
         if (empty($clienteTelefono)) {
-            Flash::error('Cliente Telefono not found');
+            Flash::error('Cliente Telefono Registro no econtrado.');
 
             return redirect(route('clienteTelefonos.index'));
         }
 
-        $clienteTelefono->delete();
-
-        Flash::success('Cliente Telefono deleted successfully.');
+        try {
+            DB::beginTransaction();
+            
+            $clienteTelefono->delete();
+            Flash::success('Registro borrado correctamente.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            LogErrore::create([
+                'description' => $exception->getMessage(),
+                'modelo' => ClienteTelefono::class,
+                'user_id' => auth()->user()->id,
+                'sucursal_id' => session('sucursal_selected')[0] ?? null,
+                'caja_id' => session('caja_selected') ?? null
+            ]);
+            Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
+        }
+        DB::commit();
 
         return redirect(route('clienteTelefonos.index'));
     }
