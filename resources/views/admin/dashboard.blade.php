@@ -1,33 +1,26 @@
 <x-admin-layout>
     <x-slot name="header">
-        Dashboard Admin
+        Bienvenido!!!
     </x-slot>
+    {{-- slot Body --}}
+    <div class="card card-primary card-outline min-vh-100">
+        <div class="card-header">
+            <div class="card-title  ">
+                <h4>
+                    <i class="fal fa-table"></i>
+                    <span class="mx-2 ">
+                        Bienvenido {{ auth()->user()->name }}
+                    </span>
+                </h4>
+            </div>
 
-    <x-slot name="pageHeader">
-        Dashboard Admin
-        <i class="fal fa-tachometer-slow"></i>
-    </x-slot>
-
-    <x-slot name="cardButton">
-        <a href="#" class="btn btn-outline-primary btn-sm float-right">
-            <i class="fal fa-plus-circle"></i>
-            Nuevo
-        </a>
-    </x-slot>
-
-    <x-slot name="cardTitle">
-        <i class="fal fa-browser"></i> 
-        <span class="mx-3">
-            TITULO
-        </span>
-    </x-slot>
-
-    {{-- this is the content of the card --}}
-    @livewire('test')
-    {{-- this is the content of the card --}}
-
-    <a href="{{ route('items.from-routes') }}" class="btn btn-outline-primary">
-        See routes
-    </a>
-    
+        </div>
+        <div class="card-body px-1 px-sm-4">
+            <div class="px-1">
+                <div class="row">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </x-admin-layout>

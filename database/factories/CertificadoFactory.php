@@ -34,7 +34,10 @@ class CertificadoFactory extends Factory
         'fecha_fin' => $this->faker->word,
         'hora_fin' => $this->faker->word,
         'temperatura_inicio' => $this->faker->word,
-        'temperatura_fin' => $this->faker->word
+        'temperatura_fin' => $this->faker->word,
+        'created_at' => $this->faker->date('Y-m-d H:i:s'),
+        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }

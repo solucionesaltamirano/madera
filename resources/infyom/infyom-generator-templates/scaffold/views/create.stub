@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        {{ __('Create $MODEL_NAME_HUMAN$') }}
+        Create $MODEL_NAME_HUMAN$
     </x-slot>
     <div class="card card-primary card-outline min-vh-100">
         <div class="card-header">
@@ -8,32 +8,30 @@
                 <h4>
                     <i class="fal fa-layer-plus"></i>
                     <span class="ml-3">
-                        {{ __('Insert data for new $MODEL_NAME_HUMAN$') }}
+                        Datos de nuevo $MODEL_NAME_HUMAN$
                     </span>
                 </h4>
             </div>
         </div>
-        <div class="card-body">
+        <div class="">
             @include('adminlte-templates::common.errors')
-            <div class="card">
-                {!! Form::open(['route' => '$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.store'$FILES$]) !!}
-                <div class="card-body">
-                    <div class="row">
-                        @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields')
-                    </div>
+            {!! Form::open(['route' => '$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.store'$FILES$]) !!}
+            <div class="card-body">
+                <div class="row">
+                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields')
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-outline-primary float-right">
-                        <span class="px-2">{{ __('Save') }}</span>
-                        <i class="fal fa-save"></i>
-                    </button>
-                    <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}" class="btn btn-outline-danger float-right mr-2" >
-                        <span class="px-2">{{ __('Cancel') }}</span>
-                        <i class="fal fa-ban"></i>
-                    </a>
-                </div>
-                {!! Form::close() !!}
             </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-outline-primary float-right">
+                    <span class="px-2">Guardar</span>
+                    <i class="fal fa-save"></i>
+                </button>
+                <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}" class="btn btn-outline-danger float-right mr-2" >
+                    <span class="px-2">Cancelar</span>
+                    <i class="fal fa-ban"></i>
+                </a>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </x-admin-layout>

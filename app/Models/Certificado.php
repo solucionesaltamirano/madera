@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Class Certificado
  * @package App\Models
- * @version May 4, 2022, 4:02 pm CST
+ * @version May 5, 2022, 8:39 am CST
  *
  * @property \App\Models\Cliente $cliente
  * @property \App\Models\ClienteEmpresa $empresa
@@ -100,7 +100,10 @@ class Certificado extends Model implements HasMedia
         'fecha_fin' => 'required',
         'hora_fin' => 'required',
         'temperatura_inicio' => 'required|numeric',
-        'temperatura_fin' => 'required|numeric'
+        'temperatura_fin' => 'required|numeric',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable',
+        'deleted_at' => 'nullable'
     ];
 
     /**

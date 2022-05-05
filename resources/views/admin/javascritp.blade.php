@@ -33,7 +33,15 @@
 <!-- livewire -->
 @livewireScripts
 
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 
 <x-laravel-blade-sortable::scripts/>
 
@@ -43,12 +51,12 @@
 {{-- Toast called with Livewire --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    Livewire.on('showToast', (title, icon = 'success') => {
+    Livewire.on('showToast', (title, icon = 'success', time = 3500) => {
         var Toast = Swal.mixin({
             toast: true,
             position: 'bottom-end',
             showConfirmButton: false,
-            timer: 3500,
+            timer: time,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
