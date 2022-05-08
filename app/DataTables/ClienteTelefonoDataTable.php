@@ -41,7 +41,7 @@ class ClienteTelefonoDataTable extends DataTable
      */
     public function query(ClienteTelefono $model)
     {
-        if(auth()->user()->hasRole('admin')){
+        if(auth()->user()->hasRole('ADMIN')){
             return $model->newQuery()->with('cliente');
         }else{
             return $model->newQuery()->with('cliente')->where('cliente_id',auth()->user()->empresa()->first()->id);

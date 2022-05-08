@@ -27,9 +27,7 @@ class ClienteEmpresaDataTable extends DataTable
                  //se debe crear la vista modal_detalles
                  //return view('cliente_empresas.modal_detalles',compact('clienteEmpresa'))->render();
         })
-        ->editColumn('empresa', function (ClienteEmpresa $clienteEmpresa){
-            return $clienteEmpresa->cliente->nombre_empresa;
-        })
+        
         ->rawColumns(['Opciones','id']);
     }
 
@@ -41,8 +39,8 @@ class ClienteEmpresaDataTable extends DataTable
      */
     public function query(ClienteEmpresa $model)
     {
-        if(auth()->user()->hasRole('admin')){
-            return $model->newQuery();
+        if(auth()->user()->hasRole('ADMIN')){
+            return $model->newQuery()->with('cliente');
         }else{
             return $model->newQuery()->where('cliente_id',auth()->user()->empresa()->first()->id);
         }
@@ -139,14 +137,30 @@ class ClienteEmpresaDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
-            Column::make('id'),
-            auth()->user()->hasRole('admin') 
-                ?? Column::make('empresa'),
-            Column::make('nombre'),
-            Column::make('direccion'),
-            Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
-        ];
+
+        if(auth()->user()->hasRole('ADMIN')){
+
+            return [
+                Column::make('id'),
+                Column::make('cliente')
+                ->data('cliente.nombre_empresa')
+                ->name('cliente.nombre_empresa'),
+                Column::make('nombre'),
+                Column::make('direccion'),
+                Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
+            ];
+
+        }else{
+
+            return [
+                Column::make('id'),
+
+                Column::make('nombre'),
+                Column::make('direccion'),
+                Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
+            ];
+        }
+
     }
 
     /**

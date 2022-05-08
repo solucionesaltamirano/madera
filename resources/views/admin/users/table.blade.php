@@ -2,9 +2,10 @@
     <table class="table table-striped table-bordered dataTable no-footer table-sm table-hover" id="users-table">
         <thead>
         <tr>
+            <th>codigo</th>
             <th>Empresa</th>
-            <th>Contacto Pricipal</th>
-            <th>Contactos</th>
+            <th>Representante</th>
+            <th>Contacto</th>
             <th>Email</th>
             <th>Username</th>
             <th class="not-export-col">Logo</th>
@@ -16,18 +17,24 @@
             <tr>
                 <td>
                     @if($user->empresa->first())
-                        <a target="blank_" href="{{ route('clientes.edit', $user->empresa->first()->id) }}" > {{ $user->empresa->first()->nombre_empresa }} </a>
+                        {{ $user->empresa->first()->codigo }} 
+                    @endif
+                </td>
+                <td>
+                    @if($user->empresa->first())
+                        <a target="blank_" href="{{ route('clientes.edit', $user->empresa->first()->id) }}" >
+                            {{ $user->empresa->first()->nombre_empresa }} 
+                        </a>
                     @endif
                 </td>
                 <td>{{ $user->name }}</td>
                 <td>
                     @if($user->empresa->first())
-                        @foreach ($user->empresa->first()->telefonos()->get() as $telefono)
-                            <a href="tel:{{ $telefono->telefno }}" class="btn btn-success">{{ $telefono->telefono }}</a>
-                            <p class="">{{ $telefono->nombre }}</p>
-                            <p class="border-bottom">{{ $telefono->puesto ?? '' }}</p>
-                        @endforeach</td>
+                        <a href="tel:{{ $user->empresa->first()->telefonos()->get()->first()->telefno }}" class="btn btn-success">{{ $user->empresa->first()->telefonos()->get()->first()->telefono }}</a>
+                        <p class="">{{ $user->empresa->first()->telefonos()->get()->first()->nombre }}</p>
+                        <p class="">{{ $user->empresa->first()->telefonos()->get()->first()->puesto ?? '' }}</p>
                     @endif
+                </td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->username }}</td>
                 

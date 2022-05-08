@@ -24,10 +24,17 @@ class CertificadoDataTable extends DataTable
         })
         ->editColumn('id',function (Certificado $certificado){
             return $certificado->id;
-                 //se debe crear la vista modal_detalles
-                 //return view('certificados.modal_detalles',compact('certificado'))->render();
         })
-        ->rawColumns(['Opciones','id']);
+        ->editColumn('fecha',function (Certificado $certificado){
+            return $certificado->fecha->format('d/m/Y');
+        })
+        ->editColumn('inicio',function (Certificado $certificado){
+            return $certificado->fecha_inicio->format('d/m/Y') . ' - ' . $certificado->hora_inicio;
+        })
+        ->editColumn('fin',function (Certificado $certificado){
+            return $certificado->fecha_fin->format('d/m/Y') . ' - ' . $certificado->hora_fin;
+        })
+        ->rawColumns(['Opciones','id',  'inicio', 'fin']);
     }
 
     /**
@@ -38,10 +45,11 @@ class CertificadoDataTable extends DataTable
      */
     public function query(Certificado $model)
     {
-        if(auth()->user()->hasRole('admin')){
-            return $model->newQuery();
+        if(auth()->user()->hasRole('ADMIN')){
+            return $model->newQuery()->with(['cliente','empresa']);
         }else{
-            return $model->newQuery()->where('cliente_id',auth()->user()->empresa()->first()->id);
+            return $model->newQuery()->with(['empresa'])
+            ->where('cliente_id',auth()->user()->empresa()->first()->id);
         }
     }
 
@@ -136,22 +144,44 @@ class CertificadoDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
-            Column::make('cliente_id'),
-            Column::make('empresa_id'),
-            Column::make('secuencial'),
-            Column::make('fecha'),
-            Column::make('descripcion'),
-            Column::make('cantidad'),
-            Column::make('humedad'),
-            Column::make('fecha_inicio'),
-            Column::make('hora_inicio'),
-            Column::make('fecha_fin'),
-            Column::make('hora_fin'),
-            Column::make('temperatura_inicio'),
-            Column::make('temperatura_fin'),
-            Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
-        ];
+        if(auth()->user()->hasRole('ADMIN')){
+            return [
+                Column::make('id'),
+                Column::make('secuencial'),
+                Column::make('cliente')
+                    ->name('cliente.nombre_empresa')
+                    ->data('cliente.nombre_empresa'),
+                Column::make('empresas')
+                    ->name('empresa.nombre')
+                    ->data('empresa.nombre'),
+                Column::make('fecha'),
+                Column::make('descripcion'),
+                Column::make('cantidad'),
+                Column::make('humedad'),
+                Column::make('inicio'),
+                Column::make('fin'),
+                Column::make('temperatura_inicio'),
+                Column::make('temperatura_fin'),
+                Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
+            ];
+        }else{
+            return [
+                Column::make('id'),
+                Column::make('secuencial'),
+                Column::make('empresas')
+                    ->name('empresa.nombre')
+                    ->data('empresa.nombre'),
+                Column::make('fecha'),
+                Column::make('descripcion'),
+                Column::make('cantidad'),
+                Column::make('humedad'),
+                Column::make('inicio'),
+                Column::make('fin'),
+                Column::make('temperatura_inicio'),
+                Column::make('temperatura_fin'),
+                Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
+            ];
+        }
     }
 
     /**
