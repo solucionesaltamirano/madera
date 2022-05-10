@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CertificadoDataTable;
+use Flash;
+use Response;
 use App\Http\Requests;
+use App\Models\LogErrore;
+use App\Models\Certificado;
+use App\Models\ClienteEmpresa;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
+use App\DataTables\CertificadoDataTable;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCertificadoRequest;
 use App\Http\Requests\UpdateCertificadoRequest;
-use App\Models\Certificado;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use App\Models\ClienteEmpresa;
-use Response;
-use Illuminate\Support\Facades\DB;
-use App\Models\LogErrore;
 
 class CertificadoController extends AppBaseController
 {
     public function __construct(){
         $this->middleware('can:certificados.index')->only(['index', 'show']);
-        $this->middleware('can:certificados.create')->only(['create', 'store']);
+        $this->middleware('can:certificados.create')->only(['create', 'store', 'emitPdf']);
         $this->middleware('can:certificados.edit')->only(['edit', 'update']);
         $this->middleware('can:certificados.destroy')->only('destroy');
     }
@@ -225,5 +226,68 @@ class CertificadoController extends AppBaseController
         DB::commit();
 
         return redirect(route('certificados.index'));
+    }
+
+    /**
+     * Export the specified Certificado from storage.
+     *
+     * @param  int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function emitPdf($hash)
+    {
+        $id = Crypt::decrypt($hash);
+        /** @var Certificado $certificado */
+        $certificado = Certificado::find($id);
+
+
+        // dd($hash);
+
+        $html = view('admin.certificados.export.certificado',[
+            'certificado' => $certificado,
+            'hash' => $hash,
+        ])->render();
+
+        $pdf = \PDF::loadHtml($html)
+                ->setPaper('letter')
+                ->setOption('margin-bottom', 2)
+                ->setOption('margin-right', 0)
+                ->setOption('margin-left', 2);
+
+        return $pdf->download( 'Certificado No. '. $hash . '.pdf');
+        return view('admin.certificados.export.certificado',[
+            'certificado' => $certificado,
+            'hash' => $hash,
+        ]);
+
+    }
+
+    /**
+     * Find the specified Certificado from url QR.
+     *
+     * @param  int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function findQr($hash)
+    {
+
+        $id = Crypt::decrypt($hash);
+
+        /** @var Certificado $certificado */
+        $certificado = Certificado::find($id);
+
+        $hash = hash('sha256', $certificado->id . $certificado->secuencial);
+
+        return view('admin.certificados.export.certificado',[
+            'certificado' => $certificado,
+            'hash' => $hash,
+        ]);
+
     }
 }
