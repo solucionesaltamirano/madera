@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateCertificadoRequest;
 use App\Models\Certificado;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\ClienteEmpresa;
 use Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\LogErrore;
@@ -39,7 +40,14 @@ class CertificadoController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.certificados.create');
+        if(auth()->user()->hasRole('ADMIN')){
+            $empresas = ClienteEmpresa::all();
+        }else{
+            $empresas = ClienteEmpresa::where('cliente_id', auth()->user()->empresa()->first()->id)->get();
+        }
+        return view('admin.certificados.create',[
+            'empresas' => $empresas
+        ]);
     }
 
     /**
@@ -56,8 +64,25 @@ class CertificadoController extends AppBaseController
         try {
             DB::beginTransaction();
 
+            $secuencial = Certificado::where('cliente_id', $input['cliente_id'])
+            ->max('secuencial') + 1 ?? 1;
+
             /** @var Certificado $certificado */
-            $certificado = Certificado::create($input);
+            $certificado = Certificado::create([
+                'cliente_id' => $input['cliente_id'],
+                'empresa_id' => $input['empresa_id'],
+                'secuencial' => $secuencial,
+                'fecha' => today(),
+                'descripcion' => $input['descripcion'],
+                'cantidad' => $input['cantidad'],
+                'humedad' => $input['humedad'],
+                'fecha_inicio'  => $input['fecha_inicio'],
+                'fecha_fin' => $input['fecha_fin'],
+                'hora_inicio' => $input['hora_inicio'],
+                'hora_fin' => $input['hora_fin'],
+                'temperatura_inicio' => $input['temperatura_inicio'],
+                'temperatura_fin' => $input['temperatura_fin'],
+            ]);
 
             Flash::success('Nuevo registro creado correctamente.');
         } catch (\Exception $exception) {

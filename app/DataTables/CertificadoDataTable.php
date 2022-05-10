@@ -160,15 +160,15 @@ class CertificadoDataTable extends DataTable
                 Column::make('humedad'),
                 Column::make('inicio'),
                 Column::make('fin'),
-                Column::make('temperatura_inicio'),
-                Column::make('temperatura_fin'),
+                Column::make('temperatura_inicio')->title('Temp. Inicio'),
+                Column::make('temperatura_fin')->title('Temp. Fin'),
                 Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
             ];
         }else{
             return [
                 Column::make('id'),
                 Column::make('secuencial'),
-                Column::make('empresas')
+                Column::make('empresa')
                     ->name('empresa.nombre')
                     ->data('empresa.nombre'),
                 Column::make('fecha'),
@@ -177,8 +177,8 @@ class CertificadoDataTable extends DataTable
                 Column::make('humedad'),
                 Column::make('inicio'),
                 Column::make('fin'),
-                Column::make('temperatura_inicio'),
-                Column::make('temperatura_fin'),
+                Column::make('temperatura_inicio')->title('Temp. Inicio'),
+                Column::make('temperatura_fin')->title('Temp. Fin'),
                 Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
             ];
         }

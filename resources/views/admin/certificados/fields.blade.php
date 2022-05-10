@@ -1,119 +1,58 @@
-@role('ADMIN')
-    <div class="form-group col-sm-3">
-        {!! Form::label('cliente_id', 'Cliente Id:') !!}
-        <select class="form-control">
-            <option value="">Seleccione un cliente</option>
-            @foreach (App\Models\User::role('CLIENTE')->get() as $user)
-                <option value="{{ $user->empresa()->first()->id }}">
-                    {{ $user->empresa()->first()->nombre_empresa }} 
-                    {{ $user->empresa()->first()->codigo }} 
-                </option>
-            @endforeach
-        </select>
-    </div>
-@endrole
-
-<!-- Cliente Id Field -->
-
-
-<!-- Empresa Id Field -->
-<div class="form-group col-sm-3">
-    {!! Form::label('empresa_id', 'Empresa Id:') !!}
-    {!! Form::number('empresa_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Secuencial Field -->
-<div class="form-group col-sm-3">
-    {!! Form::label('secuencial', 'Secuencial:') !!}
-    {!! Form::number('secuencial', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fecha Field -->
-<div class="form-group col-sm-3">
-    {!! Form::label('fecha', 'Fecha:') !!}
-    {!! Form::text('fecha', null, ['class' => 'form-control','id'=>'fecha']) !!}
-</div>
-
-@push('page_scripts')
-    <script type="text/javascript">
-        $('#fecha').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
-@endpush
+@livewire('cliente-empresas', [
+    'clienteSelected' => $certificado->cliente_id ?? null,
+    'empresaSelected' => $certificado->empresa_id ?? null,
+])
 
 <!-- Descripcion Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('descripcion', 'Descripcion:') !!}
     {!! Form::text('descripcion', null, ['class' => 'form-control','maxlength' => 200,'maxlength' => 200]) !!}
 </div>
 
 <!-- Cantidad Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('cantidad', 'Cantidad:') !!}
     {!! Form::number('cantidad', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Humedad Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('humedad', 'Humedad:') !!}
     {!! Form::number('humedad', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Fecha Inicio Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-    {!! Form::text('fecha_inicio', null, ['class' => 'form-control','id'=>'fecha_inicio']) !!}
+    {!! Form::date('fecha_inicio', today(), ['class' => 'form-control','id'=>'fecha_inicio']) !!}
 </div>
-
-@push('page_scripts')
-    <script type="text/javascript">
-        $('#fecha_inicio').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
-@endpush
 
 <!-- Hora Inicio Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('hora_inicio', 'Hora Inicio:') !!}
-    {!! Form::text('hora_inicio', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fecha Fin Field -->
-<div class="form-group col-sm-3">
-    {!! Form::label('fecha_fin', 'Fecha Fin:') !!}
-    {!! Form::text('fecha_fin', null, ['class' => 'form-control','id'=>'fecha_fin']) !!}
-</div>
-
-@push('page_scripts')
-    <script type="text/javascript">
-        $('#fecha_fin').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
-@endpush
-
-<!-- Hora Fin Field -->
-<div class="form-group col-sm-3">
-    {!! Form::label('hora_fin', 'Hora Fin:') !!}
-    {!! Form::text('hora_fin', null, ['class' => 'form-control']) !!}
+    {!! Form::time('hora_inicio', now(), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Temperatura Inicio Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('temperatura_inicio', 'Temperatura Inicio:') !!}
     {!! Form::number('temperatura_inicio', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Fecha Fin Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('fecha_fin', 'Fecha Fin:') !!}
+    {!! Form::date('fecha_fin', today(), ['class' => 'form-control','id'=>'fecha_fin']) !!}
+</div>
+
+<!-- Hora Fin Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('hora_fin', 'Hora Fin:') !!}
+    {!! Form::time('hora_fin', now(), ['class' => 'form-control']) !!}
+</div>
+
 <!-- Temperatura Fin Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-4">
     {!! Form::label('temperatura_fin', 'Temperatura Fin:') !!}
     {!! Form::number('temperatura_fin', null, ['class' => 'form-control']) !!}
 </div>

@@ -90,8 +90,8 @@ class Certificado extends Model implements HasMedia
     public static $rules = [
         'cliente_id' => 'required',
         'empresa_id' => 'required|integer',
-        'secuencial' => 'required',
-        'fecha' => 'required',
+        'secuencial' => 'nullable',
+        'fecha' => 'nullable',
         'descripcion' => 'required|string|max:200',
         'cantidad' => 'required',
         'humedad' => 'required|numeric',
