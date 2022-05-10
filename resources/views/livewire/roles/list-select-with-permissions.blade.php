@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="border border-primary rounded p-4 mt-2 bg-light">
+    {{-- <div class="border border-primary rounded p-4 mt-2 bg-light">
         <h3>Permissions</h3>
         <div class="row pb-2">
             <div class="col-12 col-sm-6 mb-2">
@@ -70,13 +70,13 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
     
     @foreach ($permissionsFromUser as $permission)
         <input type="hidden" name="permissions[]" value="{{ $permission['id'] }}">
     @endforeach
 
-    @foreach ($rolesAssigned as $role)
+    {{-- @foreach ($rolesAssigned as $role)
         <input type="hidden" name="roles[]" value="{{ $role['id'] }}">
-    @endforeach
+    @endforeach --}}
 </div>

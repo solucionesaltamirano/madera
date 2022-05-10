@@ -131,7 +131,7 @@ class ListSelectWithPermissions extends Component
     {
         $role_id = auth()->user()->roles->min('id') ?? Role::all()->max('id') + 1;
 
-        if($role_id <= 2){
+        if($role_id <= 3){
             $minRole = $role_id;
         }else{
             $minRole = $role_id + 1;
