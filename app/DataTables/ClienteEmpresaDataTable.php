@@ -145,7 +145,7 @@ class ClienteEmpresaDataTable extends DataTable
                 Column::make('cliente')
                 ->data('cliente.nombre_empresa')
                 ->name('cliente.nombre_empresa'),
-                Column::make('nombre'),
+                Column::make('nombre') ->title('Empresa'),
                 Column::make('direccion'),
                 Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
             ];
@@ -154,8 +154,7 @@ class ClienteEmpresaDataTable extends DataTable
 
             return [
                 Column::make('id'),
-
-                Column::make('nombre'),
+                Column::make('nombre')->title('Empresa'),
                 Column::make('direccion'),
                 Column::make('Opciones', )->title('Opciones')->orderable(false)->searchable(false)->printable(false)->exportable(false)->width('120px'),
             ];

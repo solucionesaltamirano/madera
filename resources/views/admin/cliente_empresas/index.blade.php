@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Cliente Empresas
+        Empresas de Clientes
     </x-slot>
     {{-- slot Body--}}
     <div class="card card-primary card-outline min-vh-100">
@@ -9,7 +9,7 @@
                 <h4>
                     <i class="fal fa-table"></i>
                     <span class="mx-2 ">
-                        Cliente Empresas
+                        Empresas de Clientes
                     </span>
                 </h4>
             </div>

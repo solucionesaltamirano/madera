@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Create Cliente Empresa
+        Create Empresa a enviar certificado
     </x-slot>
     <div class="card card-primary card-outline min-vh-100">
         <div class="card-header">
@@ -8,7 +8,7 @@
                 <h4>
                     <i class="fal fa-layer-plus"></i>
                     <span class="ml-3">
-                        Datos de nuevo Cliente Empresa
+                        Datos de Empresa a enviar certificado
                     </span>
                 </h4>
             </div>

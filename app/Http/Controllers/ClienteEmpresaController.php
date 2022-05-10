@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateClienteEmpresaRequest;
 use App\Models\ClienteEmpresa;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Cliente;
 use Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\LogErrore;
@@ -39,7 +40,11 @@ class ClienteEmpresaController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.cliente_empresas.create');
+        $clientes = Cliente::get();
+        
+        return view('admin.cliente_empresas.create',[
+            'clientes' => $clientes
+        ]);
     }
 
     /**
@@ -109,13 +114,18 @@ class ClienteEmpresaController extends AppBaseController
         /** @var ClienteEmpresa $clienteEmpresa */
         $clienteEmpresa = ClienteEmpresa::find($id);
 
+        $clientes = Cliente::get();
+
         if (empty($clienteEmpresa)) {
             Flash::error('Cliente Empresa Registro no econtrado.');
 
             return redirect(route('clienteEmpresas.index'));
         }
 
-        return view('admin.cliente_empresas.edit')->with('clienteEmpresa', $clienteEmpresa);
+        return view('admin.cliente_empresas.edit',[
+            'clienteEmpresa' => $clienteEmpresa,
+            'clientes' => $clientes
+        ]);
     }
 
     /**
