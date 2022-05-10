@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelHasPermissionsTableSeeder::class);
         $this->call(ModelHasRolesTableSeeder::class);
         $this->call(RoleHasPermissionsTableSeeder::class);
+        $this->call(ClientesTableSeeder::class);
+        $this->call(ClienteTelefonosTableSeeder::class);
 
         // \App\Models\User::factory(100)->create();
         // \App\Models\ChatRoom::factory(30)->create();

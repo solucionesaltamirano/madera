@@ -27,7 +27,17 @@ class ClienteDataTable extends DataTable
                  //se debe crear la vista modal_detalles
                  //return view('clientes.modal_detalles',compact('cliente'))->render();
         })
-        ->rawColumns(['Opciones','id']);
+        ->editColumn('fecha_registro',function (Cliente $cliente){
+            return $cliente->fecha_registro->format('d/m/Y');
+                 //se debe crear la vista modal_detalles
+                 //return view('clientes.modal_detalles',compact('cliente'))->render();
+        })
+        ->editColumn('fecha_vencimiento',function (Cliente $cliente){
+            return $cliente->fecha_vencimiento->format('d/m/Y');
+                 //se debe crear la vista modal_detalles
+                 //return view('clientes.modal_detalles',compact('cliente'))->render();
+        })
+        ->rawColumns(['Opciones','id', 'usuario']);
     }
 
     /**
@@ -38,7 +48,7 @@ class ClienteDataTable extends DataTable
      */
     public function query(Cliente $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('user_id', '!=', auth()->user()->id)->with('user');
     }
 
     /**
@@ -133,7 +143,10 @@ class ClienteDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('user_id'),
+            Column::make('id'),
+            Column::make('usuario')
+            ->data('user.name')
+            ->name('user.name'),
             Column::make('codigo'),
             Column::make('nombre_empresa'),
             Column::make('direccion'),

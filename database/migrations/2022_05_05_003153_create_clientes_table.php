@@ -20,7 +20,7 @@ class CreateClientesTable extends Migration
             $table->string('nombre_empresa', 200);
             $table->string('direccion', 45);
             $table->timestamp('fecha_registro')->nullable();
-            $table->timestamp('fecha_vencimiento');
+            $table->timestamp('fecha_vencimiento')->nullable();
             $table->string('nombre_representante_legal', 200);
             $table->timestamps();
             $table->softDeletes();

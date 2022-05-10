@@ -34,7 +34,7 @@ class UserController extends AppBaseController
 
         $role_id = auth()->user()->roles->min('id') ?? Role::all()->max('id') + 1;
 
-        if($role_id <= 2){
+        if($role_id <= 3){
             $minRole = $role_id;
         }else{
             $minRole = $role_id + 1;
@@ -43,7 +43,8 @@ class UserController extends AppBaseController
         // dd(User::get()->toArray());
 
         /** @var User $users */
-        $users = User::withTrashed()->where('id', '!=', auth()->user()->id)
+        $users = User::withTrashed()
+        // ->where('id', '!=', auth()->user()->id)
         ->get()
         ->where('minRole', '>=', $minRole)
         ;

@@ -16,9 +16,10 @@ class CreateClienteTelefonosTable extends Migration
         Schema::create('cliente_telefonos', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->unsignedSmallInteger('cliente_id')->index('fk_cliente_telefonos_clientes1_idx');
-            $table->string('telefono', 12);
+            $table->string('telefono', 20);
             $table->string('nombre', 200);
             $table->string('puesto', 100)->nullable();
+            $table->enum('principal', ['SI', 'NO'])->default('NO');
             $table->timestamps();
             $table->softDeletes();
         });

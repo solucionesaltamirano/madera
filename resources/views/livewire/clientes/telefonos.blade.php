@@ -28,7 +28,7 @@
                             <input name="item[{{$index}}][nombre]"
                                     wire:model="list.{{$index}}.nombre"
                                     class="form-control "
-                                    type="number"
+                                    type="text"
                                     value="0"
                                     >
                             </input>

@@ -30,7 +30,7 @@
                 <td>{{ $user->name }}</td>
                 <td>
                     @if($user->empresa->first())
-                        <a href="tel:{{ $user->empresa->first()->telefonos()->get()->first()->telefno }}" class="btn btn-success">{{ $user->empresa->first()->telefonos()->get()->first()->telefono }}</a>
+                        <a href="tel:{{ $user->empresa->first()->telefonos()->get()->first()->telefono }}" class="btn btn-success">{{ $user->empresa->first()->telefonos()->get()->first()->telefono }}</a>
                         <p class="">{{ $user->empresa->first()->telefonos()->get()->first()->nombre }}</p>
                         <p class="">{{ $user->empresa->first()->telefonos()->get()->first()->puesto ?? '' }}</p>
                     @endif
