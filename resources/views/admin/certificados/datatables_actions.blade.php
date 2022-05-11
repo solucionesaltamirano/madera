@@ -1,7 +1,7 @@
 {!! Form::open(['route' => ['certificados.destroy', $id], 'method' => 'delete', 'class' => 'deleteConfirm']) !!}
     <div class="d-flex justify-content-around">
         @can('certificados.create')
-            <a href="{{ route('certificados.emitPdf', encrypt( $id)) }}" class="btn btn-danger">
+            <a href="{{ route('certificados.emitPdf', \Crypt::encrypt( $id)) }}" class="btn btn-danger">
                 <i class="fas fa-file-pdf"></i>
             </a>
         @endcan

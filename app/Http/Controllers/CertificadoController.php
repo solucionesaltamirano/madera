@@ -243,9 +243,6 @@ class CertificadoController extends AppBaseController
         /** @var Certificado $certificado */
         $certificado = Certificado::find($id);
 
-
-        // dd($hash);
-
         $html = view('admin.certificados.export.certificado',[
             'certificado' => $certificado,
             'hash' => $hash,
@@ -253,11 +250,13 @@ class CertificadoController extends AppBaseController
 
         $pdf = \PDF::loadHtml($html)
                 ->setPaper('letter')
-                ->setOption('margin-bottom', 2)
-                ->setOption('margin-right', 0)
-                ->setOption('margin-left', 2);
+                ->setOption('margin-top', 10)
+                ->setOption('margin-bottom', 10)
+                ->setOption('margin-right', 5)
+                ->setOption('margin-left', 20)
+                ;
 
-        return $pdf->download( 'Certificado No. '. $hash . '.pdf');
+        return $pdf->download( 'Certificado '. $hash . '.pdf');
         return view('admin.certificados.export.certificado',[
             'certificado' => $certificado,
             'hash' => $hash,
@@ -276,13 +275,10 @@ class CertificadoController extends AppBaseController
      */
     public function findQr($hash)
     {
-
         $id = Crypt::decrypt($hash);
 
         /** @var Certificado $certificado */
         $certificado = Certificado::find($id);
-
-        $hash = hash('sha256', $certificado->id . $certificado->secuencial);
 
         return view('admin.certificados.export.certificado',[
             'certificado' => $certificado,

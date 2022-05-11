@@ -25,6 +25,6 @@ Route::resource('clienteEmpresas', App\Http\Controllers\ClienteEmpresaController
 Route::resource('certificados', App\Http\Controllers\CertificadoController::class);
 Route::resource('logErrores', App\Http\Controllers\LogErroreController::class);
 
-Route::get('admin/certificados/emitPdf/{hash}', [App\Http\Controllers\CertificadoController::class, 'emitPdf'])->name('certificados.emitPdf');
+Route::get('certificados/emitPdf/{hash}', [App\Http\Controllers\CertificadoController::class, 'emitPdf'])->name('certificados.emitPdf');
 
-Route::get('admin/certificados/findQr/{hash}', [App\Http\Controllers\CertificadoController::class, 'findQr'])->name('certificados.findQr');
+Route::get('certificados/findQr/{hash}', [App\Http\Controllers\CertificadoController::class, 'findQr'])->name('certificados.findQr');
