@@ -75,6 +75,7 @@ class CertificadoController extends AppBaseController
                 'secuencial' => $secuencial,
                 'fecha' => today(),
                 'descripcion' => $input['descripcion'],
+                'destino' => $input['destino'] ,
                 'cantidad' => $input['cantidad'],
                 'humedad' => $input['humedad'],
                 'fecha_inicio'  => $input['fecha_inicio'],
@@ -92,8 +93,6 @@ class CertificadoController extends AppBaseController
                 'description' => $exception->getMessage(),
                 'modelo' => Certificado::class,
                 'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }
@@ -177,8 +176,6 @@ class CertificadoController extends AppBaseController
                 'description' => $exception->getMessage(),
                 'modelo' => Certificado::class,
                 'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }
@@ -218,8 +215,6 @@ class CertificadoController extends AppBaseController
                 'description' => $exception->getMessage(),
                 'modelo' => Certificado::class,
                 'user_id' => auth()->user()->id,
-                'sucursal_id' => session('sucursal_selected')[0] ?? null,
-                'caja_id' => session('caja_selected') ?? null
             ]);
             Flash::success('[ERROR] Ocurrio un error al realizar la transaccion]');
         }

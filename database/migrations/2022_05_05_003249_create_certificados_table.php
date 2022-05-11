@@ -20,6 +20,7 @@ class CreateCertificadosTable extends Migration
             $table->unsignedSmallInteger('secuencial');
             $table->date('fecha');
             $table->string('descripcion', 200);
+            $table->string('destino', 300);
             $table->unsignedSmallInteger('cantidad');
             $table->decimal('humedad', 5);
             $table->date('fecha_inicio');

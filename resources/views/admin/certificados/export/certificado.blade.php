@@ -62,12 +62,12 @@
                 </span>
             </td>
             
-            <td style="padding-bottom:10px; padding-top: 20px; width: 30%; padding-left: 30px" rowspan="8" >
+            <td style="padding-bottom:10px; padding-top: 20px; width: 30%; padding-left: 30px" rowspan="9" >
                 <div >
                     {!! DNS2D::getBarcodeHTML(
                         url(route('certificados.findQr', $hash)),
                         'QRCODE',
-                        6,6
+                        5,5
                     ) !!}
                 </div>
             </td>
@@ -117,22 +117,11 @@
             </td>
             <td style="padding-bottom:10px; padding-top: 10px; width: 50%; text-align: left;  border-bottom:solid; border-width: thin;" colspan="5">
                 <span style="">
-                    {{ $certificado->empresa->direccion }}
-                </span>
-            </td>
-        </tr>
-        <tr style="">
-            <td style="padding-bottom:10px; padding-top: 10px; width: 20%;">
-                <span >
-                    Destino / Destiny
-                </span>
-            </td>
-            <td style="padding-bottom:10px; padding-top: 10px; width: 50%; text-align: left;  border-bottom:solid; border-width: thin;" colspan="5">
-                <span style="">
                     {{ $certificado->destino }}
                 </span>
             </td>
         </tr>
+        
         <tr style="">
             <td style="padding-bottom:10px; padding-top: 10px; width: 20%;">
                 <span >

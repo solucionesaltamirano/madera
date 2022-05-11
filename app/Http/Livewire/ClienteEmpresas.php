@@ -12,6 +12,7 @@ class ClienteEmpresas extends Component
     public $clienteSelected;
     public $empresas = [];
     public $empresaSelected = "0";
+    public $destino;
 
     public function mount($clienteSelected = Null, $empresaSelected = null)
     {
@@ -35,6 +36,12 @@ class ClienteEmpresas extends Component
     {
         $this->empresas = ClienteEmpresa::where('cliente_id', $this->clienteSelected)->get();
         $this->empresaSelected = "0";
+    }
+
+    public function updatedEmpresaSelected()
+    {
+        $this->destino = ClienteEmpresa::find($this->empresaSelected)->direccion;
+        
     }
 
     public function render()
